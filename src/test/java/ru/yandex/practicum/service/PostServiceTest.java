@@ -16,7 +16,7 @@ class PostServiceTest {
     }
 
     @Test
-    void findPostAll() {
+    void findAllPosts() {
     }
 
     @Test

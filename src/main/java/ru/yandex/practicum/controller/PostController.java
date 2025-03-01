@@ -1,58 +1,62 @@
 package ru.yandex.practicum.controller;
 
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.model.Post;
 import ru.yandex.practicum.service.PostService;
 
 /**
- *Контроллер обрабатывает запросы /posts.
+ * Контроллер обрабатывает запросы /posts.
  */
 @Controller
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
-  private final PostService service;
+    private final PostService postService;
 
-  /**
-   * Обрабатывает GET-запросы.
-   * Данные передаются в виде атрибута posts.
-   *
-   * @return название шаблона — posts.html.
-   */
-  @GetMapping
-  public String getPosts(Model model) {
-    List<Post> posts = service.findPostAll();
+    /**
+     * Обрабатывает GET-запросы на получение списка постов.
+     *
+     * @param page - номер страницы.
+     * @param size - количество постов на странице.
+     * @return список постов.
+     */
+    @GetMapping
+    public ResponseEntity<List<Post>> getPosts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @ModelAttribute Post post) {
 
-    model.addAttribute("posts", posts);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Post> postPage = postService.findAllPosts(pageable);
 
-    return "posts";
-  }
+        return ResponseEntity.ok(postPage.getContent());
+    }
 
-  /**
-   * Сохранение поста.
-   *
-   * @param post - данные поста.
-   * @return возврат на страницу posts.html, чтобы она перезагрузилась.
-   */
-  @PostMapping
-  public String savePost(@ModelAttribute Post post) {
-    service.savePost(post);
+    /**
+     * Сохранение поста.
+     *
+     * @param post - данные поста.
+     * @return возврат на страницу posts.html, чтобы она перезагрузилась.
+     */
+    @PostMapping
+    public String savePost(@ModelAttribute Post post) {
+        postService.savePost(post);
 
-    return "redirect:/posts";
-  }
+        return "redirect:/posts";
+    }
 
-  @PostMapping(value = "/{id}", params = "_method=delete")
-  public String deletePost(@PathVariable(name = "id") Long id) {
-    service.deletePostById(id);
+    @PostMapping(value = "/{id}", params = "_method=delete")
+    public String deletePost(@PathVariable(name = "id") Long id) {
+        postService.deletePostById(id);
 
-    return "redirect:/posts";
-  }
+        return "redirect:/posts";
+    }
 }

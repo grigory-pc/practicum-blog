@@ -1,7 +1,8 @@
 package ru.yandex.practicum.service.impl;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.model.Post;
 import ru.yandex.practicum.repository.PostRepository;
@@ -14,7 +15,7 @@ public class PostServiceImpl implements PostService {
   private final PostRepository postRepository;
 
   @Override
-  public List<Post> findPostAll() {
+  public Page<Post> findAllPosts(Pageable pageable ) {
     return postRepository.findAllPosts();
   }
 
