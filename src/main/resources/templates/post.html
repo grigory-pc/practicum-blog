@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пост</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="post-script.js" defer></script>
+</head>
+<body>
+<div id="post-content"></div>
+<div id="comments-section">
+    <h2>Комментарии</h2>
+    <div id="comments-list"></div>
+    <input type="text" id="comment-input" placeholder="Ваш комментарий">
+    <button onclick="addComment()">Добавить комментарий</button>
+</div>
+<button onclick="deletePost()">Удалить пост</button>
+<button onclick="editPost()">Редактировать пост</button>
+<script>
+    const postId = new URLSearchParams(window.location.search).get('id');
+
+    async function loadPost() {
+        const response = await fetch(`/api/posts/${postId}`);
+        const post = await response.json();
+        displayPost(post);
+    }
+
+    function displayPost(post) {
+        const postContent = document.getElementById('post-content');
+        postContent.innerHTML = `
+            <h1>${post.title}</h1>
+            <img src="${post.image}" alt="${post.title}">
+            <div>${post.text.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('')}</div>
+            <p>Теги: ${post.tags.join(', ')}</p>`;
+        loadComments();
+    }
+
+    async function loadComments() {
+        const response = await fetch(`/api/posts/${postId}/comments`);
+        const comments = await response.json();
+        const commentsList = document.getElementById('comments-list');
+        commentsList.innerHTML = '';
+        comments.forEach(comment => {
+            commentsList.innerHTML += `
+                <div class="comment" id="comment-${comment.id}">
+                    <p>${comment.text}</p>
+                    <button onclick="editComment(${comment.id})">Редактировать</button>
+                    <button onclick="deleteComment(${comment.id})">Удалить</button>
+                </div>`;
+        });
+    }
+
+    async function addComment() {
+        const commentText = document.getElementById('comment-input').value;
+        await fetch(`/api/posts/${postId}/comments`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: commentText })
+        });
+        document.getElementById('comment-input').value = '';
+        loadComments();
+    }
+
+    async function deletePost() {
+        await fetch(`/api/posts/${postId}`, { method: 'DELETE' });
+        window.location.href = 'index.html';
+    }
+
+    function editPost() {
+        window.location.href = `edit-post.html?id=${postId}`;
+    }
+
+    async function deleteComment(commentId) {
+        await fetch(`/api/posts/${postId}/comments/${commentId}`, { method: 'DELETE' });
+        loadComments();
+    }
+
+    function editComment(commentId) {
+        const commentDiv = document.getElementById(`comment-${commentId}`);
+        const commentText = commentDiv.querySelector('p').innerText;
+        commentDiv.innerHTML = `<input type="text" id="edit-comment" value="${commentText}">
+                                <button onclick="saveComment(${commentId})">Сохранить</button>`;
+    }
+
+    async function saveComment(commentId) {
+        const updatedText = document.getElementById('edit-comment').value;
+        await fetch(`/api/posts/${postId}/comments/${commentId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: updatedText })
+        });
+        loadComments();
+    }
+
+    window.addEventListener('DOMContentLoaded', loadPost);
+</script>
+</body>
+</html>
