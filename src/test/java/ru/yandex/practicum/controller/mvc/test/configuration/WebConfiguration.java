@@ -1,4 +1,4 @@
-package ru.yandex.practicum.configuration;
+package ru.yandex.practicum.controller.mvc.test.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +10,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "ru.yandex.practicum")
-@PropertySource("classpath:application.properties")
+@ComponentScan(basePackages = "ru.yandex.practicum.mvc.test")
+@PropertySource("classpath:test-application.properties")
 public class WebConfiguration {}
