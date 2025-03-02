@@ -31,7 +31,7 @@ public class Post {
   @Column(name = "title", nullable = false)
   private String title;
   @Column(name = "image", nullable = false)
-  private String image;
+  private byte[] image;
   @Column(name = "text", nullable = false)
   private String text;
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

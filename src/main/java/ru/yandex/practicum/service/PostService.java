@@ -1,7 +1,10 @@
 package ru.yandex.practicum.service;
 
-import org.springframework.data.domain.Page;
-import ru.yandex.practicum.dao.Post;
+import java.util.List;
+import ru.yandex.practicum.dto.CommentDto;
+import ru.yandex.practicum.dto.PostFullDto;
+import ru.yandex.practicum.dto.PostPreviewDto;
+import ru.yandex.practicum.dto.PostSaveDto;
 
 /**
  * Сервис для работы с постами.
@@ -15,14 +18,53 @@ public interface PostService {
    * @param size - количество записей.
    * @return список постов.
    */
-  Page<Post> findAllPosts(int from, int size);
+  List<PostPreviewDto> findAllPosts(int from, int size);
+
+  /**
+   * Получение поста по id.
+   *
+   * @param id - id поста.
+   * @return объект поста.
+   */
+  PostFullDto getPostById(Long id);
 
   /**
    * Сохранение поста.
    *
    * @param post - объект поста.
    */
-  void savePost(Post post);
+  void savePost(PostSaveDto post);
+
+  /**
+   * Обновление поста.
+   *
+   * @param id - id поста.
+   * @param post - объект поста.
+   */
+  void updatePost(Long id, PostSaveDto post);
+
+  /**
+   * Добавление лайка к посту.
+   *
+   * @param id - id поста.
+   */
+  void addLike(Long id);
+
+  /**
+   * Добавление комментария.
+   *
+   * @param id - id поста.
+   */
+  void saveComment(Long id, CommentDto comment);
+
+  /**
+   * Обновление комментария.
+   *
+   * @param id - id поста.
+   * @param commentId - id комментария.
+   * @param comment - данные комментария.
+   */
+  void updateComment(Long id, Long commentId, CommentDto comment);
 
   /**
    * Удаление поста по id.
@@ -30,4 +72,11 @@ public interface PostService {
    * @param id - id поста.
    */
   void deletePostById(Long id);
+
+  /**
+   * Удаление комментария по id.
+   *
+   * @param id - id комментария.
+   */
+  void deleteCommentById(Long id);
 }
