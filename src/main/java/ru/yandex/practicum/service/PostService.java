@@ -1,7 +1,6 @@
 package ru.yandex.practicum.service;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import ru.yandex.practicum.dao.Post;
 
 /**
@@ -9,25 +8,26 @@ import ru.yandex.practicum.dao.Post;
  */
 public interface PostService {
 
-    /**
-     * Получение списка постов.
-     *
-     * @param pageable - данные для пагинации.
-     * @return список постов.
-     */
-    Page<Post> findAllPosts(Pageable pageable);
+  /**
+   * Получение всех постов.
+   *
+   * @param from - с какой страницы
+   * @param size - количество записей.
+   * @return список постов.
+   */
+  Page<Post> findAllPosts(int from, int size);
 
-    /**
-     * Сохранение поста.
-     *
-     * @param post - объект поста.
-     */
-    void savePost(Post post);
+  /**
+   * Сохранение поста.
+   *
+   * @param post - объект поста.
+   */
+  void savePost(Post post);
 
-    /**
-     * Удаление поста по id.
-     *
-     * @param id - id поста.
-     */
-    void deletePostById(Long id);
+  /**
+   * Удаление поста по id.
+   *
+   * @param id - id поста.
+   */
+  void deletePostById(Long id);
 }

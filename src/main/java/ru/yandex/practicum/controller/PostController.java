@@ -4,8 +4,6 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,18 +22,17 @@ public class PostController {
     /**
      * Обрабатывает GET-запросы на получение списка постов.
      *
-     * @param page - номер страницы.
+     * @param from - номер страницы.
      * @param size - количество постов на странице.
      * @return список постов.
      */
     @GetMapping
     public ResponseEntity<List<Post>> getPosts(
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "0") int from,
             @RequestParam(defaultValue = "10") int size,
             @ModelAttribute Post post) {
 
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Post> postPage = postService.findAllPosts(pageable);
+        Page<Post> postPage = postService.findAllPosts(from, size);
 
         return ResponseEntity.ok(postPage.getContent());
     }

@@ -10,24 +10,25 @@ import ru.yandex.practicum.dao.Post;
  */
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-    /**
-     * Получение всех постов.
-     *
-     * @return список постов.
-     */
-    Page<Post> findAll(Pageable pageable);
+  /**
+   * Получение всех постов.
+   *
+   * @param pageable - данные для пагинации.
+   * @return список постов.
+   */
+  Page<Post> findAllPosts(Pageable pageable);
 
-    /**
-     * Сохранение поста в БД.
-     *
-     * @param post - объект поста.
-     */
-    void savePost(Post post);
+  /**
+   * Сохранение поста в БД.
+   *
+   * @param post - объект поста.
+   */
+  void savePost(Post post);
 
-    /**
-     * Удаление поста из БД по id.
-     *
-     * @param id - id поста.
-     */
-    void deletePostById(Long id);
+  /**
+   * Удаление поста из БД по id.
+   *
+   * @param id - id поста.
+   */
+  void deletePostById(Long id);
 }
