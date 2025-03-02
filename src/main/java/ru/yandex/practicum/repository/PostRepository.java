@@ -19,13 +19,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
   Page<Post> findAllPosts(Pageable pageable);
 
   /**
-   * Сохранение поста в БД.
-   *
-   * @param post - объект поста.
-   */
-  void savePost(Post post);
-
-  /**
    * Удаление поста из БД по id.
    *
    * @param id - id поста.
