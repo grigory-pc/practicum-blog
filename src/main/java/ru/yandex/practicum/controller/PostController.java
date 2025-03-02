@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.model.Post;
+import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.service.PostService;
 
 /**

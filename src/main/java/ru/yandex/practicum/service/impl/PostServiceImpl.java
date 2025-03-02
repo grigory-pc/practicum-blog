@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.yandex.practicum.model.Post;
+import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.service.PostService;
 

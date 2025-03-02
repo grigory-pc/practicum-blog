@@ -3,7 +3,7 @@ package ru.yandex.practicum.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.yandex.practicum.model.Post;
+import ru.yandex.practicum.dao.Post;
 
 /**
  * Получение данных из таблицы Posts.

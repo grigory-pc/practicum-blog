@@ -2,7 +2,7 @@ package ru.yandex.practicum.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.yandex.practicum.model.Post;
+import ru.yandex.practicum.dao.Post;
 
 /**
  * Сервис для работы с постами.
