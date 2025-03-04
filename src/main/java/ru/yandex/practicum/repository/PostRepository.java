@@ -1,6 +1,6 @@
 package ru.yandex.practicum.repository;
 
-import org.springframework.data.domain.Page;
+import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yandex.practicum.dao.Post;
@@ -16,7 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
    * @param pageable - данные для пагинации.
    * @return список постов.
    */
-  Page<Post> findAllPosts(Pageable pageable);
+  List<Post> findAllPosts(Pageable pageable);
 
   /**
    * Удаление поста из БД по id.
