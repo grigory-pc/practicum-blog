@@ -21,7 +21,7 @@ public class PostServiceImpl implements PostService {
   private final PostMapper postMapper;
 
   @Override
-  public List<PostPreviewDto> findAllPosts(int from, int size ) {
+  public List<PostPreviewDto> findAllPosts(int from, int size) {
     Pageable pageable = PageRequest.of(from, size);
 
     return postMapper.toDto(postRepository.findAllPosts(pageable));
@@ -29,7 +29,8 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public PostFullDto getPostById(Long id) {
-    return null;
+
+    return postMapper.toDto(postRepository.findById(id));
   }
 
   @Override
