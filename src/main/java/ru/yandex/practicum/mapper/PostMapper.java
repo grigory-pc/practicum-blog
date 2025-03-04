@@ -18,6 +18,7 @@ public interface PostMapper {
   @Mapping(target = "countComments",
            expression = "java(posts.getComments() != null ? posts.getComments().size() : 0)")
   @Mapping(target = "countLikes", source = "likes")
+  @Mapping(target = "postText", source = "text")
   List<PostPreviewDto> toDto(Iterable<Post> posts);
 
   @Mapping(target = "postText", source = "text")
