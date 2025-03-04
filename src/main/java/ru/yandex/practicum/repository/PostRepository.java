@@ -8,7 +8,7 @@ import ru.yandex.practicum.dao.Post;
 /**
  * Получение данных из таблицы Posts.
  */
-public interface PostRepository extends JpaRepository<Post, Integer> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
   /**
    * Получение всех постов.

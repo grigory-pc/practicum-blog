@@ -12,4 +12,5 @@ import ru.yandex.practicum.dto.TagDto;
 public interface TagMapper {
   List<TagDto> toDto(Iterable<Tag> tags);
 
+  List<Tag> toTag(Iterable<TagDto> tagDtos);
 }
