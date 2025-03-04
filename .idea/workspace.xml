@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновлена логика сохранения поста.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/CommentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostSaveDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scheme_DB.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Scheme_DB.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/scheme.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scheme.sql" afterDir="false" />
-    </list>
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление конфигурации БД." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +16,8 @@
         <option value="HTML File" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Record" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -102,11 +91,11 @@
       <recent name="ru.yandex.practicum.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum.configuration" />
       <recent name="ru.yandex.practicum.dto" />
       <recent name="ru.yandex.practicum.exceptions" />
       <recent name="ru.yandex.practicum.utils" />
       <recent name="ru.yandex.practicum.model" />
-      <recent name="ru.yandex.practicum.controller.mvc.test" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -149,7 +138,7 @@
       <workItem from="1740731229689" duration="4933000" />
       <workItem from="1740916640524" duration="741000" />
       <workItem from="1740917515739" duration="536000" />
-      <workItem from="1740945838063" duration="1171000" />
+      <workItem from="1740945838063" duration="7304000" />
     </task>
     <task id="LOCAL-00001" summary="feat: init commit">
       <option name="closed" value="true" />
@@ -247,7 +236,55 @@
       <option name="project" value="LOCAL" />
       <updated>1740906715448</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat: обновление схемы БД. Добавление DTO. Обновление контроллера. Добавление дополнительных зависимостей.">
+      <option name="closed" value="true" />
+      <created>1740950457876</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740950457876</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: обновление POM">
+      <option name="closed" value="true" />
+      <created>1740951445521</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740951445521</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: обновлена конфигурация для БД и Hibernate">
+      <option name="closed" value="true" />
+      <created>1740952084628</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1740952084628</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: добавлены зависимость и плагин для mapstruct">
+      <option name="closed" value="true" />
+      <created>1740952550608</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1740952550608</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat: добавлены мапперы">
+      <option name="closed" value="true" />
+      <created>1740952886768</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1740952886768</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat: обновление конфигурации БД.">
+      <option name="closed" value="true" />
+      <created>1740953183596</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1740953183596</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,21 +311,12 @@
     <MESSAGE value="feat: обновлена структура БД. Добавлены/обновлены DAO" />
     <MESSAGE value="feat: добавлена реализация для логики получения всех постов." />
     <MESSAGE value="feat: обновлена логика сохранения поста." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновлена логика сохранения поста." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/PostService.java</url>
-          <line>26</line>
-          <properties class="ru.yandex.practicum.service.PostService" method="savePost">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: обновление схемы БД. Добавление DTO. Обновление контроллера. Добавление дополнительных зависимостей." />
+    <MESSAGE value="feat: обновление POM" />
+    <MESSAGE value="feat: обновлена конфигурация для БД и Hibernate" />
+    <MESSAGE value="feat: добавлены зависимость и плагин для mapstruct" />
+    <MESSAGE value="feat: добавлены мапперы" />
+    <MESSAGE value="feat: обновление конфигурации БД." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление конфигурации БД." />
   </component>
 </project>

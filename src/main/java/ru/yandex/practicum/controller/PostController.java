@@ -53,7 +53,7 @@ public class PostController {
    * @return возврат на страницу post.html, чтобы она перезагрузилась.
    */
   @PostMapping
-  public String savePost(@ModelAttribute PostSaveDto post) {
+  public String savePost(@RequestBody PostSaveDto post) {
     postService.savePost(post);
 
     return REDIRECT_POST;
@@ -67,7 +67,7 @@ public class PostController {
    * @return возврат на страницу post.html, чтобы она перезагрузилась.
    */
   @PatchMapping("/{id}")
-  public String updatePost(@PathVariable(name = "id") Long id, @ModelAttribute PostSaveDto post) {
+  public String updatePost(@PathVariable(name = "id") Long id, @RequestBody PostSaveDto post) {
     postService.updatePost(id, post);
 
     return REDIRECT_POST;
@@ -94,7 +94,7 @@ public class PostController {
    */
   @PostMapping("/{id}/comment")
   public String saveComment(@PathVariable(name = "id") Long id,
-                            @ModelAttribute CommentDto comment) {
+                            @RequestBody CommentDto comment) {
     postService.saveComment(id, comment);
 
     return REDIRECT_POST;
@@ -111,7 +111,7 @@ public class PostController {
   @PatchMapping("/{id}/comment/{comment_id}")
   public String updComment(@PathVariable(name = "id") Long id,
                            @PathVariable(name = "comment_id") Long commentId,
-                           @ModelAttribute CommentDto comment) {
+                           @RequestBody CommentDto comment) {
     postService.updateComment(id, commentId, comment);
 
     return REDIRECT_POST;
