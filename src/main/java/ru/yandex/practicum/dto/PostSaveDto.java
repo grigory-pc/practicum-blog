@@ -3,8 +3,8 @@ package ru.yandex.practicum.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Builder;
 
@@ -14,7 +14,7 @@ import lombok.Builder;
  * @param title -названия поста.
  * @param image - картинка.
  * @param postText - текст поста.
- * @param tags - теги поста.
+ * @param tagIds - множество тегов поста.
  */
 @Builder
 public record PostSaveDto(@JsonProperty(value = "title",
@@ -22,7 +22,8 @@ public record PostSaveDto(@JsonProperty(value = "title",
                           @JsonProperty(value = "image") byte[] image,
                           @JsonProperty(value = "post_text",
                                         required = true) @NotBlank String postText,
-                          @JsonProperty(value = "tags") List<TagDto> tags) {
+                          @JsonProperty(value = "tags") Set<Long> tagIds) {
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -33,13 +34,13 @@ public record PostSaveDto(@JsonProperty(value = "title",
     }
     PostSaveDto that = (PostSaveDto) o;
     return Objects.equals(title, that.title) && Arrays.equals(image, that.image)
-           && Objects.equals(postText, that.postText) && Objects.equals(tags,
-                                                                        that.tags);
+           && Objects.equals(postText, that.postText) && Objects.equals(tagIds,
+                                                                        that.tagIds);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(title, postText, tags);
+    int result = Objects.hash(title, postText, tagIds);
     result = 31 * result + Arrays.hashCode(image);
     return result;
   }
@@ -58,11 +59,11 @@ public record PostSaveDto(@JsonProperty(value = "title",
            + ", \"image\": " + (image == null ? null
                                               : "{\"blob\": {\"size\": " + image.length + "}}")
            + ", \"postText\": " + (postText == null ? null : '"' + postText + '"')
-           + ", \"tags\": " + (tags == null ? null : (tags).stream()
-                                                           .map(Objects::toString)
-                                                           .collect(
-                                                               Collectors.joining(
-                                                                   ", ", "[", "]")))
+           + ", \"tagIds\": " + (tagIds == null ? null : (tagIds).stream()
+                                                                 .map(Objects::toString)
+                                                                 .collect(
+                                                                     Collectors.joining(
+                                                                         ", ", "[", "]")))
            + "}";
   }
 }

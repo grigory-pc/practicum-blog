@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Builder;
 
@@ -18,7 +18,7 @@ import lombok.Builder;
  * @param postText - коротко первый абзац.
  * @param countComments - количество комментариев к посту.
  * @param countLikes - количество лайков к посту.
- * @param tags - теги поста.
+ * @param tagIds - множество id тегов поста.
  */
 @Builder
 public record PostPreviewDto(@JsonProperty(value = "id") Long id,
@@ -30,7 +30,7 @@ public record PostPreviewDto(@JsonProperty(value = "id") Long id,
                                            required = true) @NotNull Integer countComments,
                              @JsonProperty(value = "count_likes",
                                            required = true) @NotNull Integer countLikes,
-                             @JsonProperty(value = "tags", required = true) List<TagDto> tags) {
+                             @JsonProperty(value = "tags", required = true) Set<Long> tagIds) {
 
   @Override
   public boolean equals(Object o) {
@@ -45,12 +45,12 @@ public record PostPreviewDto(@JsonProperty(value = "id") Long id,
            && Arrays.equals(image, that.image) && Objects.equals(postText,
                                                                  that.postText)
            && Objects.equals(countComments, that.countComments) && Objects.equals(
-        countLikes, that.countLikes) && Objects.equals(tags, that.tags);
+        countLikes, that.countLikes) && Objects.equals(tagIds, that.tagIds);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(id, title, postText, countComments, countLikes, tags);
+    int result = Objects.hash(id, title, postText, countComments, countLikes, tagIds);
     result = 31 * result + Arrays.hashCode(image);
     return result;
   }
@@ -72,11 +72,11 @@ public record PostPreviewDto(@JsonProperty(value = "id") Long id,
            + ", \"postText\": " + (postText == null ? null : '"' + postText + '"')
            + ", \"countComments\": " + countComments
            + ", \"countLikes\": " + countLikes
-           + ", \"tags\": " + (tags == null ? null : (tags).stream()
-                                                           .map(Objects::toString)
-                                                           .collect(
-                                                               Collectors.joining(
-                                                                   ", ", "[", "]")))
+           + ", \"tagIds\": " + (tagIds == null ? null : (tagIds).stream()
+                                                                 .map(Objects::toString)
+                                                                 .collect(
+                                                                     Collectors.joining(
+                                                                         ", ", "[", "]")))
            + "}";
   }
 }

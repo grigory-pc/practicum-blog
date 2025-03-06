@@ -1,5 +1,6 @@
 package ru.yandex.practicum.dao;
 
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.*;
-
-import java.util.List;
 
 /**
  * Класс поста.
@@ -36,10 +35,10 @@ public class Post {
   private String text;
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
-  private List<Comment> comments;
+  private Set<Comment> comments;
   @Column(name = "likes", nullable = false, columnDefinition = "integer default 0")
   private int likes;
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
-  private List<Tag> tags;
+  private Set<Tag> tags;
 }

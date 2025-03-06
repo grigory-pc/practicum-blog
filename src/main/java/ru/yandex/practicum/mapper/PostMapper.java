@@ -1,6 +1,8 @@
 package ru.yandex.practicum.mapper;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.yandex.practicum.dao.Post;
@@ -19,8 +21,15 @@ public interface PostMapper {
            expression = "java(posts.getComments() != null ? posts.getComments().size() : 0)")
   @Mapping(target = "countLikes", source = "likes")
   @Mapping(target = "postText", source = "text")
+  @Mapping(target = "tagIds", source = "tags")
   List<PostPreviewDto> toDto(Iterable<Post> posts);
 
   @Mapping(target = "postText", source = "text")
-  PostFullDto toDto (Post post);
+  PostFullDto toDto(Post post);
+
+  default Set<Long> mapPostToPostIds(Set<Post> posts) {
+    return posts.stream()
+                .map(Post::getId)
+                .collect(Collectors.toSet());
+  }
 }
