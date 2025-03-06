@@ -10,6 +10,7 @@ import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.service.CommentService;
+import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 import ru.yandex.practicum.service.TagService;
 
@@ -24,6 +25,7 @@ public class PostController {
   private final PostService postService;
   private final CommentService commentService;
   private final TagService tagService;
+  private final LikeService likeService;
 
   /**
    * Обрабатывает GET-запросы на получение списка превью постов для ленты.
@@ -86,7 +88,7 @@ public class PostController {
    */
   @PostMapping("/{id}/like")
   public String addLike(@PathVariable(name = "id") Long id) {
-    postService.addLike(id);
+    likeService.addLike(id);
 
     return REDIRECT_POST;
   }

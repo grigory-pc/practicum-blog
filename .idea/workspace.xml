@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: добавлена логика сохранения и обновления поста">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление логики удаления постов и комментариев" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +69,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "feat/create-blog",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "H:/Work/CBT/Projects/java-spring-project-template",
+    "last_opened_file_path": "H:/Work/CBT/Projects/liveness-backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,11 +91,11 @@
       <recent name="ru.yandex.practicum.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ru.yandex.practicum.dao" />
+      <recent name="ru.yandex.practicum.service.impl" />
+      <recent name="ru.yandex.practicum.service" />
       <recent name="ru.yandex.practicum.repository" />
+      <recent name="ru.yandex.practicum.dao" />
       <recent name="ru.yandex.practicum.configuration" />
-      <recent name="ru.yandex.practicum.dto" />
-      <recent name="ru.yandex.practicum.exceptions" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -142,6 +140,7 @@
       <workItem from="1740917515739" duration="536000" />
       <workItem from="1740945838063" duration="7304000" />
       <workItem from="1741070456114" duration="6780000" />
+      <workItem from="1741245408893" duration="4618000" />
     </task>
     <task id="LOCAL-00001" summary="feat: init commit">
       <option name="closed" value="true" />
@@ -327,7 +326,55 @@
       <option name="project" value="LOCAL" />
       <updated>1741077218491</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat: обновлена работа с тагами">
+      <option name="closed" value="true" />
+      <created>1741247083523</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1741247083523</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat: добавлена работа с тегами">
+      <option name="closed" value="true" />
+      <created>1741247448924</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1741247448924</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: обновлена логика работы с получением всех данных по посту.">
+      <option name="closed" value="true" />
+      <created>1741247632215</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1741247632215</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat: обновлена логика работы с постами. Добавлена логика работы с комментариями.">
+      <option name="closed" value="true" />
+      <created>1741248865643</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1741248865643</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: обновление структуры сервисов">
+      <option name="closed" value="true" />
+      <created>1741249340533</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1741249340533</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: обновление логики удаления постов и комментариев">
+      <option name="closed" value="true" />
+      <created>1741249419049</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1741249419049</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +392,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: init commit" />
     <MESSAGE value="feat: for git" />
     <MESSAGE value="feat: добавлены интеграционные тесты в рамках теории" />
     <MESSAGE value="feat: добавлены шаблоны для веб. Создана базовая структура проекта." />
@@ -365,6 +411,12 @@
     <MESSAGE value="feat: добавлена реализация получения поста по id" />
     <MESSAGE value="feat: обновление полей для поста" />
     <MESSAGE value="feat: добавлена логика сохранения и обновления поста" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: добавлена логика сохранения и обновления поста" />
+    <MESSAGE value="feat: обновлена работа с тагами" />
+    <MESSAGE value="feat: добавлена работа с тегами" />
+    <MESSAGE value="feat: обновлена логика работы с получением всех данных по посту." />
+    <MESSAGE value="feat: обновлена логика работы с постами. Добавлена логика работы с комментариями." />
+    <MESSAGE value="feat: обновление структуры сервисов" />
+    <MESSAGE value="feat: обновление логики удаления постов и комментариев" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление логики удаления постов и комментариев" />
   </component>
 </project>

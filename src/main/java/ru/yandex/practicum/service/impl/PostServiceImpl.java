@@ -14,6 +14,7 @@ import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
+import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 
 @Service
@@ -23,6 +24,7 @@ public class PostServiceImpl implements PostService {
   private final PostRepository postRepository;
   private final PostTagRepository postTagRepository;
   private final PostMapper postMapper;
+  private final LikeService likeService;
 
   @Override
   public List<PostPreviewDto> findAllPosts(int from, int size) {
@@ -43,13 +45,13 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public void savePost(PostSaveDto postSaveDto) {
-
     Post post = postRepository.save(postMapper.toPost(postSaveDto));
-
 
     for (Long tagId : postSaveDto.tagIds()) {
       postTagRepository.save(new PostTag(post.getId(), tagId));
     }
+
+    likeService.saveLike(post.getId());
   }
 
   @Override
@@ -63,11 +65,6 @@ public class PostServiceImpl implements PostService {
         postTagRepository.save(new PostTag(id, tagId));
       }
     }
-  }
-
-  @Override
-  public void addLike(Long id) {
-
   }
 
   @Override

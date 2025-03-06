@@ -42,12 +42,6 @@ public interface PostService {
    */
   void updatePost(Long id, PostSaveDto post);
 
-  /**
-   * Добавление лайка к посту.
-   *
-   * @param id - id поста.
-   */
-  void addLike(Long id);
 
   /**
    * Удаление поста по id.

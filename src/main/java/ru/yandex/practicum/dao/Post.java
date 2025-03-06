@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.*;
 
@@ -36,8 +37,9 @@ public class Post {
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
   private Set<Comment> comments;
-  @Column(name = "likes", nullable = false, columnDefinition = "integer default 0")
-  private int likes;
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "post_id")
+  private Like like;
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
   private Set<Tag> tags;
