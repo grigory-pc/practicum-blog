@@ -9,7 +9,9 @@ import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
+import ru.yandex.practicum.service.CommentService;
 import ru.yandex.practicum.service.PostService;
+import ru.yandex.practicum.service.TagService;
 
 /**
  * Контроллер обрабатывает запросы /posts.
@@ -20,6 +22,8 @@ import ru.yandex.practicum.service.PostService;
 public class PostController {
   public static final String REDIRECT_POST = "redirect:/post";
   private final PostService postService;
+  private final CommentService commentService;
+  private final TagService tagService;
 
   /**
    * Обрабатывает GET-запросы на получение списка превью постов для ленты.
@@ -96,7 +100,7 @@ public class PostController {
   @PostMapping("/{id}/comment")
   public String saveComment(@PathVariable(name = "id") Long id,
                             @RequestBody CommentDto comment) {
-    postService.saveComment(id, comment);
+    commentService.saveComment(id, comment);
 
     return REDIRECT_POST;
   }
@@ -113,7 +117,7 @@ public class PostController {
   public String updateComment(@PathVariable(name = "id") Long id,
                            @PathVariable(name = "comment_id") Long commentId,
                            @RequestBody CommentDto comment) {
-    postService.updateComment(id, commentId, comment);
+    commentService.updateComment(id, commentId, comment);
 
     return REDIRECT_POST;
   }
@@ -139,7 +143,7 @@ public class PostController {
    */
   @PostMapping(value = "/comment/{commentId}", params = "_method=delete")
   public String deleteComment(@PathVariable(name = "commentId") Long commentId) {
-    postService.deleteCommentById(commentId);
+    commentService.deleteCommentById(commentId);
 
     return REDIRECT_POST;
   }
@@ -152,6 +156,6 @@ public class PostController {
   @GetMapping("/tags")
   public List<TagDto> getTags() {
 
-    return postService.findAllTags();
+    return tagService.findAllTags();
   }
 }
