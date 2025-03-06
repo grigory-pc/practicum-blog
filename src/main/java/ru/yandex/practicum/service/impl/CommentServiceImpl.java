@@ -42,7 +42,7 @@ public class CommentServiceImpl implements CommentService {
 
   @Override
   public void deleteCommentById(Long id) {
-
+    commentRepository.deleteById(id);
   }
 
   private Comment getUpdatedComment(Comment existingComment, CommentDto commentDto) {

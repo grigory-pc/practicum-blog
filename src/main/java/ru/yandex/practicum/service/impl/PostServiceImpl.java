@@ -72,7 +72,7 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public void deletePostById(Long id) {
-    postRepository.deletePostById(id);
+    postRepository.deleteById(id);
   }
 
   private Post getUpdatedPost(Post postForUpdate, PostSaveDto newPostSaveDto) {
