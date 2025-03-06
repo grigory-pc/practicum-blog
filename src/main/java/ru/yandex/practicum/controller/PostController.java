@@ -8,6 +8,7 @@ import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.service.PostService;
 
 /**
@@ -141,5 +142,16 @@ public class PostController {
     postService.deleteCommentById(commentId);
 
     return REDIRECT_POST;
+  }
+
+  /**
+   * Обрабатывает GET-запросы на получение списка всех тегов.
+   *
+   * @return список тегов.
+   */
+  @GetMapping("/tags")
+  public List<TagDto> getTags() {
+
+    return postService.findAllTags();
   }
 }

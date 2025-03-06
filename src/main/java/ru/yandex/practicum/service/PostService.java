@@ -5,6 +5,7 @@ import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.TagDto;
 
 /**
  * Сервис для работы с постами.
@@ -79,4 +80,11 @@ public interface PostService {
    * @param id - id комментария.
    */
   void deleteCommentById(Long id);
+
+  /**
+   * Получение списка всех тегов.
+   *
+   * @return список тегов.
+   */
+  List<TagDto> findAllTags();
 }

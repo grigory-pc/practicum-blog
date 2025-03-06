@@ -11,9 +11,12 @@ import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.mapper.PostMapper;
+import ru.yandex.practicum.mapper.TagMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
+import ru.yandex.practicum.repository.TagRepository;
 import ru.yandex.practicum.service.PostService;
 
 @Service
@@ -22,7 +25,9 @@ public class PostServiceImpl implements PostService {
 
   private final PostRepository postRepository;
   private final PostTagRepository postTagRepository;
+  private final TagRepository tagRepository;
   private final PostMapper postMapper;
+  private final TagMapper tagMapper;
 
   @Override
   public List<PostPreviewDto> findAllPosts(int from, int size) {
@@ -84,6 +89,11 @@ public class PostServiceImpl implements PostService {
   @Override
   public void deleteCommentById(Long id) {
 
+  }
+
+  @Override
+  public List<TagDto> findAllTags() {
+    return tagMapper.toDto(tagRepository.findAll());
   }
 
   private Post getUpdatedPost(Post postForUpdate, PostSaveDto newPostSaveDto) {
