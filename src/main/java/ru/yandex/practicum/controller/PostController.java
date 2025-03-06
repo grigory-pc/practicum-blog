@@ -110,7 +110,7 @@ public class PostController {
    * @return возврат на страницу post.html, чтобы она перезагрузилась.
    */
   @PatchMapping("/{id}/comment/{comment_id}")
-  public String updComment(@PathVariable(name = "id") Long id,
+  public String updateComment(@PathVariable(name = "id") Long id,
                            @PathVariable(name = "comment_id") Long commentId,
                            @RequestBody CommentDto comment) {
     postService.updateComment(id, commentId, comment);

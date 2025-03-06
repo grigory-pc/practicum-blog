@@ -22,11 +22,11 @@ public interface PostMapper {
   @Mapping(target = "countLikes", source = "likes")
   @Mapping(target = "postText", source = "text")
   @Mapping(target = "tagIds", source = "tags")
-  List<PostPreviewDto> toDto(Iterable<Post> posts);
+  List<PostPreviewDto> toFullDto(Iterable<Post> posts);
 
   @Mapping(target = "postText", source = "text")
   @Mapping(target = "tagIds", source = "tags")
-  PostFullDto toDto(Post post);
+  PostFullDto toFullDto(Post post);
 
   default Set<Long> mapPostToPostIds(Set<Post> posts) {
     return posts.stream()

@@ -19,14 +19,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
   List<Post> findAllPosts(Pageable pageable);
 
   /**
-   * Получение поста по id.
-   *
-   * @param id - id поста.
-   * @return пост.
-   */
-  Post findById(Long id);
-
-  /**
    * Удаление поста из БД по id.
    *
    * @param id - id поста.

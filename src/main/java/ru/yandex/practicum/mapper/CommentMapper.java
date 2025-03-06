@@ -10,4 +10,5 @@ import ru.yandex.practicum.dto.CommentDto;
 public interface CommentMapper {
 
    CommentDto toDto (Comment comment);
+   Comment toComment (CommentDto commentDto);
 }

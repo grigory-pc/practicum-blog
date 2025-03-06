@@ -54,9 +54,9 @@ public interface PostService {
   /**
    * Добавление комментария.
    *
-   * @param id - id поста.
+   * @param postId - id поста.
    */
-  void saveComment(Long id, CommentDto comment);
+  void saveComment(Long postId, CommentDto comment);
 
   /**
    * Обновление комментария.
