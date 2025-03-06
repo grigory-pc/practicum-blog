@@ -15,7 +15,7 @@ import lombok.Builder;
  * @param title -названия поста.
  * @param image - картинка.
  * @param postText - текст поста.
- * @param tags - теги поста.
+ * @param tagIds - теги поста.
  * @param comments - комментарии.
  */
 @Builder
@@ -25,7 +25,7 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
                           @JsonProperty(value = "image") byte[] image,
                           @JsonProperty(value = "post_text",
                                         required = true) @NotBlank String postText,
-                          @JsonProperty(value = "tags") List<TagDto> tags,
+                          @JsonProperty(value = "tags") List<Long> tagIds,
                           @JsonProperty(value = "comments",
                                         required = true) List<CommentDto> comments) {
   @Override
@@ -40,13 +40,13 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
     return Objects.equals(id, that.id) && Objects.equals(title, that.title)
            && Arrays.equals(image, that.image) && Objects.equals(postText,
                                                                  that.postText)
-           && Objects.equals(tags, that.tags) && Objects.equals(comments,
-                                                                that.comments);
+           && Objects.equals(tagIds, that.tagIds) && Objects.equals(comments,
+                                                                    that.comments);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(id, title, postText, tags, comments);
+    int result = Objects.hash(id, title, postText, tagIds, comments);
     result = 31 * result + Arrays.hashCode(image);
     return result;
   }
@@ -66,11 +66,11 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
            + ", \"image\": " + (image == null ? null
                                               : "{\"blob\": {\"size\": " + image.length + "}}")
            + ", \"postText\": " + (postText == null ? null : '"' + postText + '"')
-           + ", \"tags\": " + (tags == null ? null : (tags).stream()
-                                                           .map(Objects::toString)
-                                                           .collect(
-                                                               Collectors.joining(
-                                                                   ", ", "[", "]")))
+           + ", \"tagIds\": " + (tagIds == null ? null : (tagIds).stream()
+                                                                 .map(Objects::toString)
+                                                                 .collect(
+                                                                     Collectors.joining(
+                                                                         ", ", "[", "]")))
            + ", \"comments\": " + (comments == null ? null : (comments).stream()
                                                                        .map(
                                                                            Objects::toString)

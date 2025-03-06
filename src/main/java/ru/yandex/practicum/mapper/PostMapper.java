@@ -25,6 +25,7 @@ public interface PostMapper {
   List<PostPreviewDto> toDto(Iterable<Post> posts);
 
   @Mapping(target = "postText", source = "text")
+  @Mapping(target = "tagIds", source = "tags")
   PostFullDto toDto(Post post);
 
   default Set<Long> mapPostToPostIds(Set<Post> posts) {
