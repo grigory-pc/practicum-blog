@@ -11,6 +11,7 @@ import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.exceptions.NotFoundException;
 import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
@@ -35,12 +36,10 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public PostFullDto getPostById(Long id) {
-    Optional<Post> existingPost = postRepository.findById(id);
-    if (existingPost.isPresent()) {
-      return postMapper.toFullDto(existingPost.get());
-    } else {
-      throw new RuntimeException();
-    }
+
+    return postRepository.findById(id)
+                         .map(postMapper::toFullDto)
+                         .orElseThrow(NotFoundException::new);
   }
 
   @Override
@@ -64,6 +63,8 @@ public class PostServiceImpl implements PostService {
       for (Long tagId : postSaveDto.tagIds()) {
         postTagRepository.save(new PostTag(id, tagId));
       }
+    } else {
+      throw new NotFoundException();
     }
   }
 

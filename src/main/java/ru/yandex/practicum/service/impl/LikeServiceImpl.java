@@ -1,5 +1,6 @@
 package ru.yandex.practicum.service.impl;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.dao.Like;
@@ -22,13 +23,18 @@ public class LikeServiceImpl implements LikeService {
 
   @Override
   public void addLike(Long id) {
-    Like existingLikes = likeRepository.findByPostId(id);
+    Optional<Like> existingLikesOptional = likeRepository.findByPostId(id);
+    if (existingLikesOptional.isPresent()) {
+      Like existingLikes = existingLikesOptional.get();
 
-    Integer likesCount = existingLikes.getLikesCount();
-    likesCount++;
+      Integer likesCount = existingLikes.getLikesCount();
+      likesCount++;
 
-    existingLikes.setLikesCount(likesCount);
+      existingLikes.setLikesCount(likesCount);
 
-    likeRepository.save(existingLikes);
+      likeRepository.save(existingLikes);
+    }
+
+
   }
 }

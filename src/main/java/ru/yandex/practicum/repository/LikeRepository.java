@@ -1,5 +1,6 @@
 package ru.yandex.practicum.repository;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yandex.practicum.dao.Like;
 
@@ -13,5 +14,5 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
    * @param id - id поста.
    * @return объект лайков.
    */
-  Like findByPostId(Long id);
+  Optional<Like> findByPostId(Long id);
 }

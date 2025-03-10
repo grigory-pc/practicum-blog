@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.CommentDto;
+import ru.yandex.practicum.exceptions.NotFoundException;
 import ru.yandex.practicum.mapper.CommentMapper;
 import ru.yandex.practicum.repository.CommentRepository;
 import ru.yandex.practicum.repository.PostRepository;
@@ -26,8 +27,12 @@ public class CommentServiceImpl implements CommentService {
     Optional<Post> post = postRepository.findById(postId);
     if (post.isPresent()) {
       newComment.setPost(post.get());
+
       commentRepository.save(newComment);
+    } else {
+      throw new NotFoundException();
     }
+
   }
 
   @Override
@@ -37,6 +42,8 @@ public class CommentServiceImpl implements CommentService {
       Comment updatedComment = getUpdatedComment(existingComment.get(), commentDto);
 
       commentRepository.save(updatedComment);
+    } else {
+      throw new NotFoundException();
     }
   }
 
