@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.Builder;
 
 /**
@@ -18,7 +17,7 @@ import lombok.Builder;
  * @param postText - коротко первый абзац.
  * @param countComments - количество комментариев к посту.
  * @param countLikes - количество лайков к посту.
- * @param tagIds - множество id тегов поста.
+ * @param tags - множество id тегов поста.
  */
 @Builder
 public record PostPreviewDto(@JsonProperty(value = "id") Long id,
@@ -30,53 +29,40 @@ public record PostPreviewDto(@JsonProperty(value = "id") Long id,
                                            required = true) @NotNull Integer countComments,
                              @JsonProperty(value = "count_likes",
                                            required = true) @NotNull Integer countLikes,
-                             @JsonProperty(value = "tags", required = true) Set<Long> tagIds) {
-
+                             @JsonProperty(value = "tags", required = true) Set<TagDto> tags) {
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object object) {
+    if (this == object) {
       return true;
     }
-    if (o == null || getClass() != o.getClass()) {
+    if (object == null || getClass() != object.getClass()) {
       return false;
     }
-    PostPreviewDto that = (PostPreviewDto) o;
+    PostPreviewDto that = (PostPreviewDto) object;
     return Objects.equals(id, that.id) && Objects.equals(title, that.title)
            && Arrays.equals(image, that.image) && Objects.equals(postText,
                                                                  that.postText)
            && Objects.equals(countComments, that.countComments) && Objects.equals(
-        countLikes, that.countLikes) && Objects.equals(tagIds, that.tagIds);
+        countLikes, that.countLikes) && Objects.equals(tags, that.tags);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(id, title, postText, countComments, countLikes, tagIds);
+    int result = Objects.hash(id, title, postText, countComments, countLikes, tags);
     result = 31 * result + Arrays.hashCode(image);
     return result;
   }
 
-  /**
-   * Собирает строковое JSON-представление сущности.
-   *
-   * @return JSON представление сущности, сгенерировано с помощью авто-генерации кода версии 1.0.2
-   * @see <a href="https://gitlab.ebsbio.tech/nbp/utils/intelij-idea-templates">Проект с шаблонами
-   * для генерации кода</a>
-   */
   @Override
   public String toString() {
-    return "{\"_class\":\"ru.yandex.practicum.dto.PostPreviewDto\""
-           + ", \"id\": " + id
-           + ", \"title\": " + (title == null ? null : '"' + title + '"')
-           + ", \"image\": " + (image == null ? null
-                                              : "{\"blob\": {\"size\": " + image.length + "}}")
-           + ", \"postText\": " + (postText == null ? null : '"' + postText + '"')
-           + ", \"countComments\": " + countComments
-           + ", \"countLikes\": " + countLikes
-           + ", \"tagIds\": " + (tagIds == null ? null : (tagIds).stream()
-                                                                 .map(Objects::toString)
-                                                                 .collect(
-                                                                     Collectors.joining(
-                                                                         ", ", "[", "]")))
-           + "}";
+    return "PostPreviewDto{" +
+           "id=" + id +
+           ", title='" + title + '\'' +
+           ", image=" + Arrays.toString(image) +
+           ", postText='" + postText + '\'' +
+           ", countComments=" + countComments +
+           ", countLikes=" + countLikes +
+           ", tags=" + tags +
+           '}';
   }
 }

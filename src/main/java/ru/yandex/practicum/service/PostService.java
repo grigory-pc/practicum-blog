@@ -1,6 +1,6 @@
 package ru.yandex.practicum.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
@@ -17,7 +17,7 @@ public interface PostService {
    * @param size - количество записей.
    * @return список постов.
    */
-  List<PostPreviewDto> findAllPosts(int from, int size);
+  Page<PostPreviewDto> findAllPosts(int from, int size);
 
   /**
    * Получение поста по id.

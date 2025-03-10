@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.Builder;
 
 /**
@@ -16,7 +15,7 @@ import lombok.Builder;
  * @param title -названия поста.
  * @param image - картинка.
  * @param postText - текст поста.
- * @param tagIds - теги поста.
+ * @param tags - теги поста.
  * @param comments - комментарии.
  */
 @Builder
@@ -26,58 +25,41 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
                           @JsonProperty(value = "image") byte[] image,
                           @JsonProperty(value = "post_text",
                                         required = true) @NotBlank String postText,
-                          @JsonProperty(value = "tags") Set<Long> tagIds,
+                          @JsonProperty(value = "tags") Set<TagDto> tags,
                           @JsonProperty(value = "comments",
                                         required = true) List<CommentDto> comments) {
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object object) {
+    if (this == object) {
       return true;
     }
-    if (o == null || getClass() != o.getClass()) {
+    if (object == null || getClass() != object.getClass()) {
       return false;
     }
-    PostFullDto that = (PostFullDto) o;
+    PostFullDto that = (PostFullDto) object;
     return Objects.equals(id, that.id) && Objects.equals(title, that.title)
            && Arrays.equals(image, that.image) && Objects.equals(postText,
                                                                  that.postText)
-           && Objects.equals(tagIds, that.tagIds) && Objects.equals(comments,
-                                                                    that.comments);
+           && Objects.equals(tags, that.tags) && Objects.equals(comments,
+                                                                that.comments);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(id, title, postText, tagIds, comments);
+    int result = Objects.hash(id, title, postText, tags, comments);
     result = 31 * result + Arrays.hashCode(image);
     return result;
   }
 
-  /**
-   * Собирает строковое JSON-представление сущности.
-   *
-   * @return JSON представление сущности, сгенерировано с помощью авто-генерации кода версии 1.0.2
-   * @see <a href="https://gitlab.ebsbio.tech/nbp/utils/intelij-idea-templates">Проект с шаблонами
-   * для генерации кода</a>
-   */
   @Override
   public String toString() {
-    return "{\"_class\":\"ru.yandex.practicum.dto.PostFullDto\""
-           + ", \"id\": " + id
-           + ", \"title\": " + (title == null ? null : '"' + title + '"')
-           + ", \"image\": " + (image == null ? null
-                                              : "{\"blob\": {\"size\": " + image.length + "}}")
-           + ", \"postText\": " + (postText == null ? null : '"' + postText + '"')
-           + ", \"tagIds\": " + (tagIds == null ? null : (tagIds).stream()
-                                                                 .map(Objects::toString)
-                                                                 .collect(
-                                                                     Collectors.joining(
-                                                                         ", ", "[", "]")))
-           + ", \"comments\": " + (comments == null ? null : (comments).stream()
-                                                                       .map(
-                                                                           Objects::toString)
-                                                                       .collect(
-                                                                           Collectors.joining(
-                                                                               ", ", "[", "]")))
-           + "}";
+    return "PostFullDto{" +
+           "id=" + id +
+           ", title='" + title + '\'' +
+           ", image=" + Arrays.toString(image) +
+           ", postText='" + postText + '\'' +
+           ", tags=" + tags +
+           ", comments=" + comments +
+           '}';
   }
 }

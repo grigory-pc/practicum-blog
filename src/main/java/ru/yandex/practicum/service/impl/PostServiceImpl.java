@@ -1,8 +1,8 @@
 package ru.yandex.practicum.service.impl;
 
-import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,10 +27,10 @@ public class PostServiceImpl implements PostService {
   private final LikeService likeService;
 
   @Override
-  public List<PostPreviewDto> findAllPosts(int from, int size) {
+  public Page<PostPreviewDto> findAllPosts(int from, int size) {
     Pageable pageable = PageRequest.of(from, size);
 
-    return postMapper.toFullDto(postRepository.findAllPosts(pageable));
+    return postMapper.toDtoPage(postRepository.findAllPosts(pageable));
   }
 
   @Override

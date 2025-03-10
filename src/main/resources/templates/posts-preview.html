@@ -12,9 +12,10 @@
         <th>ID</th>
         <th>название</th>
         <th>картинка</th>
-        <th>текст поста</th>
-        <th>теги</th>
-        <th>комментарии</th>
+        <th>превью поста</th>
+        <th>количество комментариев к посту</th>
+        <th>количество лайков к посту</th>
+        <th>теги поста</th>
     </tr>
     </thead>
     <tbody>
@@ -22,9 +23,15 @@
         <td th:text="${post.id}"></td>
         <td th:text="${post.title}"></td>
         <td th:text="${post.image}"></td>
-        <td th:text="${post.post_text}"></td>
+        <td th:text="${post.text}"></td>
+        <td th:text="${post.count_comments}"></td>
+        <td th:text="${post.count_likes}"></td>
         <td th:text="${post.tags}"></td>
-        <td th:text="${post.comments}"></td>
+        <td>
+            <form th:action="@{/posts/{id}}" method="get">
+                <button type="submit">Посмотреть пост</button>
+            </form>
+        </td>
         <td>
             <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post">
                 <button type="submit">Удалить пост</button>
@@ -33,5 +40,6 @@
     </tr>
     </tbody>
 </table>
+<a th:href="@{/posts}">Добавить новый пост</a>
 </body>
 </html>
