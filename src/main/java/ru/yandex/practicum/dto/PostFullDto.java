@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.Builder;
 
@@ -25,7 +26,7 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
                           @JsonProperty(value = "image") byte[] image,
                           @JsonProperty(value = "post_text",
                                         required = true) @NotBlank String postText,
-                          @JsonProperty(value = "tags") List<Long> tagIds,
+                          @JsonProperty(value = "tags") Set<Long> tagIds,
                           @JsonProperty(value = "comments",
                                         required = true) List<CommentDto> comments) {
   @Override
