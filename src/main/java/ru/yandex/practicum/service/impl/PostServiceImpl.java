@@ -2,6 +2,7 @@ package ru.yandex.practicum.service.impl;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import ru.yandex.practicum.repository.PostTagRepository;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
@@ -56,6 +58,9 @@ public class PostServiceImpl implements PostService {
   @Override
   public void updatePost(Long id, PostSaveDto postSaveDto) {
     Optional<Post> existingPost = postRepository.findById(id);
+
+    log.info("Из БД получена запись = {}", existingPost);
+
     if (existingPost.isPresent()) {
       Post updatedPost = getUpdatedPost(existingPost.get(), postSaveDto);
       postRepository.save(updatedPost);

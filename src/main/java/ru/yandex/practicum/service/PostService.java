@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.exceptions.NotFoundException;
 
 /**
  * Сервис для работы с постами.
@@ -24,8 +25,9 @@ public interface PostService {
    *
    * @param id - id поста.
    * @return объект поста.
+   * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
    */
-  PostFullDto getPostById(Long id);
+  PostFullDto getPostById(Long id) throws NotFoundException;
 
   /**
    * Сохранение поста.
@@ -39,9 +41,9 @@ public interface PostService {
    *
    * @param id - id поста.
    * @param post - объект поста.
+   * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
    */
-  void updatePost(Long id, PostSaveDto post);
-
+  void updatePost(Long id, PostSaveDto post) throws NotFoundException;
 
   /**
    * Удаление поста по id.

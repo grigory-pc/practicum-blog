@@ -3,10 +3,12 @@ package ru.yandex.practicum.controller;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dto.CommentDto;
+import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
@@ -18,11 +20,12 @@ import ru.yandex.practicum.service.TagService;
 /**
  * Контроллер обрабатывает запросы /posts.
  */
+@Slf4j
 @RestController
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
-  public static final String POST_PREVIEW = "posts-preview";
+  public static final String POST_PREVIEW = "posts_preview";
   public static final String POST = "post";
   public static final String REDIRECT_POST = "redirect:/post";
   private final PostService postService;
@@ -41,11 +44,15 @@ public class PostController {
   public String getPosts(@RequestParam(defaultValue = "0") int from,
                          @RequestParam(defaultValue = "10") int size,
                          Model model) {
+    log.info("Получен запрос на получение preview постов");
+
     Page<PostPreviewDto> postsPreviewPage = postService.findAllPosts(from, size);
-    model.addAttribute("posts-preview", postsPreviewPage.getContent());
+    log.info("Получен список preview постов размером: {}", postsPreviewPage.getTotalElements());
+
+    model.addAttribute(POST_PREVIEW, postsPreviewPage.getContent());
+    model.addAttribute("totalElements", postsPreviewPage.getTotalElements());
     model.addAttribute("currentPage", from);
     model.addAttribute("totalPages", postsPreviewPage.getTotalPages());
-    model.addAttribute("totalElements", postsPreviewPage.getTotalElements());
 
     return POST_PREVIEW;
   }
@@ -58,7 +65,12 @@ public class PostController {
    */
   @GetMapping("/{id}")
   public String getPostById(@PathVariable(name = "id") Long id, Model model) {
-    model.addAttribute("post", postService.getPostById(id));
+    log.info("Получен запрос на получение поста для id = {}", id);
+
+    PostFullDto postFullDto = postService.getPostById(id);
+    log.info("Из базы данных получен пост: {}", postFullDto);
+
+    model.addAttribute("post", postFullDto);
 
     return POST;
   }
@@ -71,7 +83,10 @@ public class PostController {
    */
   @PostMapping
   public String savePost(@RequestBody PostSaveDto post) {
+    log.info("Получен запрос на добавление поста: {}", post);
+
     postService.savePost(post);
+    log.info("Пост сохранен в базу данных");
 
     return REDIRECT_POST;
   }
@@ -85,7 +100,11 @@ public class PostController {
    */
   @PatchMapping("/{id}")
   public String updatePost(@PathVariable(name = "id") Long id, @RequestBody PostSaveDto post) {
+    log.info("Получен запрос на обновление поста: {} для id = {}", post, id);
+
     postService.updatePost(id, post);
+
+    log.info("Пост id = {} обновлен в базе данных", id);
 
     return REDIRECT_POST;
   }
@@ -98,7 +117,11 @@ public class PostController {
    */
   @PostMapping("/{id}/like")
   public String addLike(@PathVariable(name = "id") Long id) {
+    log.info("Получен запрос на добавление лайка для поста id = {}", id);
+
     likeService.addLike(id);
+
+    log.info("Для поста id = {} добавлен лайк в базу данных", id);
 
     return REDIRECT_POST;
   }
@@ -112,7 +135,11 @@ public class PostController {
   @PostMapping("/{id}/comment")
   public String saveComment(@PathVariable(name = "id") Long id,
                             @RequestBody CommentDto comment) {
+    log.info("Получен запрос на добавление комментария: {} для поста id = {}", comment, id);
+
     commentService.saveComment(id, comment);
+
+    log.info("Для поста id = {} добавлен комментарий в базу данных", id);
 
     return REDIRECT_POST;
   }
@@ -129,7 +156,11 @@ public class PostController {
   public String updateComment(@PathVariable(name = "id") Long id,
                               @PathVariable(name = "comment_id") Long commentId,
                               @RequestBody CommentDto comment) {
+    log.info("Получен запрос на обновление комментария: {} для поста id = {}", comment, id);
+
     commentService.updateComment(id, commentId, comment);
+
+    log.info("Для поста id = {} обновлен комментарий в базе данных", id);
 
     return REDIRECT_POST;
   }
@@ -142,7 +173,11 @@ public class PostController {
    */
   @PostMapping(value = "/{id}", params = "_method=delete")
   public String deletePost(@PathVariable(name = "id") Long id) {
+    log.info("Получен запрос на удаление поста id = {}", id);
+
     postService.deletePostById(id);
+
+    log.info("Пост id = {} удален из базы данных", id);
 
     return REDIRECT_POST;
   }
@@ -155,7 +190,11 @@ public class PostController {
    */
   @PostMapping(value = "/comment/{commentId}", params = "_method=delete")
   public String deleteComment(@PathVariable(name = "commentId") Long commentId) {
+    log.info("Получен запрос на удаление комментария для id = {}", commentId);
+
     commentService.deleteCommentById(commentId);
+
+    log.info("Комментарий id = {} удален из базы данных", commentId);
 
     return REDIRECT_POST;
   }
@@ -167,6 +206,7 @@ public class PostController {
    */
   @GetMapping("/tags")
   public List<TagDto> getTags() {
+    log.info("Получен запрос на получение тегов");
 
     return tagService.findAllTags();
   }

@@ -1,5 +1,7 @@
 package ru.yandex.practicum.service;
 
+import ru.yandex.practicum.exceptions.NotFoundException;
+
 /**
  * Сервис для работы с лайками.
  */
@@ -16,6 +18,7 @@ public interface LikeService {
    * Добавление лайка к посту.
    *
    * @param id - id поста.
+   * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
    */
-  void addLike(Long id);
+  void addLike(Long id) throws NotFoundException;
 }
