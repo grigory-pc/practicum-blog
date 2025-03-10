@@ -25,7 +25,7 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
                           @JsonProperty(value = "image") byte[] image,
                           @JsonProperty(value = "post_text",
                                         required = true) @NotBlank String postText,
-                          @JsonProperty(value = "tags") Set<TagDto> tags,
+                          @JsonProperty(value = "tags") Set<Long> tags,
                           @JsonProperty(value = "comments",
                                         required = true) List<CommentDto> comments) {
   @Override

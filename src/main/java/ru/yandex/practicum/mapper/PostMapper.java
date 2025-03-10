@@ -1,6 +1,7 @@
 package ru.yandex.practicum.mapper;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import ru.yandex.practicum.dao.Post;
+import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
@@ -20,22 +22,30 @@ public interface PostMapper {
   Post toPost(PostSaveDto dto);
 
   @Mapping(target = "countComments",
-           expression = "java(posts.getComments() != null ? posts.getComments().size() : 0)")
+           expression = "java(post.getComments() != null ? post.getComments().size() : 0)")
   @Mapping(target = "countLikes", source = "like.likesCount")
   @Mapping(target = "postText", source = "text")
-  PostPreviewDto toPreviewDto(Post posts);
+  @Mapping(target = "tags", expression = "java(convertTagsToIds(post.getTags()))")
+  PostPreviewDto toPreviewDto(Post post);
 
   @Mapping(target = "postText", source = "text")
+  @Mapping(target = "tags", expression = "java(convertTagsToIds(post.getTags()))")
   PostFullDto toFullDto(Post post);
 
   default Page<PostPreviewDto> toDtoPage(Page<Post> posts) {
     List<PostPreviewDto> dtos = posts.stream()
                                      .map(this::toPreviewDto)
-                                     .collect(Collectors.toList());
+                                     .toList();
     return new PageImpl<>(dtos, pageable(posts), posts.getTotalElements());
   }
 
   default Pageable pageable(Page<Post> posts) {
     return posts.getPageable();
+  }
+
+  default Set<Long> convertTagsToIds(Set<Tag> tags) {
+    return tags.stream()
+               .map(Tag::getId)
+               .collect(Collectors.toSet());
   }
 }
