@@ -25,7 +25,7 @@ import ru.yandex.practicum.service.TagService;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
-  public static final String POST_PREVIEW = "posts_preview";
+  public static final String POST_PREVIEW = "posts";
   public static final String POST = "post";
   public static final String REDIRECT_POST = "redirect:/post";
   private final PostService postService;

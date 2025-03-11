@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление в части получения превью постов + обновление кода веб страниц" />
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: добавлена обработка исключений + добавлено логирование + корректировка наименования шаблона">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/posts_preview.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/posts.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +33,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -49,39 +55,40 @@
 }</component>
   <component name="ProjectId" id="2thuWQeYnMMcqbFvWE27msUYefR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JUnit.UserControllerIntegrationTest.delete_shouldFindAllUserFromDatabaseAndRedirect.executor": "Run",
-    "Maven.practicum-blog [clean,package].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "feat/create-blog",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Dev/spring-boot-web-demo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JUnit.UserControllerIntegrationTest.delete_shouldFindAllUserFromDatabaseAndRedirect.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.practicum-blog [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/create-blog&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Dev/spring-boot-web-demo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -91,11 +98,11 @@
       <recent name="ru.yandex.practicum.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum.exceptions" />
       <recent name="ru.yandex.practicum.service.impl" />
       <recent name="ru.yandex.practicum.service" />
       <recent name="ru.yandex.practicum.repository" />
       <recent name="ru.yandex.practicum.dao" />
-      <recent name="ru.yandex.practicum.configuration" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -142,6 +149,9 @@
       <workItem from="1741070456114" duration="6780000" />
       <workItem from="1741245408893" duration="4618000" />
       <workItem from="1741605747760" duration="7451000" />
+      <workItem from="1741678368195" duration="17000" />
+      <workItem from="1741678399149" duration="617000" />
+      <workItem from="1741689839700" duration="945000" />
     </task>
     <task id="LOCAL-00001" summary="feat: init commit">
       <option name="closed" value="true" />
@@ -399,7 +409,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741613629937</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="feat: добавлена обработка исключений">
+      <option name="closed" value="true" />
+      <created>1741636251573</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1741636251573</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat: добавлена обработка исключений + добавлено логирование + корректировка наименования шаблона">
+      <option name="closed" value="true" />
+      <created>1741637874117</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1741637874117</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,9 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: добавлены шаблоны для веб. Создана базовая структура проекта." />
-    <MESSAGE value="feat: gitignore" />
-    <MESSAGE value="feat: добавлена структура БД" />
     <MESSAGE value="feat: обновлена структура БД. Добавлены/обновлены DAO" />
     <MESSAGE value="feat: добавлена реализация для логики получения всех постов." />
     <MESSAGE value="feat: обновлена логика сохранения поста." />
@@ -442,21 +465,9 @@
     <MESSAGE value="feat: обновление логики удаления постов и комментариев" />
     <MESSAGE value="feat: обновление маппера" />
     <MESSAGE value="feat: обновление в части получения превью постов + обновление кода веб страниц" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление в части получения превью постов + обновление кода веб страниц" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/mapper/PostMapper.java</url>
-          <line>30</line>
-          <properties class="ru.yandex.practicum.mapper.PostMapper" method="toDtoPage">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: добавлена обработка исключений" />
+    <MESSAGE value="feat: добавлена обработка исключений + добавлено логирование" />
+    <MESSAGE value="feat: добавлена обработка исключений + добавлено логирование + корректировка наименования шаблона" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: добавлена обработка исключений + добавлено логирование + корректировка наименования шаблона" />
   </component>
 </project>
