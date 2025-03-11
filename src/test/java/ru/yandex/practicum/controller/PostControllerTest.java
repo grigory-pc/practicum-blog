@@ -64,7 +64,6 @@ class PostControllerTest {
     mockMvc = MockMvcBuilders
         .standaloneSetup(controller)
         .build();
-
   }
 
   @Test

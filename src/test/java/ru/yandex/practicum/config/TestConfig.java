@@ -21,17 +21,19 @@ import ru.yandex.practicum.service.TagService;
 @Configuration
 @ComponentScan("ru.yandex.practicum")
 public class TestConfig {
-  @Bean
-  @Primary
-  public CommentService mockCommentService () {
-    return Mockito.mock(CommentService.class);
-  }
 
   @Bean
   @Primary
   public PostService mockPostService () {
     return Mockito.mock(PostService.class);
   }
+
+  @Bean
+  @Primary
+  public CommentService mockCommentService () {
+    return Mockito.mock(CommentService.class);
+  }
+
 
   @Bean
   @Primary

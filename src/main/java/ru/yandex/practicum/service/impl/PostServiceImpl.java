@@ -37,7 +37,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public PostFullDto getPostById(Long id) {
+  public PostFullDto getPostById(Long id) throws NotFoundException {
 
     return postRepository.findById(id)
                          .map(postMapper::toFullDto)

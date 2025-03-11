@@ -41,7 +41,6 @@ class TagServiceImplTest {
   @Test
   void positiveTest_ShouldFindAllTags() {
     try {
-
       when(tagRepository.findAll())
           .thenReturn(
               List.of(new Tag(1L, Data.getPost(), TAG_2024),

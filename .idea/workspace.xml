@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: UT">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/TestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/mvc/test/configuration/DataSourceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/mvc/test/configuration/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/WebConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +114,7 @@
       <command value="mvn clean package" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment">
+  <component name="RunManager" selected="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags">
     <configuration name="CommentServiceImplTest.PositiveTest_ShouldSaveComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="practicum-blog" />
       <extension name="coverage">
@@ -149,22 +142,6 @@
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
       <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.CommentServiceImplTest" />
       <option name="METHOD_NAME" value="positiveTest_ShouldSaveComment" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PostControllerIntegrationTest.delete_shouldFindAllUserFromDatabaseAndRedirect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="practicum-blog" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.controller.mvc.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller.mvc.test" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.mvc.test.PostControllerIntegrationTest" />
-      <option name="METHOD_NAME" value="delete_shouldFindAllUserFromDatabaseAndRedirect" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -202,13 +179,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TagServiceImplTest.positiveTest_ShouldFindAllTags" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="practicum-blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.TagServiceImplTest" />
+      <option name="METHOD_NAME" value="positiveTest_ShouldFindAllTags" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags" />
         <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
         <item itemvalue="JUnit.CommentServiceImplTest.PositiveTest_ShouldSaveComment" />
         <item itemvalue="JUnit.PostControllerTest.getPosts" />
-        <item itemvalue="JUnit.PostControllerIntegrationTest.delete_shouldFindAllUserFromDatabaseAndRedirect" />
       </list>
     </recent_temporary>
   </component>
@@ -241,7 +234,7 @@
       <workItem from="1741698956503" duration="617000" />
       <workItem from="1741702405408" duration="1810000" />
       <workItem from="1741704369387" duration="4501000" />
-      <workItem from="1741711286233" duration="2278000" />
+      <workItem from="1741711286233" duration="4563000" />
     </task>
     <task id="LOCAL-00001" summary="feat: init commit">
       <option name="closed" value="true" />
@@ -539,7 +532,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741708844380</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="feat: UT">
+      <option name="closed" value="true" />
+      <created>1741713741955</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1741713741955</updated>
+    </task>
+    <task id="LOCAL-00039" summary="feat: UT">
+      <option name="closed" value="true" />
+      <created>1741715109023</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1741715109023</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,14 +597,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
