@@ -1,4 +1,4 @@
-package ru.yandex.practicum.controller.mvc.test.configuration;
+package ru.yandex.practicum.config;
 
 import org.h2.Driver;
 import org.springframework.beans.factory.annotation.Value;

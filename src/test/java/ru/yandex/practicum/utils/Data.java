@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lombok.experimental.UtilityClass;
+import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Like;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.CommentDto;
@@ -12,6 +14,7 @@ import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 
+@UtilityClass
 public class Data {
   public static final Long ID_ONE = 1L;
   public static final Long ID_TWO = 2L;
@@ -39,6 +42,10 @@ public class Data {
 
   public CommentDto getCommentDto(Long id) {
     return new CommentDto(id, "text");
+  }
+
+  public Comment getComment(Long id) throws JsonProcessingException {
+    return new Comment(id, getPost(), "text");
   }
 
   public Like getLike(Long id, Long postId) {

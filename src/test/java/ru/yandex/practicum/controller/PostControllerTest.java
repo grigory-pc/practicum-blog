@@ -6,14 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import ru.yandex.practicum.config.TestConfig;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
@@ -37,20 +39,20 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
+@ContextConfiguration(classes = TestConfig.class)
 class PostControllerTest {
   private static final String BASE_URL = "/posts/";
-  public static final String REDIRECT_POST = "redirect:/post";
+  private static final String REDIRECT_POST = "redirect:/post";
   private static final Long POST_ID = 1L;
   private static final Long COMMENT_ID = 1L;
   private final ObjectMapper objectMapper = new ObjectMapper();
-  private static Data data;
 
-  @Mock
+  @Autowired
   PostService postService;
-  @Mock
+  @Autowired
   CommentService commentService;
-  @Mock
+  @Autowired
   LikeService likeService;
 
   @InjectMocks
@@ -59,7 +61,10 @@ class PostControllerTest {
 
   @BeforeEach
   void setUp() {
-    mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+    mockMvc = MockMvcBuilders
+        .standaloneSetup(controller)
+        .build();
+
   }
 
   @Test
@@ -67,7 +72,7 @@ class PostControllerTest {
     try {
       String from = "0";
       String size = "10";
-      List<PostPreviewDto> postPreviewDtos = List.of(data.getPostPreviewDto());
+      List<PostPreviewDto> postPreviewDtos = List.of(Data.getPostPreviewDto());
       Page<PostPreviewDto> page = new PageImpl<>(postPreviewDtos, PageRequest.of(0, 10), 1);
 
       when(postService.findAllPosts(anyInt(), anyInt()))
@@ -90,7 +95,7 @@ class PostControllerTest {
   @Test
   void positiveTest_ShouldGetPostById() {
     try {
-      PostFullDto postFullDto = data.getPostFullDto();
+      PostFullDto postFullDto = Data.getPostFullDto();
 
       when(postService.getPostById(anyLong()))
           .thenReturn(postFullDto);
@@ -115,7 +120,7 @@ class PostControllerTest {
 
       mockMvc.perform(post(BASE_URL)
                           .contentType(MediaType.APPLICATION_JSON)
-                          .content(objectMapper.writeValueAsString(data.getPostSaveDto())))
+                          .content(objectMapper.writeValueAsString(Data.getPostSaveDto())))
              .andExpect(status().is3xxRedirection())
              .andExpect(redirectedUrl(REDIRECT_POST));
 
@@ -134,7 +139,7 @@ class PostControllerTest {
 
       mockMvc.perform(patch(BASE_URL + POST_ID)
                           .contentType(MediaType.APPLICATION_JSON)
-                          .content(objectMapper.writeValueAsString(data.getPostSaveDto())))
+                          .content(objectMapper.writeValueAsString(Data.getPostSaveDto())))
              .andExpect(status().is3xxRedirection())
              .andExpect(redirectedUrl(REDIRECT_POST));
 
@@ -171,7 +176,7 @@ class PostControllerTest {
 
       mockMvc.perform(post(BASE_URL + POST_ID + "/comment")
                           .contentType(MediaType.APPLICATION_JSON)
-                          .content(objectMapper.writeValueAsString(data.getCommentDto(POST_ID))))
+                          .content(objectMapper.writeValueAsString(Data.getCommentDto(POST_ID))))
              .andExpect(status().is3xxRedirection())
              .andExpect(redirectedUrl(REDIRECT_POST));
 
@@ -190,7 +195,7 @@ class PostControllerTest {
 
       mockMvc.perform(patch(BASE_URL + POST_ID + "/comment/" + COMMENT_ID)
                           .contentType(MediaType.APPLICATION_JSON)
-                          .content(objectMapper.writeValueAsString(data.getCommentDto(POST_ID))))
+                          .content(objectMapper.writeValueAsString(Data.getCommentDto(POST_ID))))
              .andExpect(status().is3xxRedirection())
              .andExpect(redirectedUrl(REDIRECT_POST));
 
