@@ -32,7 +32,7 @@ public class Data {
 
   public Post getPost() throws JsonProcessingException {
     return new Post(ID_ONE, "test", objectMapper.writeValueAsBytes("test"), "text",
-                    new HashSet<>(), getLike(ID_ONE, ID_ONE), new HashSet<>());
+                    new HashSet<>(), getLike(ID_ONE), new HashSet<>());
   }
 
   public PostSaveDto getPostSaveDto() throws JsonProcessingException {
@@ -48,8 +48,8 @@ public class Data {
     return new Comment(id, getPost(), "text");
   }
 
-  public Like getLike(Long id, Long postId) {
-    return new Like(id, postId, 1);
+  public Like getLike(Long postId) {
+    return new Like(ID_ONE, postId, 1);
   }
 
 }
