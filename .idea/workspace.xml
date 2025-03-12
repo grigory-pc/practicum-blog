@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление контроллеров и конфигурации БД для тестов">
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.yml" afterDir="false" />
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: рефакторинг класса для View">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/services/HttpRequestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,8 +124,8 @@
     <option name="myCommands">
       <command value="mvn clean" />
       <command value="mvn clean package" />
-      <command value="mvn clean install -Dmaven.test.skip" />
       <command value="mvn clean compile -Dmaven.test.skip" />
+      <command value="mvn clean install -Dmaven.test.skip" />
     </option>
   </component>
   <component name="RunManager" selected="JUnit.PostControllerTest.positiveTest_ShouldGetPosts (1)">
@@ -246,15 +249,7 @@
       <workItem from="1741702405408" duration="1810000" />
       <workItem from="1741704369387" duration="4501000" />
       <workItem from="1741711286233" duration="4563000" />
-      <workItem from="1741766794534" duration="26975000" />
-    </task>
-    <task id="LOCAL-00003" summary="feat: добавлены интеграционные тесты в рамках теории">
-      <option name="closed" value="true" />
-      <created>1740821903410</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1740821903410</updated>
+      <workItem from="1741766794534" duration="34658000" />
     </task>
     <task id="LOCAL-00004" summary="feat: добавлены шаблоны для веб. Создана базовая структура проекта.">
       <option name="closed" value="true" />
@@ -640,7 +635,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741808349596</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="feat: рефакторинг класса для View">
+      <option name="closed" value="true" />
+      <created>1741811422203</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1741811422203</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: обновление полей для поста" />
     <MESSAGE value="feat: добавлена логика сохранения и обновления поста" />
     <MESSAGE value="feat: обновлена работа с тагами" />
     <MESSAGE value="feat: добавлена работа с тегами" />
@@ -683,7 +685,8 @@
     <MESSAGE value="feat: обновление логики работы с тегами" />
     <MESSAGE value="feat: обновление entity" />
     <MESSAGE value="feat: обновление контроллеров и конфигурации БД для тестов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление контроллеров и конфигурации БД для тестов" />
+    <MESSAGE value="feat: рефакторинг класса для View" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: рефакторинг класса для View" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

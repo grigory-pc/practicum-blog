@@ -1,0 +1,9 @@
+/*
+ * This file has been created by the Vaadin Theme Editor. Please note that
+ * manual changes to individual CSS properties may be overwritten by the theme editor.
+ */
+html {
+  --lumo-primary-color-10pct:rgba(0,245,137,0.1);
+  --lumo-primary-color-50pct:rgba(0,245,137,0.5);
+  --lumo-primary-color:rgba(0,245,137,1);
+}
