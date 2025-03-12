@@ -29,7 +29,7 @@ public record PostPreviewDto(@JsonProperty(value = "id") Long id,
                                            required = true) @NotNull Integer countComments,
                              @JsonProperty(value = "count_likes",
                                            required = true) @NotNull Integer countLikes,
-                             @JsonProperty(value = "tags", required = true) Set<Long> tags) {
+                             @JsonProperty(value = "tags", required = true) Set<TagDto> tags) {
   @Override
   public boolean equals(Object object) {
     if (this == object) {
