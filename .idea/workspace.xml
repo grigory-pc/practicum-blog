@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление логики работы с тегами" />
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление entity">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfigTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateConfigTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,11 +112,11 @@
       <recent name="ru.yandex.practicum.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum.config" />
       <recent name="ru.yandex.practicum.exceptions" />
       <recent name="ru.yandex.practicum.service.impl" />
       <recent name="ru.yandex.practicum.service" />
       <recent name="ru.yandex.practicum.repository" />
-      <recent name="ru.yandex.practicum.dao" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -243,15 +248,7 @@
       <workItem from="1741702405408" duration="1810000" />
       <workItem from="1741704369387" duration="4501000" />
       <workItem from="1741711286233" duration="4563000" />
-      <workItem from="1741766794534" duration="23519000" />
-    </task>
-    <task id="LOCAL-00001" summary="feat: init commit">
-      <option name="closed" value="true" />
-      <created>1740733217164</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1740733217164</updated>
+      <workItem from="1741766794534" duration="25216000" />
     </task>
     <task id="LOCAL-00002" summary="feat: init commit">
       <option name="closed" value="true" />
@@ -629,7 +626,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741804928486</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="feat: обновление entity">
+      <option name="closed" value="true" />
+      <created>1741805669997</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1741805669997</updated>
+    </task>
+    <task id="LOCAL-00050" summary="feat: обновление entity">
+      <option name="closed" value="true" />
+      <created>1741805737192</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1741805737193</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,7 +660,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: добавлена реализация получения списка превью постов" />
     <MESSAGE value="feat: добавлена реализация получения поста по id" />
     <MESSAGE value="feat: обновление полей для поста" />
     <MESSAGE value="feat: добавлена логика сохранения и обновления поста" />
@@ -672,7 +684,8 @@
     <MESSAGE value="feat: обновление dto и мапперов" />
     <MESSAGE value="feat: для view ленты постов добавлены теги и фильтрация для тегов" />
     <MESSAGE value="feat: обновление логики работы с тегами" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление логики работы с тегами" />
+    <MESSAGE value="feat: обновление entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление entity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -684,18 +697,66 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java</url>
-          <line>43</line>
+          <line>42</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfiguration.java</url>
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java</url>
           <line>34</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateConfigTest.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/HibernateConfig.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/HibernateConfig.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/HibernateConfig.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
           <option name="timeStamp" value="8" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateConfigTest.java</url>
+          <line>25</line>
+          <properties class="ru.yandex.practicum.config.HibernateConfigTest" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/HibernateConfig.java</url>
+          <line>24</line>
+          <properties class="ru.yandex.practicum.configuration.HibernateConfig" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

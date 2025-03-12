@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  * Конфигурация для работы с БД.
  */
 @Configuration
-public class DataSourceConfiguration {
+public class DataSourceTest implements DataSourceConfigTest{
 
   /**
    * Настройка DataSource — компонент, отвечающий за соединение с базой данных.
@@ -54,5 +54,10 @@ public class DataSourceConfiguration {
   @Bean
   public JdbcTemplate jdbcTemplate(DataSource dataSource) {
     return new JdbcTemplate(dataSource);
+  }
+
+  @Override
+  public DataSource getDataSource() {
+    return null;
   }
 }
