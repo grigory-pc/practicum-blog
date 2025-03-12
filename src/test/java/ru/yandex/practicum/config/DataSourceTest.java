@@ -28,9 +28,9 @@ public class DataSourceTest implements DataSourceConfigTest{
    */
   @Bean
   public DataSource dataSource(
-      @Value("${jdbc.test.datasource.url}") String url,
-      @Value("${jdbc.test.datasource.username}") String username,
-      @Value("${jdbc.test.datasource.password}") String password
+      @Value("${jdbc.datasource.url}") String url,
+      @Value("${jdbc.datasource.username}") String username,
+      @Value("${jdbc.datasource.password}") String password
   ) {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName(Driver.class.getName());

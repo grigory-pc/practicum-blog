@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление entity">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfigTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateConfigTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" afterDir="false" />
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление контроллеров и конфигурации БД для тестов">
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,15 +246,7 @@
       <workItem from="1741702405408" duration="1810000" />
       <workItem from="1741704369387" duration="4501000" />
       <workItem from="1741711286233" duration="4563000" />
-      <workItem from="1741766794534" duration="25216000" />
-    </task>
-    <task id="LOCAL-00002" summary="feat: init commit">
-      <option name="closed" value="true" />
-      <created>1740744107398</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1740744107398</updated>
+      <workItem from="1741766794534" duration="26975000" />
     </task>
     <task id="LOCAL-00003" summary="feat: добавлены интеграционные тесты в рамках теории">
       <option name="closed" value="true" />
@@ -642,7 +632,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741805737193</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="feat: обновление контроллеров и конфигурации БД для тестов">
+      <option name="closed" value="true" />
+      <created>1741808349596</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1741808349596</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +658,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: добавлена реализация получения поста по id" />
     <MESSAGE value="feat: обновление полей для поста" />
     <MESSAGE value="feat: добавлена логика сохранения и обновления поста" />
     <MESSAGE value="feat: обновлена работа с тагами" />
@@ -685,7 +682,8 @@
     <MESSAGE value="feat: для view ленты постов добавлены теги и фильтрация для тегов" />
     <MESSAGE value="feat: обновление логики работы с тегами" />
     <MESSAGE value="feat: обновление entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление entity" />
+    <MESSAGE value="feat: обновление контроллеров и конфигурации БД для тестов" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление контроллеров и конфигурации БД для тестов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

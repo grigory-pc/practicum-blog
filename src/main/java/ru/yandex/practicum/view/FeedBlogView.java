@@ -20,22 +20,15 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.TagDto;
+import ru.yandex.practicum.view.utility.Data;
 
 @PageTitle("feed-blog")
 @Route("")
 @Menu(order = 0, icon = LineAwesomeIconUrl.LIST_SOLID)
 public class FeedBlogView extends Div implements AfterNavigationObserver {
-  private static final String IMAGE_MAN_PATH = "C:\\Users\\Data\\Desktop\\man.jpg";
-  private static final String IMAGE_WOMAN_PATH = "C:\\Users\\Data\\Desktop\\woman.jpg";
   private GridListDataView<PostPreviewDto> dataView;
 
   Grid<PostPreviewDto> grid = new Grid<>();
@@ -68,7 +61,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     card.getThemeList().add("spacing-s");
 
     String postText = postPreviewDto.postText();
-    String truncatedText = truncateText(postText, 3);
+    String truncatedText = Data.truncateText(postText, 3);
     Image image = getImage(postPreviewDto.image());
 
     VerticalLayout description = new VerticalLayout();
@@ -125,36 +118,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
 
   @Override
   public void afterNavigation(AfterNavigationEvent event) {
-    byte[] imageManBytes = getImageBytes(IMAGE_MAN_PATH);
-    byte[] imageWomanBytes = getImageBytes(IMAGE_WOMAN_PATH);
-
-    // Set some data when this view is displayed.
-    List<PostPreviewDto> posts = Arrays.asList(
-        createPost(imageManBytes, "John Smith",
-                   "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                   1000, 300, Set.of(new TagDto(1L, "test"), new TagDto(2L, "2024"))),
-        createPost(imageWomanBytes, "Abagail Libbie",
-                   "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                   50, 400, Set.of(new TagDto(1L, "test"), new TagDto(2L, "2025"),
-                                   new TagDto(3L, "practicum"))),
-        createPost(imageManBytes, "Alberto Raya",
-                   "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                   1020, 5, Set.of(new TagDto(3L, "practicum"))),
-        createPost(imageWomanBytes, "Emmy Elsner",
-                   "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                   100, 100, Set.of(new TagDto(2L, "2024"))),
-        createPost(imageManBytes, "Alf Huncoot",
-                   "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
-                   1000, 138, Set.of(new TagDto(1L, "test")))
-    );
-
-    grid.setItems(posts);
-  }
-
-  private static PostPreviewDto createPost(byte[] image, String title, String postText,
-                                           Integer likes, Integer comments, Set<TagDto> tags) {
-
-    return new PostPreviewDto(null, title, image, postText, likes, comments, tags);
+    grid.setItems(Data.getPosts());
   }
 
   private static Image getImage(byte[] imageBytes) {
@@ -162,28 +126,6 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
                                                  () -> new ByteArrayInputStream(imageBytes));
 
     return new Image(resource, "image");
-  }
-
-  private static byte[] getImageBytes(String path) {
-    File fileImage = new File(path);
-
-    try {
-      return Files.readAllBytes(fileImage.toPath());
-
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  private String truncateText(String text, int maxLines) {
-    String[] lines = text.split("\n");
-    StringBuilder result = new StringBuilder();
-
-    for (int i = 0; i < Math.min(lines.length, maxLines); i++) {
-      result.append(lines[i]).append("\n");
-    }
-
-    return result.toString().trim();
   }
 
   private void filterByTag(TagDto tag) {
