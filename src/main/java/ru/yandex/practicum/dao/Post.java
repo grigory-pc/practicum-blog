@@ -39,6 +39,6 @@ public class Post {
   private Set<Comment> comments;
   @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
-  private Like like;
+  private Like likes;
   private Set<Tag> tags;
 }

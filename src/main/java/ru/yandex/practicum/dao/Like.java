@@ -30,6 +30,6 @@ public class Like {
   private Long id;
   @JoinColumn(name = "post_id")
   private Long postId;
-  @Column(name = "likes_count", nullable = false, columnDefinition = "integer default 0")
-  private Integer likesCount;
+  @Column(name = "count_likes", nullable = false, columnDefinition = "integer default 0")
+  private Integer countLikes;
 }

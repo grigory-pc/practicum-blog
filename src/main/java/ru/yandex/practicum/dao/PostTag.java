@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 /**
- * Класс пост-тега.
+ * Класс комбинации пост-тега.
  */
 @Getter
 @Setter

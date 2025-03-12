@@ -10,5 +10,5 @@ import jakarta.validation.constraints.NotBlank;
  * @param tagName - текст тега.
  */
 public record TagDto(@JsonProperty(value = "id") Long id,
-                     @JsonProperty(value = "tag") @NotBlank String tagName) {
+                     @JsonProperty(value = "tag_name") @NotBlank String tagName) {
 }

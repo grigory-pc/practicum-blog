@@ -13,7 +13,6 @@ import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.mapper.TagMapper;
 import ru.yandex.practicum.repository.TagRepository;
 import ru.yandex.practicum.service.TagService;
-import ru.yandex.practicum.utils.Data;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -43,8 +42,8 @@ class TagServiceImplTest {
     try {
       when(tagRepository.findAll())
           .thenReturn(
-              List.of(new Tag(1L, Data.getPost(), TAG_2024),
-                      new Tag(2L, Data.getPost(), TAG_2025)));
+              List.of(new Tag(1L, TAG_2024),
+                      new Tag(2L, TAG_2025)));
       when(tagMapper.toDto(anyList()))
           .thenReturn(List.of(new TagDto(1L, TAG_2024), new TagDto(2L, TAG_2025)));
 

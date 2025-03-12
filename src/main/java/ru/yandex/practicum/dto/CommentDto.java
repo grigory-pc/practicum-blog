@@ -12,6 +12,6 @@ import lombok.Builder;
  */
 @Builder
 public record CommentDto(@JsonProperty(value = "id") Long id,
-                         @JsonProperty(value = "comment_text",
+                         @JsonProperty(value = "text",
                                        required = true) @NotBlank String commentText) {
 }

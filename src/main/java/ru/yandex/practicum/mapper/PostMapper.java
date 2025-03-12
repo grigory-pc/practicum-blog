@@ -20,7 +20,7 @@ public interface PostMapper {
 
   @Mapping(target = "countComments",
            expression = "java(post.getComments() != null ? post.getComments().size() : 0)")
-  @Mapping(target = "countLikes", source = "like.likesCount")
+  @Mapping(target = "countLikes", source = "likes.countLikes")
   @Mapping(target = "postText", source = "text")
   PostPreviewDto toPreviewDto(Post post);
 
