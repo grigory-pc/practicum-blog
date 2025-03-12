@@ -1,6 +1,5 @@
 package ru.yandex.practicum.configuration;
 
-import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -18,17 +17,17 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @Profile("test")
-public class DataSourceTest implements DataSourceConfig {
+public class DataSource implements DataSourceConfig {
   private final Environment environment;
 
   @Bean
   @Override
-  public DataSource getDataSource() {
+  public javax.sql.DataSource getDataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.test.driverClassName"));
-    dataSource.setUrl(environment.getRequiredProperty("jdbc.test.url"));
-    dataSource.setUsername(environment.getRequiredProperty("jdbc.test.username"));
-    dataSource.setPassword(environment.getRequiredProperty("jdbc.test.password"));
+    dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+    dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
+    dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
+    dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
 
     return dataSource;
   }
@@ -41,7 +40,7 @@ public class DataSourceTest implements DataSourceConfig {
    */
   @EventListener
   public void populate(ContextRefreshedEvent event) {
-    DataSource dataSource = event.getApplicationContext().getBean(DataSource.class);
+    javax.sql.DataSource dataSource = event.getApplicationContext().getBean(javax.sql.DataSource.class);
 
     ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
     populator.addScript(new ClassPathResource("schema.sql"));

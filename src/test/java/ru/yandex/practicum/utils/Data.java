@@ -13,21 +13,23 @@ import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.TagDto;
 
 @UtilityClass
 public class Data {
   public static final Long ID_ONE = 1L;
   public static final Long ID_TWO = 2L;
+  public static final String TAG = "test";
   ObjectMapper objectMapper = new ObjectMapper();
 
   public PostPreviewDto getPostPreviewDto() throws JsonProcessingException {
     return new PostPreviewDto(ID_ONE, "test", objectMapper.writeValueAsBytes("test"), "text", 2, 1,
-                              Set.of(ID_ONE, ID_TWO));
+                              Set.of(getTagDto()));
   }
 
   public PostFullDto getPostFullDto() throws JsonProcessingException {
     return new PostFullDto(ID_ONE, "test", objectMapper.writeValueAsBytes("test"), "text",
-                           Set.of(ID_ONE, ID_TWO), List.of(getCommentDto(ID_ONE)));
+                           Set.of(getTagDto()), List.of(getCommentDto(ID_ONE)));
   }
 
   public Post getPost() throws JsonProcessingException {
@@ -52,4 +54,7 @@ public class Data {
     return new Like(ID_ONE, postId, 1);
   }
 
+  public TagDto getTagDto() {
+    return new TagDto(ID_ONE, TAG);
+  }
 }

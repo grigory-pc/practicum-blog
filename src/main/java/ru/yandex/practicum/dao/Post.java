@@ -40,7 +40,5 @@ public class Post {
   @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
   private Like like;
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "post_id")
   private Set<Tag> tags;
 }

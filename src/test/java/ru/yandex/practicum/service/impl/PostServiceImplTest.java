@@ -20,6 +20,7 @@ import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
+import ru.yandex.practicum.repository.TagRepository;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 import ru.yandex.practicum.utils.Data;
@@ -29,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
@@ -42,6 +44,7 @@ class PostServiceImplTest {
   private PostRepository postRepository;
   @Autowired
   private PostTagRepository postTagRepository;
+  private TagRepository tagRepository;
   @Autowired
   private PostMapper postMapper;
   @Autowired
@@ -50,7 +53,8 @@ class PostServiceImplTest {
 
   @BeforeEach
   void setUp() {
-    postService = new PostServiceImpl(postRepository, postTagRepository, postMapper, likeService);
+    postService = new PostServiceImpl(postRepository, postTagRepository, tagRepository, postMapper,
+                                      likeService);
   }
 
   @Test

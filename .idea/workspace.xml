@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: настройка vaadin" />
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: для view ленты постов добавлены теги и фильтрация для тегов">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/TagDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/TagDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/mapper/PostMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/PostTagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/PostTagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/AppShell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/AppShell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/GreetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/backup/view/GreetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/WebConfigurationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +93,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "feat/vaadin/create-blog",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "J:/Development/Yandex.Praktikum/Java/practicum-blog/src/main",
+    "last_opened_file_path": "J:/Development/Yandex.Praktikum/Java/practicum-blog/src/main/frontend/themes/my-theme",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,18 +106,22 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\frontend\themes\my-theme" />
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main" />
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\java\ru\yandex\practicum" />
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\resources" />
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\webapp\icons" />
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\java\ru\yandex\practicum\backup\view" />
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
@@ -115,25 +141,10 @@
       <command value="mvn clean" />
       <command value="mvn clean package" />
       <command value="mvn clean install -Dmaven.test.skip" />
+      <command value="mvn clean compile -Dmaven.test.skip" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags">
-    <configuration name="CommentServiceImplTest.PositiveTest_ShouldSaveComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="practicum-blog" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.CommentServiceImplTest" />
-      <option name="METHOD_NAME" value="PositiveTest_ShouldSaveComment" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PostControllerTest.positiveTest_ShouldGetPosts (1)">
     <configuration name="CommentServiceImplTest.positiveTest_ShouldSaveComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="practicum-blog" />
       <extension name="coverage">
@@ -161,6 +172,22 @@
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
       <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
       <option name="METHOD_NAME" value="getPosts" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostControllerTest.positiveTest_ShouldGetPosts (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-base" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
+      <option name="METHOD_NAME" value="positiveTest_ShouldGetPosts" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -200,11 +227,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts (1)" />
         <item itemvalue="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
         <item itemvalue="JUnit.PostControllerTest.getPosts" />
         <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
-        <item itemvalue="JUnit.CommentServiceImplTest.PositiveTest_ShouldSaveComment" />
       </list>
     </recent_temporary>
   </component>
@@ -238,6 +265,7 @@
       <workItem from="1741702405408" duration="1810000" />
       <workItem from="1741704369387" duration="4501000" />
       <workItem from="1741711286233" duration="4563000" />
+      <workItem from="1741766794534" duration="20801000" />
     </task>
     <task id="LOCAL-00001" summary="feat: init commit">
       <option name="closed" value="true" />
@@ -583,7 +611,31 @@
       <option name="project" value="LOCAL" />
       <updated>1741727751780</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="feat: болванка view для ленты постов">
+      <option name="closed" value="true" />
+      <created>1741772740005</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1741772740005</updated>
+    </task>
+    <task id="LOCAL-00045" summary="feat: обновление dto и мапперов">
+      <option name="closed" value="true" />
+      <created>1741774241127</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1741774241127</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat: для view ленты постов добавлены теги и фильтрация для тегов">
+      <option name="closed" value="true" />
+      <created>1741777596938</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1741777596938</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,9 +653,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: добавлены зависимость и плагин для mapstruct" />
-    <MESSAGE value="feat: добавлены мапперы" />
-    <MESSAGE value="feat: обновление конфигурации БД." />
     <MESSAGE value="feat: обновление контроллеров" />
     <MESSAGE value="feat: добавлена реализация получения списка превью постов" />
     <MESSAGE value="feat: добавлена реализация получения поста по id" />
@@ -626,22 +675,55 @@
     <MESSAGE value="feat: добавление vaadin" />
     <MESSAGE value="feat: корректировка зависимостей + убран thymeleaf" />
     <MESSAGE value="feat: настройка vaadin" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: настройка vaadin" />
+    <MESSAGE value="feat: болванка view для ленты постов" />
+    <MESSAGE value="feat: обновление dto и мапперов" />
+    <MESSAGE value="feat: для view ленты постов добавлены теги и фильтрация для тегов" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: для view ленты постов добавлены теги и фильтрация для тегов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java</url>
           <line>50</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java</url>
           <line>43</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfiguration.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.NoClassDefFoundError" package="java.lang" />
+          <option name="timeStamp" value="8" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
   </component>
 </project>

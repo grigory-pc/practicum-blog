@@ -12,4 +12,4 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @ComponentScan(basePackages = "ru.yandex.practicum")
 @PropertySource("classpath:application-test.yml")
-public class WebConfiguration {}
+public class WebConfigurationTest {}

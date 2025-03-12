@@ -37,6 +37,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
   private static final String IMAGE_MAN_PATH = "C:\\Users\\Data\\Desktop\\man.jpg";
   private static final String IMAGE_WOMAN_PATH = "C:\\Users\\Data\\Desktop\\woman.jpg";
   private GridListDataView<PostPreviewDto> dataView;
+
   Grid<PostPreviewDto> grid = new Grid<>();
 
   public FeedBlogView() {
@@ -106,7 +107,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     tagsLayout.addClassName("tags");
 
     for (TagDto tag : postPreviewDto.tags()) {
-      Span tagSpan = new Span("#" + tag.tag());
+      Span tagSpan = new Span("#" + tag.tagName());
       tagSpan.addClassName("tag");
 
       tagSpan.addClickListener(click -> filterByTag(tag));
