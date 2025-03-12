@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: UT">
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: настройка vaadin" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feat/create-blog" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,35 +57,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JUnit.UserControllerIntegrationTest.delete_shouldFindAllUserFromDatabaseAndRedirect.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.practicum-blog [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/create-blog&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;H:/Work/CBT/Projects/kafka-libs&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.UserControllerIntegrationTest.delete_shouldFindAllUserFromDatabaseAndRedirect.executor": "Run",
+    "Maven.practicum-blog [clean,package].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feat/vaadin/create-blog",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "J:/Development/Yandex.Praktikum/Java/practicum-blog/src/main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\java\ru\yandex\practicum" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\resources" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\webapp\icons" />
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -112,6 +114,7 @@
     <option name="myCommands">
       <command value="mvn clean" />
       <command value="mvn clean package" />
+      <command value="mvn clean install -Dmaven.test.skip" />
     </option>
   </component>
   <component name="RunManager" selected="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags">
@@ -198,10 +201,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags" />
-        <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
-        <item itemvalue="JUnit.CommentServiceImplTest.PositiveTest_ShouldSaveComment" />
         <item itemvalue="JUnit.PostControllerTest.getPosts" />
+        <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
+        <item itemvalue="JUnit.CommentServiceImplTest.PositiveTest_ShouldSaveComment" />
       </list>
     </recent_temporary>
   </component>
@@ -548,7 +551,39 @@
       <option name="project" value="LOCAL" />
       <updated>1741715109023</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="feat: обновление  pom">
+      <option name="closed" value="true" />
+      <created>1741725646197</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1741725646197</updated>
+    </task>
+    <task id="LOCAL-00041" summary="feat: добавление vaadin">
+      <option name="closed" value="true" />
+      <created>1741726559866</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1741726559866</updated>
+    </task>
+    <task id="LOCAL-00042" summary="feat: корректировка зависимостей + убран thymeleaf">
+      <option name="closed" value="true" />
+      <created>1741726857515</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1741726857515</updated>
+    </task>
+    <task id="LOCAL-00043" summary="feat: настройка vaadin">
+      <option name="closed" value="true" />
+      <created>1741727751780</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1741727751780</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,10 +601,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: обновлена логика сохранения поста." />
-    <MESSAGE value="feat: обновление схемы БД. Добавление DTO. Обновление контроллера. Добавление дополнительных зависимостей." />
-    <MESSAGE value="feat: обновление POM" />
-    <MESSAGE value="feat: обновлена конфигурация для БД и Hibernate" />
     <MESSAGE value="feat: добавлены зависимость и плагин для mapstruct" />
     <MESSAGE value="feat: добавлены мапперы" />
     <MESSAGE value="feat: обновление конфигурации БД." />
@@ -591,20 +622,24 @@
     <MESSAGE value="feat: добавлена обработка исключений + добавлено логирование + корректировка наименования шаблона" />
     <MESSAGE value="feat: обновление формата переменных окружения и наименования страницы для превью постов" />
     <MESSAGE value="feat: UT" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: UT" />
+    <MESSAGE value="feat: обновление  pom" />
+    <MESSAGE value="feat: добавление vaadin" />
+    <MESSAGE value="feat: корректировка зависимостей + убран thymeleaf" />
+    <MESSAGE value="feat: настройка vaadin" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: настройка vaadin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java</url>
           <line>50</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

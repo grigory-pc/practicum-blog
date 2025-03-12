@@ -9,7 +9,8 @@
         <servlet-class>com.vaadin.flow.server.VaadinServlet</servlet-class>
         <init-param>
             <param-name>ui</param-name>
-            <param-value>ru.yandex.practicum.MainView</param-value>
+<!--            <param-value>ru.yandex.practicum.view.MainView</param-value>-->
+            <param-value>ru.yandex.practicum.view.FeedBlogView</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

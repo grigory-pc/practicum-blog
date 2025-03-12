@@ -1,4 +1,4 @@
-package ru.yandex.practicum;
+package ru.yandex.practicum.view;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.server.PWA;

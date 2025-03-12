@@ -50,3 +50,4 @@ node_modules/
 
 # Maven
 log/
+/src/main/frontend/generated/
