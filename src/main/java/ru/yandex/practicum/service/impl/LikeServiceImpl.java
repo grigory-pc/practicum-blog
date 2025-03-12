@@ -33,10 +33,10 @@ public class LikeServiceImpl implements LikeService {
     if (existingLikesOptional.isPresent()) {
       Like existingLikes = existingLikesOptional.get();
 
-      Integer likesCount = existingLikes.getLikesCount();
+      Integer likesCount = existingLikes.getCountLikes();
       likesCount++;
 
-      existingLikes.setLikesCount(likesCount);
+      existingLikes.setCountLikes(likesCount);
 
       likeRepository.save(existingLikes);
     } else {
