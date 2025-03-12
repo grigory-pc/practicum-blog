@@ -68,9 +68,7 @@ public class PostServiceImpl implements PostService {
   public void savePost(PostSaveDto postSaveDto) {
     Post post = postRepository.save(postMapper.toPost(postSaveDto));
 
-    for (Long tagId : postSaveDto.tagIds()) {
-      postTagRepository.save(new PostTag(post.getId(), tagId));
-    }
+    postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(new PostTag(post.getId(), tagId)));
 
     likeService.saveLike(post.getId());
   }
