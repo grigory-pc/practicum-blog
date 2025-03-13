@@ -1,4 +1,4 @@
-package ru.yandex.practicum.view.services;
+package ru.yandex.practicum.view.utility;
 
 import com.vaadin.flow.component.notification.Notification;
 import java.util.HashSet;
@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 
@@ -68,5 +69,9 @@ public class HttpRequestService {
     //    } catch (RestClientException e) {
     //      return new HashSet<>();
     //    }
+  }
+
+  public PostFullDto getPostFullDto(Long postId){
+    return Data.getPostFullDto(postId);
   }
 }

@@ -1,6 +1,7 @@
 package ru.yandex.practicum.view;
 
 import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
@@ -33,18 +34,16 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Component;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
-import ru.yandex.practicum.view.services.HttpRequestService;
+import ru.yandex.practicum.view.utility.HttpRequestService;
 import ru.yandex.practicum.view.utility.Data;
 
 @PageTitle("feed-blog")
 @Route("")
 @Menu(order = 0, icon = LineAwesomeIconUrl.LIST_SOLID)
-@Component
 public class FeedBlogView extends Div implements AfterNavigationObserver {
   private GridListDataView<PostPreviewDto> dataView;
   private Div errorMessage = new Div();
@@ -75,15 +74,16 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     loadTagsLocal();
   }
 
-
   private VerticalLayout createCard(PostPreviewDto postPreviewDto) {
     VerticalLayout card = new VerticalLayout();
+
     card.addClassName("card");
     card.setSpacing(false);
     card.setPadding(false);
 
     String postText = postPreviewDto.postText();
     String truncatedText = Data.truncateText(postText, 3);
+
     Image image = getImage(postPreviewDto.image());
 
     HorizontalLayout header = new HorizontalLayout();
@@ -106,6 +106,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     likeIcon.addClassName("icon");
     Span likes = new Span(String.valueOf(postPreviewDto.countLikes()));
     likes.addClassName("likes");
+
     Icon commentIcon = VaadinIcon.COMMENT.create();
     commentIcon.addClassName("icon");
     Span comments = new Span(String.valueOf(postPreviewDto.countComments()));
@@ -129,6 +130,8 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     content.add(image, new VerticalLayout(name, post, actions));
 
     card.add(content, tagsLayout);
+
+    card.addClickListener(click -> UI.getCurrent().navigate("post/" + postPreviewDto.id()));
 
     return card;
   }
