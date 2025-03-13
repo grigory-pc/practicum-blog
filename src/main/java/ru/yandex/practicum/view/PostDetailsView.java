@@ -11,11 +11,12 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.AfterNavigationEvent;
+import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
-import org.springframework.web.bind.annotation.PathVariable;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.TagDto;
@@ -23,7 +24,7 @@ import ru.yandex.practicum.view.utility.HttpRequestService;
 
 @PageTitle("Post Details")
 @Route("post/:postId")
-public class PostDetailsView extends Div {
+public class PostDetailsView extends Div implements AfterNavigationObserver {
   private Long postId;
   private FormLayout form;
   private TextField titleField;
@@ -33,17 +34,9 @@ public class PostDetailsView extends Div {
   private VerticalLayout commentsLayout;
 
   public PostDetailsView() {
-    this(null);
-  }
-
-  public PostDetailsView(@PathVariable("postId") Long postId) {
-    System.out.println("получен postId: " + postId);
-
-    this.postId = postId;
     addClassName("post-details-view");
     setSizeFull();
 
-    // Создаем форму
     form = new FormLayout();
     form.setResponsiveSteps(
         new FormLayout.ResponsiveStep("0", 1),
@@ -69,6 +62,11 @@ public class PostDetailsView extends Div {
     commentsLayout.addClassName("comments");
 
     add(form);
+  }
+
+  @Override
+  public void afterNavigation(AfterNavigationEvent event) {
+    postId = event.getRouteParameters().getLong("postId").orElse(null);
 
     loadPostData();
   }
@@ -103,8 +101,6 @@ public class PostDetailsView extends Div {
       }
 
       form.add(image, titleField, postTextArea, tagsLayout, commentsLayout);
-      //      form.add(image, titleField, postTextArea, new HorizontalLayout(tagsLayout),
-      //               new VerticalLayout(commentsLayout));
 
     } else {
       Notification.show("Пост не найден", 3000, Notification.Position.BOTTOM_CENTER);
