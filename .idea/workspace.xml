@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: рефакторинг класса для View">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" afterDir="false" />
-    </list>
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: рефакторинг класса для View" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -249,6 +245,7 @@
       <workItem from="1741711286233" duration="4563000" />
       <workItem from="1741766794534" duration="34658000" />
       <workItem from="1741822676151" duration="2006000" />
+      <workItem from="1741853742018" duration="52000" />
     </task>
     <task id="LOCAL-00004" summary="feat: добавлены шаблоны для веб. Создана базовая структура проекта.">
       <option name="closed" value="true" />

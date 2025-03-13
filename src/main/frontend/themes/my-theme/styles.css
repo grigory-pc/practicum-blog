@@ -65,3 +65,7 @@ vaadin-text-field.bordered::part(input-field) {
 .button-layout button:hover {
     transform: scale(1.05);
 }
+
+.custom-dialog {
+    max-width: 600px;
+}

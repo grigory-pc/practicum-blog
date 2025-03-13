@@ -3,6 +3,7 @@ package ru.yandex.practicum.view.services;
 import com.vaadin.flow.component.notification.Notification;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.experimental.UtilityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -16,13 +17,13 @@ import org.springframework.web.client.RestTemplate;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 
-@Service
+@UtilityClass
 public class HttpRequestService {
 //  @Autowired
 //  private RestTemplate restTemplate;
 
   public boolean sendPostToServer(PostSaveDto postDto) {
-    System.out.println("Request sended");
+    System.out.println("Request sended: " + postDto);
 
     return true;
 //    try {

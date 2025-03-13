@@ -1,5 +1,6 @@
 package ru.yandex.practicum.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import lombok.Builder;
  * @param tagIds - множество тегов поста.
  */
 @Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public record PostSaveDto(@JsonProperty(value = "title",
                                         required = true) @NotBlank String title,
                           @JsonProperty(value = "image") byte[] image,
