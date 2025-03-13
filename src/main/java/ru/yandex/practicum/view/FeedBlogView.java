@@ -27,7 +27,6 @@ import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
-import jakarta.annotation.PostConstruct;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Set;
@@ -66,9 +65,13 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_NO_ROW_BORDERS);
     grid.addComponentColumn(this::createCard);
 
-    add(grid);
+    initFilterButton();
 
-    dataView = grid.getListDataView();
+    HorizontalLayout buttonLayout = new HorizontalLayout();
+    buttonLayout.addClassName("button-layout");
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+    buttonLayout.setPadding(false);
+    buttonLayout.setMargin(false);
 
     Button addPostButton = new Button("Добавить пост");
     addPostButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -79,39 +82,25 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
       addPostForm.setVisible(true);
     });
 
-    add(addPostButton);
-    add(addPostForm = new FormLayout());
-    addPostForm.setVisible(false);
+    buttonLayout.add(addPostButton);
+
+    add(grid, buttonLayout);
+
+    dataView = grid.getListDataView();
 
     loadTagsLocal();
   }
 
 
   private VerticalLayout createCard(PostPreviewDto postPreviewDto) {
-    VerticalLayout mainLayout = new VerticalLayout();
-    mainLayout.addClassName("main-layout");
-    mainLayout.setSpacing(false);
-    mainLayout.setPadding(false);
-
-    Button clearFilterButton = new Button("Очистить фильтр");
-    clearFilterButton.addClickListener(click -> clearFilter());
-
-    FlexLayout buttonLayout = new FlexLayout(clearFilterButton);
-    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-
-    HorizontalLayout card = new HorizontalLayout();
+    VerticalLayout card = new VerticalLayout();
     card.addClassName("card");
     card.setSpacing(false);
-    card.getThemeList().add("spacing-s");
+    card.setPadding(false);
 
     String postText = postPreviewDto.postText();
     String truncatedText = Data.truncateText(postText, 3);
     Image image = getImage(postPreviewDto.image());
-
-    VerticalLayout description = new VerticalLayout();
-    description.addClassName("description");
-    description.setSpacing(false);
-    description.setPadding(false);
 
     HorizontalLayout header = new HorizontalLayout();
     header.addClassName("header");
@@ -152,17 +141,28 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
       tagsLayout.add(tagSpan);
     }
 
-    description.add(header, post, actions, tagsLayout);
-    card.add(image, description);
+    HorizontalLayout content = new HorizontalLayout();
+    content.add(image, new VerticalLayout(name, post, actions));
 
-    mainLayout.add(buttonLayout, card);
+    card.add(content, tagsLayout);
 
-    return mainLayout;
+    return card;
   }
 
   @Override
   public void afterNavigation(AfterNavigationEvent event) {
     grid.setItems(Data.getPosts());
+  }
+
+  private void initFilterButton() {
+    Button clearFilterButton = new Button("Очистить фильтр");
+    clearFilterButton.addClickListener(click -> clearFilter());
+
+    FlexLayout buttonLayout = new FlexLayout(clearFilterButton);
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+    buttonLayout.addClassName("filter-button-layout");
+
+    add(buttonLayout);
   }
 
   private static Image getImage(byte[] imageBytes) {

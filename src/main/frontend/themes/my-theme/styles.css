@@ -44,3 +44,24 @@ vaadin-text-field.bordered::part(input-field) {
     flex-direction: column;
 }
 
+.filter-button-layout {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.button-layout {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.button-layout button {
+    transition: transform 0.3s ease;
+}
+
+.button-layout button:hover {
+    transform: scale(1.05);
+}
