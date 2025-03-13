@@ -23,7 +23,7 @@ import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.view.utility.HttpRequestService;
 
 @PageTitle("Post Details")
-@Route("post/:postId")
+@Route("/post/:postId")
 public class PostDetailsView extends Div implements AfterNavigationObserver {
   private Long postId;
   private FormLayout form;

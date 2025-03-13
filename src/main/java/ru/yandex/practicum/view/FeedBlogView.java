@@ -41,7 +41,7 @@ import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.view.utility.HttpRequestService;
 import ru.yandex.practicum.view.utility.Data;
 
-@PageTitle("feed-blog")
+@PageTitle("Feed Posts")
 @Route("")
 @Menu(order = 0, icon = LineAwesomeIconUrl.LIST_SOLID)
 public class FeedBlogView extends Div implements AfterNavigationObserver {
@@ -131,7 +131,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
 
     card.add(content, tagsLayout);
 
-    card.addClickListener(click -> UI.getCurrent().navigate("post/" + postPreviewDto.id()));
+    card.addClickListener(click -> UI.getCurrent().navigate("/post/" + postPreviewDto.id()));
 
     return card;
   }
