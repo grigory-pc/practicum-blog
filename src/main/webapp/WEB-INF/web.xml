@@ -16,7 +16,7 @@
 
     <servlet-mapping>
         <servlet-name>practicumBlog</servlet-name>
-        <url-pattern>/vaadin/*</url-pattern>
+        <url-pattern>/main-view/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -27,6 +27,7 @@
             <param-name>contextClass</param-name>
             <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
         </init-param>
+
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>ru.yandex.practicum.WebConfiguration</param-value>
