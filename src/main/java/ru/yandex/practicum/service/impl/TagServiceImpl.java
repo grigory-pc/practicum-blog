@@ -5,13 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.mapper.TagMapper;
-import ru.yandex.practicum.repository.JdbcTagRepository;
+import ru.yandex.practicum.repository.Impl.JdbcTagRepositoryImpl;
 import ru.yandex.practicum.service.TagService;
 
 @Service
 @RequiredArgsConstructor
 public class TagServiceImpl implements TagService {
-  private final JdbcTagRepository tagRepository;
+  private final JdbcTagRepositoryImpl tagRepository;
   private final TagMapper tagMapper;
 
   @Override

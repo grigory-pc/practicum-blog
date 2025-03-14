@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Primary;
 import ru.yandex.practicum.mapper.CommentMapper;
 import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.mapper.TagMapper;
-import ru.yandex.practicum.repository.JdbcCommentRepository;
-import ru.yandex.practicum.repository.JdbcLikeRepository;
-import ru.yandex.practicum.repository.JdbcPostRepository;
-import ru.yandex.practicum.repository.JdbcPostTagRepository;
-import ru.yandex.practicum.repository.JdbcTagRepository;
+import ru.yandex.practicum.repository.Impl.JdbcCommentRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcLikeRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcPostRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcPostTagRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcTagRepositoryImpl;
 import ru.yandex.practicum.service.CommentService;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
@@ -49,31 +49,31 @@ public class TestConfig {
 
   @Bean
   @Primary
-  public JdbcCommentRepository mockCommentRepository () {
-    return Mockito.mock(JdbcCommentRepository.class);
+  public JdbcCommentRepositoryImpl mockCommentRepository () {
+    return Mockito.mock(JdbcCommentRepositoryImpl.class);
   }
   @Bean
   @Primary
-  public JdbcLikeRepository mockLikeRepository () {
-    return Mockito.mock(JdbcLikeRepository.class);
-  }
-
-  @Bean
-  @Primary
-  public JdbcPostRepository mockPostRepository () {
-    return Mockito.mock(JdbcPostRepository.class);
+  public JdbcLikeRepositoryImpl mockLikeRepository () {
+    return Mockito.mock(JdbcLikeRepositoryImpl.class);
   }
 
   @Bean
   @Primary
-  public JdbcPostTagRepository mockPostTagRepository() {
-    return Mockito.mock(JdbcPostTagRepository.class);
+  public JdbcPostRepositoryImpl mockPostRepository () {
+    return Mockito.mock(JdbcPostRepositoryImpl.class);
   }
 
   @Bean
   @Primary
-  public JdbcTagRepository mockTagRepository() {
-    return Mockito.mock(JdbcTagRepository.class);
+  public JdbcPostTagRepositoryImpl mockPostTagRepository() {
+    return Mockito.mock(JdbcPostTagRepositoryImpl.class);
+  }
+
+  @Bean
+  @Primary
+  public JdbcTagRepositoryImpl mockTagRepository() {
+    return Mockito.mock(JdbcTagRepositoryImpl.class);
   }
 
   @Bean

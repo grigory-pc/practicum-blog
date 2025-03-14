@@ -6,7 +6,7 @@ import ru.yandex.practicum.dao.PostTag;
 /**
  * Получение данных из таблицы tags-posts.
  */
-public class JdbcPostTagRepository {
+public interface JdbcPostTagRepository {
 
   /**
    * Поиск всех тегов по коллекции post id.
@@ -20,9 +20,9 @@ public class JdbcPostTagRepository {
    * Поиск всех тегов по  post id.
    *
    * @param postId - post id.
-   * @return коллекция связей post id и id тега.
+   * @return коллекция id тега.
    */
-  Set<PostTag> findAllByPostId(Long postId);
+  Set<Long> findAllTagIdByPostId(Long postId);
 
   /**
    * Удаление всех записей по post id.
@@ -30,4 +30,6 @@ public class JdbcPostTagRepository {
    * @param postId - id поста.
    */
   void deleteAllByPostId(Long postId);
+
+  void save(Long postId, Long tagId);
 }

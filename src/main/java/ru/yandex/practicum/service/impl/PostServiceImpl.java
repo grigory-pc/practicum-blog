@@ -19,9 +19,9 @@ import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.exceptions.NotFoundException;
 import ru.yandex.practicum.mapper.PostMapper;
-import ru.yandex.practicum.repository.JdbcPostRepository;
-import ru.yandex.practicum.repository.JdbcPostTagRepository;
-import ru.yandex.practicum.repository.JdbcTagRepository;
+import ru.yandex.practicum.repository.Impl.JdbcPostRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcPostTagRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcTagRepositoryImpl;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 
@@ -30,9 +30,9 @@ import ru.yandex.practicum.service.PostService;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
-  private final JdbcPostRepository postRepository;
-  private final JdbcPostTagRepository postTagRepository;
-  private final JdbcTagRepository tagRepository;
+  private final JdbcPostRepositoryImpl postRepository;
+  private final JdbcPostTagRepositoryImpl postTagRepository;
+  private final JdbcTagRepositoryImpl tagRepository;
   private final PostMapper postMapper;
   private final LikeService likeService;
 
@@ -55,9 +55,9 @@ public class PostServiceImpl implements PostService {
     Post post = postRepository.findById(id)
                               .orElseThrow(NotFoundException::new);
 
-    post.setTags(postTagRepository.findAllByPostId(post.getId())
+    post.setTags(postTagRepository.findAllTagIdByPostId(post.getId())
                                   .stream()
-                                  .flatMap(postTag -> tagRepository.findById(postTag.getTagId())
+                                  .flatMap(tagId -> tagRepository.findById(tagId)
                                                                    .stream())
                                   .collect(Collectors.toSet()));
 
@@ -66,11 +66,11 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public void savePost(PostSaveDto postSaveDto) {
-    Post post = postRepository.save(postMapper.toPost(postSaveDto));
+    Long postId = postRepository.save(postMapper.toPost(postSaveDto));
 
-    postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(new PostTag(post.getId(), tagId)));
+    postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(postId, tagId));
 
-    likeService.saveLike(post.getId());
+    likeService.saveLike(postId);
   }
 
   @Override
@@ -81,10 +81,10 @@ public class PostServiceImpl implements PostService {
     log.info("Из БД получена запись = {}", existingPost);
 
     Post updatedPost = getUpdatedPost(existingPost, postSaveDto);
-    postRepository.save(updatedPost);
+    postRepository.update(updatedPost);
 
     postTagRepository.deleteAllByPostId(id);
-    postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(new PostTag(id, tagId)));
+    postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(id, tagId));
   }
 
   @Override

@@ -1,21 +1,17 @@
 package ru.yandex.practicum.repository;
 
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import java.util.Optional;
 import ru.yandex.practicum.dao.Comment;
 
 /**
  * Получение данных из таблицы Comments.
  */
-@Repository
-@RequiredArgsConstructor
-public class JdbcCommentRepository {
-  private final JdbcTemplate jdbcTemplate;
+public interface JdbcCommentRepository {
 
-  public void save(Comment comment) {
-    jdbcTemplate.update("insert into comments(post, last_name, age, active) values(?, ?, ?, ?)",
-                        user.getFirstName(), user.getLastName(), user.getAge(), user.isActive());
-  }
+  void save(Comment comment);
+
+  Optional<Comment> findById(Long id);
+
+  void deleteById(Long id);
 }

@@ -6,7 +6,8 @@ import ru.yandex.practicum.dao.Like;
 /**
  * Получение данных из таблицы Likes.
  */
-public class JdbcLikeRepository{
+public interface JdbcLikeRepository {
+
   /**
    * Получение лайков для определенного id поста.
    *
@@ -14,4 +15,8 @@ public class JdbcLikeRepository{
    * @return объект лайков.
    */
   Optional<Like> findByPostId(Long id);
+
+  void save(Like like);
+
+  void incrementLikes(Long postId);
 }

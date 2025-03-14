@@ -18,9 +18,9 @@ import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.mapper.PostMapper;
-import ru.yandex.practicum.repository.JdbcPostRepository;
-import ru.yandex.practicum.repository.JdbcPostTagRepository;
-import ru.yandex.practicum.repository.JdbcTagRepository;
+import ru.yandex.practicum.repository.Impl.JdbcPostRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcPostTagRepositoryImpl;
+import ru.yandex.practicum.repository.Impl.JdbcTagRepositoryImpl;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 import ru.yandex.practicum.utils.Data;
@@ -40,10 +40,10 @@ import static org.mockito.Mockito.when;
 class PostServiceImplTest {
   private static final Long POST_ID = 1L;
   @Autowired
-  private JdbcPostRepository postRepository;
+  private JdbcPostRepositoryImpl postRepository;
   @Autowired
-  private JdbcPostTagRepository postTagRepository;
-  private JdbcTagRepository tagRepository;
+  private JdbcPostTagRepositoryImpl postTagRepository;
+  private JdbcTagRepositoryImpl tagRepository;
   @Autowired
   private PostMapper postMapper;
   @Autowired

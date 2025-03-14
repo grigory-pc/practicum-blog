@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import ru.yandex.practicum.config.TestConfig;
 import ru.yandex.practicum.dao.Like;
-import ru.yandex.practicum.repository.JdbcLikeRepository;
+import ru.yandex.practicum.repository.Impl.JdbcLikeRepositoryImpl;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.utils.Data;
 
@@ -28,7 +28,7 @@ class LikeServiceImplTest {
   private static final Long POST_ID = 1L;
 
   @Autowired
-  JdbcLikeRepository likeRepository;
+  JdbcLikeRepositoryImpl likeRepository;
   private LikeService likeService;
 
   @BeforeEach
