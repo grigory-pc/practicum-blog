@@ -2,6 +2,7 @@ package ru.yandex.practicum.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  * Конфигурация dataSource (H2 in memory DB).
  */
 @Component
+@PropertySource(value = "classpath:application-test.yml")
 @RequiredArgsConstructor
 public class DataSource implements DataSourceConfig {
   private final Environment environment;

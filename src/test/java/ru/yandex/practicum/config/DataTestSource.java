@@ -3,6 +3,7 @@ package ru.yandex.practicum.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
@@ -13,7 +14,8 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 /**
  * Конфигурация для работы с БД.
  */
-@Configuration("application-test.yml")
+@Configuration
+@PropertySource(value = "classpath:application-test.yml")
 @RequiredArgsConstructor
 public class DataTestSource implements DataTestSourceConfig {
   private final Environment environment;
