@@ -6,15 +6,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import ru.yandex.practicum.config.TestConfig;
+import ru.yandex.practicum.config.DataSourceTestConfiguration;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
@@ -22,6 +24,7 @@ import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.service.CommentService;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
+import ru.yandex.practicum.service.TagService;
 import ru.yandex.practicum.utils.Data;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -39,24 +42,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TestConfig.class)
+@Import(DataSourceTestConfiguration.class)
+@ContextConfiguration(classes = {PostController.class})
 class PostControllerTest {
   private static final String BASE_URL = "/posts/";
   private static final String REDIRECT_POST = "redirect:/post";
   private static final Long POST_ID = 1L;
   private static final Long COMMENT_ID = 1L;
   private final ObjectMapper objectMapper = new ObjectMapper();
-
-  @Autowired
-  PostService postService;
-  @Autowired
-  CommentService commentService;
-  @Autowired
-  LikeService likeService;
-
   @Autowired
   private PostController controller;
   private MockMvc mockMvc;
+  @MockitoBean
+  PostService postService;
+  @MockitoBean
+  CommentService commentService;
+  @MockitoBean
+  LikeService likeService;
+  @MockitoBean
+  TagService tagService;
+
+
 
   @BeforeEach
   void setUp() {

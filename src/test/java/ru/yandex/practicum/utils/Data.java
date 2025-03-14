@@ -47,7 +47,7 @@ public class Data {
   }
 
   public Comment getComment(Long id) throws JsonProcessingException {
-    return new Comment(id, getPost(), "text");
+    return new Comment(id, ID_ONE, "text");
   }
 
   public Like getLike(Long postId) {

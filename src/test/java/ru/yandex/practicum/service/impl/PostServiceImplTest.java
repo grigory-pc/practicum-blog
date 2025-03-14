@@ -11,9 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
-import ru.yandex.practicum.config.TestConfig;
 import ru.yandex.practicum.dao.Post;
-import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
@@ -36,7 +34,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = PostServiceImpl.class)
 class PostServiceImplTest {
   private static final Long POST_ID = 1L;
   @Autowired
@@ -113,7 +111,7 @@ class PostServiceImplTest {
       doNothing().when(postRepository)
                  .save(any(Post.class));
       doNothing().when(postTagRepository)
-                 .save(any(PostTag.class));
+                 .save(anyLong(), anyLong());
       doNothing().when(likeService)
                  .saveLike(anyLong());
 
@@ -122,7 +120,7 @@ class PostServiceImplTest {
 
       verify(postMapper, atLeastOnce()).toPost(any(PostSaveDto.class));
       verify(postRepository, atLeastOnce()).save(any(Post.class));
-      verify(postTagRepository, atLeastOnce()).save(any(PostTag.class));
+      verify(postTagRepository, atLeastOnce()).save(anyLong(), anyLong());
       verify(likeService, atLeastOnce()).saveLike(anyLong());
 
     } catch (Exception e) {
@@ -142,14 +140,14 @@ class PostServiceImplTest {
       doNothing().when(postRepository)
                  .save(any(Post.class));
       doNothing().when(postTagRepository)
-                 .save(any(PostTag.class));
+                 .save(anyLong(), anyLong());
 
       assertDoesNotThrow(
           () -> postService.updatePost(POST_ID, postSaveDto));
 
       verify(postRepository, atLeastOnce()).findById(anyLong());
       verify(postRepository, atLeastOnce()).save(any(Post.class));
-      verify(postTagRepository, atLeastOnce()).save(any(PostTag.class));
+      verify(postTagRepository, atLeastOnce()).save(anyLong(), anyLong());
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");

@@ -4,32 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: настройки view и доступа к контроллерам">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/Impl/JdbcCommentRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/Impl/JdbcLikeRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/Impl/JdbcPostRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/Impl/JdbcPostTagRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/Impl/JdbcTagRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Like.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/PostTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/PostTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/PostTagKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcCommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcCommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcLikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcLikeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcPostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcPostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcPostTagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcPostTagRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcTagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/JdbcTagRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/CommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/LikeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/LikeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/TagServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: замена jpa на jdbc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSourceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSourceConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTestConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateConfigTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/TestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/TestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/LikeServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/LikeServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +132,7 @@
       <command value="mvn clean install -Dmaven.test.skip" />
     </option>
   </component>
-  <component name="RunManager" selected="Remote JVM Debug.practicum blog">
+  <component name="RunManager" selected="JUnit.PostControllerTest.positiveTest_ShouldGetPosts (1)">
     <configuration name="CommentServiceImplTest.positiveTest_ShouldSaveComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="practicum-blog" />
       <extension name="coverage">
@@ -176,6 +160,22 @@
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
       <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
       <option name="METHOD_NAME" value="getPosts" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostControllerTest.positiveTest_ShouldGetPosts (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-base" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
+      <option name="METHOD_NAME" value="positiveTest_ShouldGetPosts" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -244,6 +244,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts (1)" />
       <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
       <item itemvalue="JUnit.PostControllerTest.getPosts" />
       <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
@@ -252,11 +253,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts (1)" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
         <item itemvalue="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
         <item itemvalue="JUnit.PostControllerTest.getPosts" />
-        <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
       </list>
     </recent_temporary>
   </component>
@@ -296,14 +297,6 @@
       <workItem from="1741854997726" duration="22061000" />
       <workItem from="1741893769275" duration="306000" />
       <workItem from="1741937139540" duration="4310000" />
-    </task>
-    <task id="LOCAL-00009" summary="feat: добавлена структура БД">
-      <option name="closed" value="true" />
-      <created>1740904122924</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1740904122924</updated>
     </task>
     <task id="LOCAL-00010" summary="feat: обновлена структура БД. Добавлены/обновлены DAO">
       <option name="closed" value="true" />
@@ -689,7 +682,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741953634831</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="feat: замена jpa на jdbc">
+      <option name="closed" value="true" />
+      <created>1741986973486</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1741986973486</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -707,7 +708,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: обновлена логика работы с постами. Добавлена логика работы с комментариями." />
     <MESSAGE value="feat: обновление структуры сервисов" />
     <MESSAGE value="feat: обновление логики удаления постов и комментариев" />
     <MESSAGE value="feat: обновление маппера" />
@@ -732,7 +732,29 @@
     <MESSAGE value="feat: добавлен View для поста" />
     <MESSAGE value="feat: настроена передача id от одного view к другому" />
     <MESSAGE value="feat: настройки view и доступа к контроллерам" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: настройки view и доступа к контроллерам" />
+    <MESSAGE value="feat: замена jpa на jdbc" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: замена jpa на jdbc" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/TestConfig.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/practicum_blog$PostControllerTest_positiveTest_ShouldGetPosts__1_.ic" NAME="PostControllerTest.positiveTest_ShouldGetPosts (1) Coverage Results" MODIFIED="1741938615450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

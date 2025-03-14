@@ -38,6 +38,8 @@
         <junit.version>5.11.2</junit.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
+
+        <argLine>-Dnet.bytebuddy.experimental=true</argLine>
     </properties>
 
     <repositories>
@@ -270,6 +272,21 @@
             <version>9.0.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>LATEST</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <version>LATEST</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
