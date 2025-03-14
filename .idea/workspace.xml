@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: замена jpa на jdbc">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataTestSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/WebConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceConfigTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataTestSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateConfigTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateTestConfig.java" afterDir="false" />
-    </list>
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление конфигов для БД" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -287,14 +276,6 @@
       <workItem from="1741854997726" duration="22061000" />
       <workItem from="1741893769275" duration="306000" />
       <workItem from="1741937139540" duration="2467000" />
-    </task>
-    <task id="LOCAL-00008" summary="feat: добавлена структура БД">
-      <option name="closed" value="true" />
-      <created>1740904117865</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1740904117865</updated>
     </task>
     <task id="LOCAL-00009" summary="feat: добавлена структура БД">
       <option name="closed" value="true" />
@@ -680,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741892537725</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="feat: обновление конфигов для БД">
+      <option name="closed" value="true" />
+      <created>1741975788793</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1741975788793</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -698,7 +687,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: обновление структуры сервисов" />
     <MESSAGE value="feat: обновление логики удаления постов и комментариев" />
     <MESSAGE value="feat: обновление маппера" />
     <MESSAGE value="feat: обновление в части получения превью постов + обновление кода веб страниц" />
@@ -723,7 +711,8 @@
     <MESSAGE value="feat: настроена передача id от одного view к другому" />
     <MESSAGE value="feat: настройки view и доступа к контроллерам" />
     <MESSAGE value="feat: замена jpa на jdbc" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: замена jpa на jdbc" />
+    <MESSAGE value="feat: обновление конфигов для БД" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление конфигов для БД" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -740,12 +729,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java</url>
-          <line>25</line>
+          <line>24</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java</url>
-          <line>24</line>
+          <line>23</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

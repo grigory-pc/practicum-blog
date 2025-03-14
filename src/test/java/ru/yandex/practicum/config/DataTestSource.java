@@ -9,13 +9,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
-import org.springframework.test.context.TestPropertySource;
 
 /**
  * Конфигурация для работы с БД.
  */
-@Configuration
-@TestPropertySource("application-test.yml")
+@Configuration("application-test.yml")
 @RequiredArgsConstructor
 public class DataTestSource implements DataTestSourceConfig {
   private final Environment environment;
