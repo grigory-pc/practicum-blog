@@ -9,8 +9,8 @@ import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.exceptions.NotFoundException;
 import ru.yandex.practicum.mapper.CommentMapper;
-import ru.yandex.practicum.repository.CommentRepository;
-import ru.yandex.practicum.repository.PostRepository;
+import ru.yandex.practicum.repository.JdbcCommentRepository;
+import ru.yandex.practicum.repository.JdbcPostRepository;
 import ru.yandex.practicum.service.CommentService;
 
 @Slf4j
@@ -18,8 +18,8 @@ import ru.yandex.practicum.service.CommentService;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
-  private final PostRepository postRepository;
-  private final CommentRepository commentRepository;
+  private final JdbcPostRepository postRepository;
+  private final JdbcCommentRepository commentRepository;
   private final CommentMapper commentMapper;
 
   @Override

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.dao.Like;
 import ru.yandex.practicum.exceptions.NotFoundException;
-import ru.yandex.practicum.repository.LikeRepository;
+import ru.yandex.practicum.repository.JdbcLikeRepository;
 import ru.yandex.practicum.service.LikeService;
 
 @Slf4j
@@ -14,7 +14,7 @@ import ru.yandex.practicum.service.LikeService;
 @RequiredArgsConstructor
 public class LikeServiceImpl implements LikeService {
 
-  private final LikeRepository likeRepository;
+  private final JdbcLikeRepository likeRepository;
 
   @Override
   public void saveLike(Long id) {

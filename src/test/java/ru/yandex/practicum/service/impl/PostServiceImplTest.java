@@ -18,9 +18,9 @@ import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.mapper.PostMapper;
-import ru.yandex.practicum.repository.PostRepository;
-import ru.yandex.practicum.repository.PostTagRepository;
-import ru.yandex.practicum.repository.TagRepository;
+import ru.yandex.practicum.repository.JdbcPostRepository;
+import ru.yandex.practicum.repository.JdbcPostTagRepository;
+import ru.yandex.practicum.repository.JdbcTagRepository;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 import ru.yandex.practicum.utils.Data;
@@ -30,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
@@ -41,10 +40,10 @@ import static org.mockito.Mockito.when;
 class PostServiceImplTest {
   private static final Long POST_ID = 1L;
   @Autowired
-  private PostRepository postRepository;
+  private JdbcPostRepository postRepository;
   @Autowired
-  private PostTagRepository postTagRepository;
-  private TagRepository tagRepository;
+  private JdbcPostTagRepository postTagRepository;
+  private JdbcTagRepository tagRepository;
   @Autowired
   private PostMapper postMapper;
   @Autowired

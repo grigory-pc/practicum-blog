@@ -19,9 +19,9 @@ import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.exceptions.NotFoundException;
 import ru.yandex.practicum.mapper.PostMapper;
-import ru.yandex.practicum.repository.PostRepository;
-import ru.yandex.practicum.repository.PostTagRepository;
-import ru.yandex.practicum.repository.TagRepository;
+import ru.yandex.practicum.repository.JdbcPostRepository;
+import ru.yandex.practicum.repository.JdbcPostTagRepository;
+import ru.yandex.practicum.repository.JdbcTagRepository;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 
@@ -30,9 +30,9 @@ import ru.yandex.practicum.service.PostService;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
-  private final PostRepository postRepository;
-  private final PostTagRepository postTagRepository;
-  private final TagRepository tagRepository;
+  private final JdbcPostRepository postRepository;
+  private final JdbcPostTagRepository postTagRepository;
+  private final JdbcTagRepository tagRepository;
   private final PostMapper postMapper;
   private final LikeService likeService;
 

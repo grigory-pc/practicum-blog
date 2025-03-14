@@ -11,7 +11,7 @@ import ru.yandex.practicum.config.TestConfig;
 import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.mapper.TagMapper;
-import ru.yandex.practicum.repository.TagRepository;
+import ru.yandex.practicum.repository.JdbcTagRepository;
 import ru.yandex.practicum.service.TagService;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -27,7 +27,7 @@ class TagServiceImplTest {
   private static final String TAG_2024 = "TAG_2024";
   private static final String TAG_2025 = "TAG_2025";
   @Autowired
-  TagRepository tagRepository;
+  JdbcTagRepository tagRepository;
   @Autowired
   TagMapper tagMapper;
   TagService tagService;

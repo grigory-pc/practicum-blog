@@ -1,13 +1,12 @@
 package ru.yandex.practicum.repository;
 
 import java.util.Set;
-import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yandex.practicum.dao.PostTag;
 
 /**
  * Получение данных из таблицы tags-posts.
  */
-public interface PostTagRepository extends JpaRepository<PostTag, Long> {
+public class JdbcPostTagRepository {
 
   /**
    * Поиск всех тегов по коллекции post id.

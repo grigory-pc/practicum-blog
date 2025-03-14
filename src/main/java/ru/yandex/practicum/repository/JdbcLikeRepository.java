@@ -1,13 +1,12 @@
 package ru.yandex.practicum.repository;
 
 import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yandex.practicum.dao.Like;
 
 /**
  * Получение данных из таблицы Likes.
  */
-public interface LikeRepository extends JpaRepository<Like, Long> {
+public class JdbcLikeRepository{
   /**
    * Получение лайков для определенного id поста.
    *

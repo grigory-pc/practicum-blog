@@ -12,8 +12,8 @@ import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.mapper.CommentMapper;
-import ru.yandex.practicum.repository.CommentRepository;
-import ru.yandex.practicum.repository.PostRepository;
+import ru.yandex.practicum.repository.JdbcCommentRepository;
+import ru.yandex.practicum.repository.JdbcPostRepository;
 import ru.yandex.practicum.service.CommentService;
 import ru.yandex.practicum.utils.Data;
 
@@ -32,9 +32,9 @@ import static org.mockito.Mockito.when;
 class CommentServiceImplTest {
   private static final Long ID = 1L;
   @Autowired
-  private PostRepository postRepository;
+  private JdbcPostRepository postRepository;
   @Autowired
-  private CommentRepository commentRepository;
+  private JdbcCommentRepository commentRepository;
   @Autowired
   private CommentMapper commentMapper;
   private CommentService commentService;

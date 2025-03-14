@@ -7,6 +7,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Component;
@@ -17,11 +18,10 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @Profile("test")
-public class DataSource implements DataSourceConfig {
+public class DataSourceConfiguration {
   private final Environment environment;
 
   @Bean
-  @Override
   public javax.sql.DataSource getDataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
@@ -30,6 +30,16 @@ public class DataSource implements DataSourceConfig {
     dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
 
     return dataSource;
+  }
+
+  /**
+   * JdbcTemplate — компонент для выполнения запросов
+   * @param dataSource
+   * @return
+   */
+  @Bean
+  public JdbcTemplate jdbcTemplate(javax.sql.DataSource dataSource) {
+    return new JdbcTemplate(dataSource);
   }
 
   /**
