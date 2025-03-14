@@ -1,9 +1,13 @@
+spring:
+  profiles:
+    active: prod
+
 hibernate:
   dialect: org.hibernate.dialect.H2Dialect
   show_sql: true
 
 jdbc:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:blog;DB_CLOSE_DELAY=-1;OLD_INFORMATION_SCHEMA=TRUE
-    username: sa
-    password: password
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/blog
+  username: postgres
+  password: postgres

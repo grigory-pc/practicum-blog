@@ -16,15 +16,15 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 @PropertySource(value = "classpath:application-test.yml")
 @EnableJpaRepositories(basePackages = "ru.yandex.practicum")
-public class HibernateConfigTest {
+public class HibernateTestConfig {
     private final Environment environment;
 
-    private final DataSourceTest dataSourceConfig;
+    private final DataTestSource dataTestSource;
 
     @Autowired
-    public HibernateConfigTest(Environment environment, DataSourceTest dataSourceConfig) {
+    public HibernateTestConfig(Environment environment, DataTestSource dataTestSource) {
         this.environment = environment;
-        this.dataSourceConfig = dataSourceConfig;
+        this.dataTestSource = dataTestSource;
     }
 
     @Bean
@@ -42,7 +42,7 @@ public class HibernateConfigTest {
 
     @Bean
     public DataSource dataSource() {
-        return dataSourceConfig.getDataSource();
+        return dataTestSource.getDataSource();
     }
 
     @Bean

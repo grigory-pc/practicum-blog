@@ -2,6 +2,6 @@ package ru.yandex.practicum.config;
 
 import javax.sql.DataSource;
 
-public interface DataSourceConfigTest {
+public interface DataTestSourceConfig {
     DataSource getDataSource();
 }

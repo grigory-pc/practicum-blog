@@ -1,21 +1,23 @@
-package ru.yandex.practicum.configuration;
+package ru.yandex.practicum.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
-import org.springframework.stereotype.Component;
+import org.springframework.test.context.TestPropertySource;
 
 /**
- * Конфигурация dataSource (H2 in memory DB).
+ * Конфигурация для работы с БД.
  */
-@Component
+@Configuration
+@TestPropertySource("application-test.yml")
 @RequiredArgsConstructor
-public class DataSource implements DataSourceConfig {
+public class DataTestSource implements DataTestSourceConfig {
   private final Environment environment;
 
   @Bean
@@ -38,7 +40,8 @@ public class DataSource implements DataSourceConfig {
    */
   @EventListener
   public void populate(ContextRefreshedEvent event) {
-    javax.sql.DataSource dataSource = event.getApplicationContext().getBean(javax.sql.DataSource.class);
+    javax.sql.DataSource dataSource = event.getApplicationContext()
+                                           .getBean(javax.sql.DataSource.class);
 
     ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
     populator.addScript(new ClassPathResource("schema.sql"));
