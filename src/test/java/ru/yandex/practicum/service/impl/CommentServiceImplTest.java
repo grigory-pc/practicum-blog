@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import ru.yandex.practicum.config.TestConfig;
 import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.CommentDto;
@@ -28,7 +27,7 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = CommentServiceImpl.class)
 class CommentServiceImplTest {
   private static final Long ID = 1L;
   @Autowired

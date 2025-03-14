@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: обновление конфигов для БД">
+    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: решение проблем с запуском тестов">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/WebConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/WebConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/LikeServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/LikeServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,14 +301,7 @@
       <workItem from="1741854997726" duration="22061000" />
       <workItem from="1741893769275" duration="306000" />
       <workItem from="1741937139540" duration="2467000" />
-    </task>
-    <task id="LOCAL-00009" summary="feat: добавлена структура БД">
-      <option name="closed" value="true" />
-      <created>1740904122924</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1740904122924</updated>
+      <workItem from="1741994288277" duration="1550000" />
     </task>
     <task id="LOCAL-00010" summary="feat: обновлена структура БД. Добавлены/обновлены DAO">
       <option name="closed" value="true" />
@@ -687,7 +687,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741975788793</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="feat: решение проблем с запуском тестов">
+      <option name="closed" value="true" />
+      <created>1741989502848</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1741989502848</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +713,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: обновление логики удаления постов и комментариев" />
     <MESSAGE value="feat: обновление маппера" />
     <MESSAGE value="feat: обновление в части получения превью постов + обновление кода веб страниц" />
     <MESSAGE value="feat: добавлена обработка исключений" />
@@ -730,16 +737,12 @@
     <MESSAGE value="feat: настройки view и доступа к контроллерам" />
     <MESSAGE value="feat: замена jpa на jdbc" />
     <MESSAGE value="feat: обновление конфигов для БД" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление конфигов для БД" />
+    <MESSAGE value="feat: решение проблем с запуском тестов" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: решение проблем с запуском тестов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java</url>
           <line>24</line>
@@ -752,11 +755,26 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="10" />
+          <line>90</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.mockito.exceptions.misusing.WrongTypeOfReturnValue" memberName="cause" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/practicum_blog$PostControllerTest_positiveTest_ShouldGetPosts__1_.ic" NAME="PostControllerTest.positiveTest_ShouldGetPosts (1) Coverage Results" MODIFIED="1741938615450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

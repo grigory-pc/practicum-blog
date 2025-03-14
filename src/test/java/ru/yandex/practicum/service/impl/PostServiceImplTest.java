@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
-import ru.yandex.practicum.config.TestConfig;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dto.PostFullDto;
@@ -30,14 +29,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = PostServiceImpl.class)
 class PostServiceImplTest {
   private static final Long POST_ID = 1L;
   @Autowired

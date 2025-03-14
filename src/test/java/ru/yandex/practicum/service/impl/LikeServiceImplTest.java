@@ -7,7 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import ru.yandex.practicum.config.TestConfig;
 import ru.yandex.practicum.dao.Like;
 import ru.yandex.practicum.repository.LikeRepository;
 import ru.yandex.practicum.service.LikeService;
@@ -23,7 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = LikeServiceImpl.class)
 class LikeServiceImplTest {
   private static final Long POST_ID = 1L;
 
