@@ -24,6 +24,7 @@ import ru.yandex.practicum.view.utility.HttpRequestService;
 
 @PageTitle("Post Details")
 @Route("/post/:postId")
+//@SpringUI(path = "/main-view")
 public class PostDetailsView extends Div implements AfterNavigationObserver {
   private Long postId;
   private FormLayout form;

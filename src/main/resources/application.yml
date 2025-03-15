@@ -11,3 +11,7 @@ jdbc:
   url: jdbc:postgresql://localhost:5432/blog
   username: postgres
   password: postgres
+
+vaadin:
+  servlet:
+    url-mapping: /main-view/*
