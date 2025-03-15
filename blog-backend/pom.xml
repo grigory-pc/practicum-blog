@@ -4,12 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>ru.practicum</groupId>
+        <groupId>ru.yandex.practicum</groupId>
         <artifactId>blog-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>blog-backend</artifactId>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

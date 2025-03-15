@@ -51,3 +51,5 @@ node_modules/
 # Maven
 log/
 /src/main/frontend/generated/
+/blog-frontend/src/main/frontend/generated/
+/blog-frontend/src/main/frontend/generated/
