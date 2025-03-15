@@ -19,12 +19,12 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 public class HibernateTestConfig {
     private final Environment environment;
 
-    private final DataTestSource dataTestSource;
+    private final DataSourceTestConfig dataSourceTestConfig;
 
     @Autowired
-    public HibernateTestConfig(Environment environment, DataTestSource dataTestSource) {
+    public HibernateTestConfig(Environment environment, DataSourceTestConfig dataSourceTestConfig) {
         this.environment = environment;
-        this.dataTestSource = dataTestSource;
+        this.dataSourceTestConfig = dataSourceTestConfig;
     }
 
     @Bean
@@ -42,7 +42,7 @@ public class HibernateTestConfig {
 
     @Bean
     public DataSource dataSource() {
-        return dataTestSource.getDataSource();
+        return dataSourceTestConfig.getDataSource();
     }
 
     @Bean

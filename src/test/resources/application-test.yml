@@ -4,6 +4,6 @@ hibernate:
 
 jdbc:
   driverClassName: org.h2.Driver
-  url: jdbc:h2:mem:blog;DB_CLOSE_DELAY=-1;OLD_INFORMATION_SCHEMA=TRUE
+  url: jdbc:h2:mem:blog;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
   username: sa
-  password: password
+  password:

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.yandex.practicum.config.DataTestSource;
+import ru.yandex.practicum.config.DataSourceTestConfig;
 import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.CommentDto;
@@ -29,7 +29,7 @@ import static org.mockito.Mockito.verify;
 
 
 @ExtendWith(SpringExtension.class)
-@Import(DataTestSource.class)
+@Import(DataSourceTestConfig.class)
 @ContextConfiguration(classes = {CommentServiceImpl.class})
 class CommentServiceImplTest {
   private static final Long ID = 1L;

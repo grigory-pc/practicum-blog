@@ -16,7 +16,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import ru.yandex.practicum.config.DataTestSource;
+import ru.yandex.practicum.config.DataSourceTestConfig;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@Import(DataTestSource.class)
+@Import(DataSourceTestConfig.class)
 @ContextConfiguration(classes = {PostController.class})
 class PostControllerTest {
   private static final String BASE_URL = "/posts";

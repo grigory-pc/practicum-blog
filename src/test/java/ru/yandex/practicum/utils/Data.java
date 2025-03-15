@@ -1,7 +1,8 @@
 package ru.yandex.practicum.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,28 +20,28 @@ import ru.yandex.practicum.dto.TagDto;
 
 @UtilityClass
 public class Data {
+  private static final String IMAGE_MAN_PATH = "man.jpg";
   public static final Long ID_ONE = 1L;
   public static final Long ID_TWO = 2L;
   public static final String TAG = "test";
-  ObjectMapper objectMapper = new ObjectMapper();
 
-  public PostPreviewDto getPostPreviewDto() throws JsonProcessingException {
-    return new PostPreviewDto(ID_ONE, "test", objectMapper.writeValueAsBytes("test"), "text", 2, 1,
+  public PostPreviewDto getPostPreviewDto() {
+    return new PostPreviewDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text", 2, 1,
                               Set.of(getTagDto()));
   }
 
-  public PostFullDto getPostFullDto() throws JsonProcessingException {
-    return new PostFullDto(ID_ONE, "test", objectMapper.writeValueAsBytes("test"), "text",
+  public PostFullDto getPostFullDto() {
+    return new PostFullDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text",
                            Set.of(getTagDto()), List.of(getCommentDto(ID_ONE)));
   }
 
-  public Post getPost() throws JsonProcessingException {
-    return new Post(ID_ONE, "test", objectMapper.writeValueAsBytes("test"), "text",
+  public Post getPost() {
+    return new Post(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text",
                     new HashSet<>(), getLike(ID_ONE), new HashSet<>());
   }
 
-  public PostSaveDto getPostSaveDto() throws JsonProcessingException {
-    return new PostSaveDto("test", objectMapper.writeValueAsBytes("test"), "text",
+  public PostSaveDto getPostSaveDto() {
+    return new PostSaveDto("test", getImageBytes(IMAGE_MAN_PATH), "text",
                            Set.of(ID_ONE, ID_TWO));
   }
 
@@ -48,7 +49,7 @@ public class Data {
     return new CommentDto(id, "text");
   }
 
-  public Comment getComment(Long id) throws JsonProcessingException {
+  public Comment getComment(Long id) {
     return new Comment(id, getPost(), "text");
   }
 
@@ -66,5 +67,16 @@ public class Data {
 
   public Tag getTag() {
     return new Tag(1L, TAG);
+  }
+
+  private static byte[] getImageBytes(String path) {
+    File fileImage = new File(path);
+
+    try {
+      return Files.readAllBytes(fileImage.toPath());
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
