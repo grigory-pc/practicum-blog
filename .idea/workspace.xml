@@ -4,155 +4,66 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="feat: решение проблем с запуском тестов">
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/AppShell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/AppShell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="JUnit5 Test Class" />
-        <option value="Record" />
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feat/create-blog" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;grigory-pc&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/grigory-pc/practicum-blog.git&quot;,
-    &quot;accountId&quot;: &quot;41d8b399-0ae8-4518-a124-88881a8485a3&quot;
-  }
-}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="2thuWQeYnMMcqbFvWE27msUYefR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="false" id="Update" />
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2uLcWurTiQLBXLkzZiJwlAiXtUI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JUnit.UserControllerIntegrationTest.delete_shouldFindAllUserFromDatabaseAndRedirect.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.practicum-blog [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/vaadin/create-blog&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;J:/Development/Yandex.Praktikum/Java/practicum-blog/src/main/frontend/themes/my-theme&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;h2&quot;,
-      &quot;postgresql&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feat/vaadin/create-blog",
+    "jdk.selected.JAVA_MODULE": "21",
+    "last_opened_file_path": "J:/Development/Yandex.Praktikum/Java/practicum-blog",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6528736",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\frontend\themes\my-theme" />
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main" />
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\java\ru\yandex\practicum" />
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\resources" />
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\webapp\icons" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\main\java\ru\yandex\practicum\backup\view" />
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="ru.yandex.practicum.service" />
-      <recent name="ru.yandex.practicum.controller" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ru.yandex.practicum.config" />
-      <recent name="ru.yandex.practicum.exceptions" />
-      <recent name="ru.yandex.practicum.service.impl" />
-      <recent name="ru.yandex.practicum.service" />
-      <recent name="ru.yandex.practicum.repository" />
-    </key>
-  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn clean" />
-      <command value="mvn clean package" />
-      <command value="mvn clean compile -Dmaven.test.skip" />
-      <command value="mvn clean install -Dmaven.test.skip" />
+      <command value="mvn clean compile" />
     </option>
   </component>
-  <component name="RunManager" selected="Remote JVM Debug.practicum blog">
-    <configuration name="CommentServiceImplTest.positiveTest_ShouldSaveComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="practicum-blog" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.CommentServiceImplTest" />
-      <option name="METHOD_NAME" value="positiveTest_ShouldSaveComment" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PostControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.PostControllerTest.positiveTest_ShouldGetPosts">
+    <configuration name="PostControllerTest.positiveTest_ShouldGetPostById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
         <pattern>
@@ -162,22 +73,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
       <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PostControllerTest.getPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="practicum-blog" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
-      <option name="METHOD_NAME" value="getPosts" />
+      <option name="METHOD_NAME" value="positiveTest_ShouldGetPostById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -199,590 +95,62 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerTest.positiveTest_ShouldGetPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project-base" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
-      <option name="METHOD_NAME" value="positiveTest_ShouldGetPosts" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TagServiceImplTest.positiveTest_ShouldFindAllTags" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="JetRunConfigurationType">
       <module name="practicum-blog" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.TagServiceImplTest" />
-      <option name="METHOD_NAME" value="positiveTest_ShouldFindAllTags" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="practicum blog" type="Remote">
-      <module name="project-base" />
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <option name="AUTO_RESTART" value="false" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="5005" />
-        <option name="LOCAL" value="false" />
-      </RunnerSettings>
-      <method v="2" />
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="practicum-blog" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <list>
-      <item itemvalue="JUnit.PostControllerTest" />
-      <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
-      <item itemvalue="JUnit.PostControllerTest.getPosts" />
-      <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
-      <item itemvalue="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags" />
-      <item itemvalue="Remote JVM Debug.practicum blog" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPosts" />
-        <item itemvalue="JUnit.PostControllerTest" />
-        <item itemvalue="JUnit.TagServiceImplTest.positiveTest_ShouldFindAllTags" />
-        <item itemvalue="JUnit.PostControllerTest.getPosts" />
-        <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
+        <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPostById" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="61c7c1ca-9e4f-4fd0-85e1-5a8ebe1ba9ab" name="Changes" comment="" />
-      <created>1740731228349</created>
+      <changelist id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="" />
+      <created>1742031330010</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1740731228349</updated>
-      <workItem from="1740731229689" duration="4933000" />
-      <workItem from="1740916640524" duration="741000" />
-      <workItem from="1740917515739" duration="536000" />
-      <workItem from="1740945838063" duration="7304000" />
-      <workItem from="1741070456114" duration="6780000" />
-      <workItem from="1741245408893" duration="4618000" />
-      <workItem from="1741605747760" duration="7451000" />
-      <workItem from="1741678368195" duration="17000" />
-      <workItem from="1741678399149" duration="617000" />
-      <workItem from="1741689839700" duration="4327000" />
-      <workItem from="1741698956503" duration="617000" />
-      <workItem from="1741702405408" duration="1810000" />
-      <workItem from="1741704369387" duration="4501000" />
-      <workItem from="1741711286233" duration="4563000" />
-      <workItem from="1741766794534" duration="34658000" />
-      <workItem from="1741822676151" duration="2006000" />
-      <workItem from="1741853742018" duration="52000" />
-      <workItem from="1741854997726" duration="22061000" />
-      <workItem from="1741893769275" duration="306000" />
-      <workItem from="1741937139540" duration="2467000" />
-      <workItem from="1741994288277" duration="2527000" />
+      <updated>1742031330010</updated>
+      <workItem from="1742031331223" duration="70000" />
+      <workItem from="1742031405652" duration="1259000" />
     </task>
-    <task id="LOCAL-00011" summary="feat: добавлена реализация для логики получения всех постов.">
-      <option name="closed" value="true" />
-      <created>1740906461597</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1740906461597</updated>
-    </task>
-    <task id="LOCAL-00012" summary="feat: обновлена логика сохранения поста.">
-      <option name="closed" value="true" />
-      <created>1740906715448</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1740906715448</updated>
-    </task>
-    <task id="LOCAL-00013" summary="feat: обновление схемы БД. Добавление DTO. Обновление контроллера. Добавление дополнительных зависимостей.">
-      <option name="closed" value="true" />
-      <created>1740950457876</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1740950457876</updated>
-    </task>
-    <task id="LOCAL-00014" summary="feat: обновление POM">
-      <option name="closed" value="true" />
-      <created>1740951445521</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1740951445521</updated>
-    </task>
-    <task id="LOCAL-00015" summary="feat: обновлена конфигурация для БД и Hibernate">
-      <option name="closed" value="true" />
-      <created>1740952084628</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1740952084628</updated>
-    </task>
-    <task id="LOCAL-00016" summary="feat: добавлены зависимость и плагин для mapstruct">
-      <option name="closed" value="true" />
-      <created>1740952550608</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1740952550608</updated>
-    </task>
-    <task id="LOCAL-00017" summary="feat: добавлены мапперы">
-      <option name="closed" value="true" />
-      <created>1740952886768</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1740952886768</updated>
-    </task>
-    <task id="LOCAL-00018" summary="feat: обновление конфигурации БД.">
-      <option name="closed" value="true" />
-      <created>1740953183596</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1740953183596</updated>
-    </task>
-    <task id="LOCAL-00019" summary="feat: обновление контроллеров">
-      <option name="closed" value="true" />
-      <created>1741070606254</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1741070606254</updated>
-    </task>
-    <task id="LOCAL-00020" summary="feat: добавлена реализация получения списка превью постов">
-      <option name="closed" value="true" />
-      <created>1741073207033</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1741073207033</updated>
-    </task>
-    <task id="LOCAL-00021" summary="feat: добавлена реализация получения поста по id">
-      <option name="closed" value="true" />
-      <created>1741074504270</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1741074504270</updated>
-    </task>
-    <task id="LOCAL-00022" summary="feat: обновление полей для поста">
-      <option name="closed" value="true" />
-      <created>1741074724099</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1741074724099</updated>
-    </task>
-    <task id="LOCAL-00023" summary="feat: добавлена логика сохранения и обновления поста">
-      <option name="closed" value="true" />
-      <created>1741077218491</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1741077218491</updated>
-    </task>
-    <task id="LOCAL-00024" summary="feat: обновлена работа с тагами">
-      <option name="closed" value="true" />
-      <created>1741247083523</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1741247083523</updated>
-    </task>
-    <task id="LOCAL-00025" summary="feat: добавлена работа с тегами">
-      <option name="closed" value="true" />
-      <created>1741247448924</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1741247448924</updated>
-    </task>
-    <task id="LOCAL-00026" summary="feat: обновлена логика работы с получением всех данных по посту.">
-      <option name="closed" value="true" />
-      <created>1741247632215</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1741247632215</updated>
-    </task>
-    <task id="LOCAL-00027" summary="feat: обновлена логика работы с постами. Добавлена логика работы с комментариями.">
-      <option name="closed" value="true" />
-      <created>1741248865643</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1741248865643</updated>
-    </task>
-    <task id="LOCAL-00028" summary="feat: обновление структуры сервисов">
-      <option name="closed" value="true" />
-      <created>1741249340533</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1741249340533</updated>
-    </task>
-    <task id="LOCAL-00029" summary="feat: обновление логики удаления постов и комментариев">
-      <option name="closed" value="true" />
-      <created>1741249419049</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1741249419049</updated>
-    </task>
-    <task id="LOCAL-00030" summary="feat: обновление маппера">
-      <option name="closed" value="true" />
-      <created>1741606541717</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1741606541717</updated>
-    </task>
-    <task id="LOCAL-00031" summary="feat: обновление маппера">
-      <option name="closed" value="true" />
-      <created>1741606559472</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1741606559472</updated>
-    </task>
-    <task id="LOCAL-00032" summary="feat: обновление в части получения превью постов + обновление кода веб страниц">
-      <option name="closed" value="true" />
-      <created>1741613629937</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1741613629937</updated>
-    </task>
-    <task id="LOCAL-00033" summary="feat: добавлена обработка исключений">
-      <option name="closed" value="true" />
-      <created>1741636251573</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1741636251573</updated>
-    </task>
-    <task id="LOCAL-00034" summary="feat: добавлена обработка исключений + добавлено логирование + корректировка наименования шаблона">
-      <option name="closed" value="true" />
-      <created>1741637874117</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1741637874117</updated>
-    </task>
-    <task id="LOCAL-00035" summary="feat: обновление формата переменных окружения и наименования страницы для превью постов">
-      <option name="closed" value="true" />
-      <created>1741691766709</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1741691766709</updated>
-    </task>
-    <task id="LOCAL-00036" summary="feat: UT">
-      <option name="closed" value="true" />
-      <created>1741693521628</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1741693521628</updated>
-    </task>
-    <task id="LOCAL-00037" summary="feat: UT">
-      <option name="closed" value="true" />
-      <created>1741708844380</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1741708844380</updated>
-    </task>
-    <task id="LOCAL-00038" summary="feat: UT">
-      <option name="closed" value="true" />
-      <created>1741713741955</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1741713741955</updated>
-    </task>
-    <task id="LOCAL-00039" summary="feat: UT">
-      <option name="closed" value="true" />
-      <created>1741715109023</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1741715109023</updated>
-    </task>
-    <task id="LOCAL-00040" summary="feat: обновление  pom">
-      <option name="closed" value="true" />
-      <created>1741725646197</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1741725646197</updated>
-    </task>
-    <task id="LOCAL-00041" summary="feat: добавление vaadin">
-      <option name="closed" value="true" />
-      <created>1741726559866</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1741726559866</updated>
-    </task>
-    <task id="LOCAL-00042" summary="feat: корректировка зависимостей + убран thymeleaf">
-      <option name="closed" value="true" />
-      <created>1741726857515</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1741726857515</updated>
-    </task>
-    <task id="LOCAL-00043" summary="feat: настройка vaadin">
-      <option name="closed" value="true" />
-      <created>1741727751780</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1741727751780</updated>
-    </task>
-    <task id="LOCAL-00044" summary="feat: болванка view для ленты постов">
-      <option name="closed" value="true" />
-      <created>1741772740005</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1741772740005</updated>
-    </task>
-    <task id="LOCAL-00045" summary="feat: обновление dto и мапперов">
-      <option name="closed" value="true" />
-      <created>1741774241127</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1741774241127</updated>
-    </task>
-    <task id="LOCAL-00046" summary="feat: для view ленты постов добавлены теги и фильтрация для тегов">
-      <option name="closed" value="true" />
-      <created>1741777596938</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1741777596938</updated>
-    </task>
-    <task id="LOCAL-00047" summary="feat: обновление логики работы с тегами">
-      <option name="closed" value="true" />
-      <created>1741804837159</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1741804837159</updated>
-    </task>
-    <task id="LOCAL-00048" summary="feat: обновление логики работы с тегами">
-      <option name="closed" value="true" />
-      <created>1741804928486</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1741804928486</updated>
-    </task>
-    <task id="LOCAL-00049" summary="feat: обновление entity">
-      <option name="closed" value="true" />
-      <created>1741805669997</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1741805669997</updated>
-    </task>
-    <task id="LOCAL-00050" summary="feat: обновление entity">
-      <option name="closed" value="true" />
-      <created>1741805737192</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1741805737193</updated>
-    </task>
-    <task id="LOCAL-00051" summary="feat: обновление контроллеров и конфигурации БД для тестов">
-      <option name="closed" value="true" />
-      <created>1741808349596</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1741808349596</updated>
-    </task>
-    <task id="LOCAL-00052" summary="feat: рефакторинг класса для View">
-      <option name="closed" value="true" />
-      <created>1741811422203</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1741811422203</updated>
-    </task>
-    <task id="LOCAL-00053" summary="feat: на View добавлена форма добавления поста">
-      <option name="closed" value="true" />
-      <created>1741861427242</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1741861427243</updated>
-    </task>
-    <task id="LOCAL-00054" summary="feat: добавлен View для поста">
-      <option name="closed" value="true" />
-      <created>1741883457448</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1741883457448</updated>
-    </task>
-    <task id="LOCAL-00055" summary="feat: настроена передача id от одного view к другому">
-      <option name="closed" value="true" />
-      <created>1741883911818</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1741883911819</updated>
-    </task>
-    <task id="LOCAL-00056" summary="feat: настройки view и доступа к контроллерам">
-      <option name="closed" value="true" />
-      <created>1741892537725</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1741892537725</updated>
-    </task>
-    <task id="LOCAL-00057" summary="feat: обновление конфигов для БД">
-      <option name="closed" value="true" />
-      <created>1741975788793</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1741975788793</updated>
-    </task>
-    <task id="LOCAL-00058" summary="feat: решение проблем с запуском тестов">
-      <option name="closed" value="true" />
-      <created>1741989502848</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1741989502848</updated>
-    </task>
-    <task id="LOCAL-00059" summary="feat: решение проблем с запуском тестов">
-      <option name="closed" value="true" />
-      <created>1741996192344</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1741996192344</updated>
-    </task>
-    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: обновление маппера" />
-    <MESSAGE value="feat: обновление в части получения превью постов + обновление кода веб страниц" />
-    <MESSAGE value="feat: добавлена обработка исключений" />
-    <MESSAGE value="feat: добавлена обработка исключений + добавлено логирование" />
-    <MESSAGE value="feat: добавлена обработка исключений + добавлено логирование + корректировка наименования шаблона" />
-    <MESSAGE value="feat: обновление формата переменных окружения и наименования страницы для превью постов" />
-    <MESSAGE value="feat: UT" />
-    <MESSAGE value="feat: обновление  pom" />
-    <MESSAGE value="feat: добавление vaadin" />
-    <MESSAGE value="feat: корректировка зависимостей + убран thymeleaf" />
-    <MESSAGE value="feat: настройка vaadin" />
-    <MESSAGE value="feat: болванка view для ленты постов" />
-    <MESSAGE value="feat: обновление dto и мапперов" />
-    <MESSAGE value="feat: для view ленты постов добавлены теги и фильтрация для тегов" />
-    <MESSAGE value="feat: обновление логики работы с тегами" />
-    <MESSAGE value="feat: обновление entity" />
-    <MESSAGE value="feat: обновление контроллеров и конфигурации БД для тестов" />
-    <MESSAGE value="feat: рефакторинг класса для View" />
-    <MESSAGE value="feat: на View добавлена форма добавления поста" />
-    <MESSAGE value="feat: добавлен View для поста" />
-    <MESSAGE value="feat: настроена передача id от одного view к другому" />
-    <MESSAGE value="feat: настройки view и доступа к контроллерам" />
-    <MESSAGE value="feat: замена jpa на jdbc" />
-    <MESSAGE value="feat: обновление конфигов для БД" />
-    <MESSAGE value="feat: решение проблем с запуском тестов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: решение проблем с запуском тестов" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java</url>
-          <line>23</line>
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
+          <line>41</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="12" />
+          <line>104</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="21" />
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="org.mockito.exceptions.misusing.WrongTypeOfReturnValue" memberName="cause" />
-      </pinned-members>
-    </pin-to-top-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/practicum_blog$PostControllerTest_positiveTest_ShouldGetPosts__1_.ic" NAME="PostControllerTest.positiveTest_ShouldGetPosts (1) Coverage Results" MODIFIED="1741938615450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>ru.yandex.practicum.controller.*</FILTER>
-    </SUITE>
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

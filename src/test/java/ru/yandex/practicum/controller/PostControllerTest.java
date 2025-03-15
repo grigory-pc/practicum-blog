@@ -102,9 +102,9 @@ class PostControllerTest {
       when(postService.getPostById(anyLong()))
           .thenReturn(postFullDto);
 
-      mockMvc.perform(get(BASE_URL + POST_ID)
+      mockMvc.perform(get(BASE_URL + "/" + POST_ID)
                           .contentType(MediaType.APPLICATION_JSON))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(postService, atLeastOnce()).getPostById(anyLong());
 
@@ -137,7 +137,7 @@ class PostControllerTest {
       doNothing().when(postService)
                  .updatePost(anyLong(), any(PostSaveDto.class));
 
-      mockMvc.perform(patch(BASE_URL + POST_ID)
+      mockMvc.perform(patch(BASE_URL + "/" + POST_ID)
                           .contentType(MediaType.APPLICATION_JSON)
                           .content(objectMapper.writeValueAsString(Data.getPostSaveDto())))
              .andExpect(status().is3xxRedirection());
@@ -155,7 +155,7 @@ class PostControllerTest {
       doNothing().when(likeService)
                  .addLike(anyLong());
 
-      mockMvc.perform(post(BASE_URL + POST_ID + "/like")
+      mockMvc.perform(post(BASE_URL + "/"  + POST_ID + "/like")
                           .contentType(MediaType.APPLICATION_JSON))
              .andExpect(status().is3xxRedirection());
 
@@ -172,7 +172,7 @@ class PostControllerTest {
       doNothing().when(commentService)
                  .saveComment(anyLong(), any(CommentDto.class));
 
-      mockMvc.perform(post(BASE_URL + POST_ID + "/comment")
+      mockMvc.perform(post(BASE_URL + "/"  + POST_ID + "/comment")
                           .contentType(MediaType.APPLICATION_JSON)
                           .content(objectMapper.writeValueAsString(Data.getCommentDto(POST_ID))))
              .andExpect(status().is3xxRedirection());
@@ -190,7 +190,7 @@ class PostControllerTest {
       doNothing().when(commentService)
                  .updateComment(anyLong(), anyLong(), any(CommentDto.class));
 
-      mockMvc.perform(patch(BASE_URL + POST_ID + "/comment/" + COMMENT_ID)
+      mockMvc.perform(patch(BASE_URL + "/"  + POST_ID + "/comment/" + COMMENT_ID)
                           .contentType(MediaType.APPLICATION_JSON)
                           .content(objectMapper.writeValueAsString(Data.getCommentDto(POST_ID))))
              .andExpect(status().is3xxRedirection());
@@ -209,7 +209,7 @@ class PostControllerTest {
       doNothing().when(postService)
                  .deletePostById(anyLong());
 
-      mockMvc.perform(post(BASE_URL + POST_ID)
+      mockMvc.perform(post(BASE_URL + "/"  + POST_ID)
                           .param("_method", "delete"))
              .andExpect(status().is3xxRedirection());
 
