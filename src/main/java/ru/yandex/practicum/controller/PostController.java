@@ -60,7 +60,7 @@ public class PostController {
 
     PostFullDto postFullDto = postService.getPostById(id);
 
-    log.info("Из базы данных получен пост: {}", postFullDto);
+    log.info("Из базы данных получен пост с id: {}", postFullDto.id());
 
     return postFullDto;
   }
