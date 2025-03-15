@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: тесты для контроллеров">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/TestConfig.java" afterDir="false" />
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: тесты для сервисов">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/PostServiceTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/LikeServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/LikeServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,8 +72,8 @@
       <command value="mvn clean install -Dmaven.test.skip=true" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CommentServiceImplTest">
-    <configuration name="CommentServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.java in project-base">
+    <configuration name="PostServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
         <pattern>
@@ -85,13 +82,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.CommentServiceImplTest" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.PostServiceImplTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommentServiceImplTest.positiveTest_ShouldSaveComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostServiceImplTest.positiveTest_shouldDeletePostById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
         <pattern>
@@ -100,56 +97,49 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.CommentServiceImplTest" />
-      <option name="METHOD_NAME" value="positiveTest_ShouldSaveComment" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.PostServiceImplTest" />
+      <option name="METHOD_NAME" value="positiveTest_shouldDeletePostById" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostServiceImplTest.positiveTest_shouldFindAllPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
+          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PostControllerTest.positiveTest_ShouldGetPostById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project-base" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
-      <option name="METHOD_NAME" value="positiveTest_ShouldGetPostById" />
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.PostServiceImplTest" />
+      <option name="METHOD_NAME" value="positiveTest_shouldFindAllPosts" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerTest.positiveTest_ShouldGetTags" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostServiceImplTest.positiveTest_shouldSavePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
+          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
-      <option name="METHOD_NAME" value="positiveTest_ShouldGetTags" />
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.PostServiceImplTest" />
+      <option name="METHOD_NAME" value="positiveTest_shouldSavePost" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in project-base" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="project-base" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -182,20 +172,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.CommentServiceImplTest" />
-      <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
-      <item itemvalue="JUnit.PostControllerTest" />
-      <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPostById" />
-      <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetTags" />
+      <item itemvalue="JUnit.PostServiceImplTest" />
+      <item itemvalue="JUnit.PostServiceImplTest.positiveTest_shouldDeletePostById" />
+      <item itemvalue="JUnit.PostServiceImplTest.positiveTest_shouldFindAllPosts" />
+      <item itemvalue="JUnit.PostServiceImplTest.positiveTest_shouldSavePost" />
+      <item itemvalue="JUnit.java in project-base" />
       <item itemvalue="Remote JVM Debug.test blog" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CommentServiceImplTest" />
-        <item itemvalue="JUnit.CommentServiceImplTest.positiveTest_ShouldSaveComment" />
-        <item itemvalue="JUnit.PostControllerTest" />
-        <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetTags" />
-        <item itemvalue="JUnit.PostControllerTest.positiveTest_ShouldGetPostById" />
+        <item itemvalue="JUnit.java in project-base" />
+        <item itemvalue="JUnit.PostServiceImplTest" />
+        <item itemvalue="JUnit.PostServiceImplTest.positiveTest_shouldFindAllPosts" />
+        <item itemvalue="JUnit.PostServiceImplTest.positiveTest_shouldDeletePostById" />
+        <item itemvalue="JUnit.PostServiceImplTest.positiveTest_shouldSavePost" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +198,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742031330010</updated>
       <workItem from="1742031331223" duration="70000" />
-      <workItem from="1742031405652" duration="4604000" />
+      <workItem from="1742031405652" duration="8340000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -218,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742032789893</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: тесты для сервисов">
+      <option name="closed" value="true" />
+      <created>1742036167450</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742036167450</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +236,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: правка зависимостей" />
     <MESSAGE value="feat: тесты для контроллеров" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: тесты для контроллеров" />
+    <MESSAGE value="feat: тесты для сервисов" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: тесты для сервисов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -255,8 +254,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java</url>
-          <line>54</line>
+          <line>51</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/LikeServiceImpl.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

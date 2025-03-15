@@ -43,7 +43,7 @@ class CommentServiceImplTest {
   private CommentService commentService;
 
   @Test
-  void positiveTest_ShouldSaveComment() {
+  void positiveTest_shouldSaveComment() {
     try {
       Post post = Data.getPost();
       Comment comment = Data.getComment(ID);
@@ -71,7 +71,7 @@ class CommentServiceImplTest {
   }
 
   @Test
-  void positiveTest_ShouldUpdateComment() {
+  void positiveTest_shouldUpdateComment() {
     try {
       Comment comment = Data.getComment(ID);
       CommentDto commentDto = Data.getCommentDto(null);
@@ -94,7 +94,7 @@ class CommentServiceImplTest {
   }
 
   @Test
-  void positiveTest_ShouldDeleteCommentById() {
+  void positiveTest_shouldDeleteCommentById() {
     try {
       doNothing().when(commentRepository)
                  .deleteById(anyLong());

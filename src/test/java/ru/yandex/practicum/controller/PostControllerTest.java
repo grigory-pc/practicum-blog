@@ -73,7 +73,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldGetPosts() {
+  void positiveTest_shouldGetPosts() {
     try {
       String from = "0";
       String size = "10";
@@ -99,7 +99,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldGetPostById() {
+  void positiveTest_shouldGetPostById() {
     try {
       PostFullDto postFullDto = Data.getPostFullDto();
       String expectedBody = objectMapper.writeValueAsString(postFullDto);
@@ -120,7 +120,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldSavePost() {
+  void positiveTest_shouldSavePost() {
     try {
       doNothing().when(postService)
                  .savePost(any(PostSaveDto.class));
@@ -138,7 +138,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldUpdatePost() {
+  void positiveTest_shouldUpdatePost() {
     try {
       doNothing().when(postService)
                  .updatePost(anyLong(), any(PostSaveDto.class));
@@ -156,7 +156,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldAddLike() {
+  void positiveTest_shouldAddLike() {
     try {
       doNothing().when(likeService)
                  .addLike(anyLong());
@@ -173,7 +173,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldSaveComment() {
+  void positiveTest_shouldSaveComment() {
     try {
       doNothing().when(commentService)
                  .saveComment(anyLong(), any(CommentDto.class));
@@ -191,7 +191,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldUpdateComment() {
+  void positiveTest_shouldUpdateComment() {
     try {
       doNothing().when(commentService)
                  .updateComment(anyLong(), anyLong(), any(CommentDto.class));
@@ -210,7 +210,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldDeletePost() {
+  void positiveTest_shouldDeletePost() {
     try {
       doNothing().when(postService)
                  .deletePostById(anyLong());
@@ -227,7 +227,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldDeleteComment() {
+  void positiveTest_shouldDeleteComment() {
     try {
       doNothing().when(commentService)
                  .deleteCommentById(anyLong());
@@ -244,7 +244,7 @@ class PostControllerTest {
   }
 
   @Test
-  void positiveTest_ShouldGetTags() {
+  void positiveTest_shouldGetTags() {
     try {
       List<TagDto> tags = List.of(Data.getTagDto());
       String expectedBody = objectMapper.writeValueAsString(tags);

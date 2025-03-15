@@ -2,6 +2,7 @@ package ru.yandex.practicum.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = PostServiceImpl.class)
@@ -52,7 +54,7 @@ class PostServiceImplTest {
   private PostService postService;
 
   @Test
-  void positiveTest_ShouldFindAllPosts() {
+  void positiveTest_shouldFindAllPosts() {
     try {
       int from = 0;
       int size = 10;
@@ -60,11 +62,15 @@ class PostServiceImplTest {
       Page<Post> postPage = new PageImpl<>(List.of(Data.getPost()));
       PostPreviewDto expectedPostPreviewDto = Data.getPostPreviewDto();
 
-      when(postRepository.findAllPosts(any(Pageable.class)))
-          .thenReturn(postPage);
+      doReturn(postPage)
+          .when(postRepository).findAllPosts(any(Pageable.class));
+      doReturn(Set.of(Data.getPostTag()))
+          .when(postTagRepository).findAllByPostIdIn(anySet());
+      doReturn(Set.of(Data.getTag()))
+          .when(tagRepository).findAllByIdIn(anySet());
+      doReturn(new PageImpl<>(List.of(expectedPostPreviewDto)))
+          .when(postMapper).toDtoPage(any());
 
-      when(postMapper.toDtoPage(any()))
-          .thenReturn(new PageImpl<>(List.of(expectedPostPreviewDto)));
 
       Page<PostPreviewDto> actualPostPreviewDto = postService.findAllPosts(from, size);
 
@@ -77,16 +83,19 @@ class PostServiceImplTest {
   }
 
   @Test
-  void positiveTest_ShouldGetPostById() {
+  void positiveTest_shouldGetPostById() {
     try {
       Post post = Data.getPost();
       PostFullDto expectedPostFullDto = Data.getPostFullDto();
 
-      when(postRepository.findById(anyLong()))
-          .thenReturn(Optional.of(post));
-
-      when(postMapper.toFullDto(any(Post.class)))
-          .thenReturn(expectedPostFullDto);
+      doReturn(Optional.of(post))
+          .when(postRepository).findById(anyLong());
+      doReturn(Set.of(Data.getPostTag()))
+          .when(postTagRepository).findAllByPostId(anyLong());
+      doReturn(Optional.of(Data.getTag()))
+          .when(tagRepository).findById(anyLong());
+      doReturn(expectedPostFullDto)
+          .when(postMapper).toFullDto(any(Post.class));
 
       PostFullDto actualPostFullDto = postService.getPostById(POST_ID);
 
@@ -98,17 +107,18 @@ class PostServiceImplTest {
   }
 
   @Test
-  void positiveTest_ShouldSavePost() {
+  void positiveTest_shouldSavePost() {
     try {
       Post post = Data.getPost();
       PostSaveDto postSaveDto = Data.getPostSaveDto();
 
-      when(postMapper.toPost(any(PostSaveDto.class)))
-          .thenReturn(post);
-      doNothing().when(postRepository)
-                 .save(any(Post.class));
-      doNothing().when(postTagRepository)
-                 .save(any(PostTag.class));
+      doReturn(post)
+          .when(postMapper).toPost(any(PostSaveDto.class));
+      doReturn(post)
+          .when(postRepository).save(any(Post.class));
+      doReturn(Data.getPostTag())
+          .when(postTagRepository).save(any(PostTag.class));
+
       doNothing().when(likeService)
                  .saveLike(anyLong());
 
@@ -126,18 +136,19 @@ class PostServiceImplTest {
   }
 
   @Test
-  void positiveTest_ShouldUpdatePost() {
+  void positiveTest_shouldUpdatePost() {
     try {
       Post post = Data.getPost();
       PostSaveDto postSaveDto = Data.getPostSaveDto();
 
-      when(postRepository.findById(anyLong()))
-          .thenReturn(Optional.of(post));
-
-      doNothing().when(postRepository)
-                 .save(any(Post.class));
+      doReturn(Optional.of(post))
+          .when(postRepository).findById(anyLong());
+      doReturn(post)
+          .when(postRepository).save(any(Post.class));
+      doReturn(Data.getPostTag())
+          .when(postTagRepository).save(any(PostTag.class));
       doNothing().when(postTagRepository)
-                 .save(any(PostTag.class));
+                 .deleteAllByPostId(anyLong());
 
       assertDoesNotThrow(
           () -> postService.updatePost(POST_ID, postSaveDto));
@@ -145,6 +156,7 @@ class PostServiceImplTest {
       verify(postRepository, atLeastOnce()).findById(anyLong());
       verify(postRepository, atLeastOnce()).save(any(Post.class));
       verify(postTagRepository, atLeastOnce()).save(any(PostTag.class));
+      verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");
@@ -152,10 +164,16 @@ class PostServiceImplTest {
   }
 
   @Test
-  void positiveTest_ShouldDeletePostById() {
+  void positiveTest_shouldDeletePostById() {
     doNothing().when(postRepository)
                .deleteById(anyLong());
+    doNothing().when(postTagRepository)
+               .deleteAllByPostId(anyLong());
+
+    assertDoesNotThrow(
+        () -> postService.deletePostById(POST_ID));
 
     verify(postRepository, atLeastOnce()).deleteById(anyLong());
+    verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
   }
 }

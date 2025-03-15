@@ -9,6 +9,8 @@ import lombok.experimental.UtilityClass;
 import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Like;
 import ru.yandex.practicum.dao.Post;
+import ru.yandex.practicum.dao.PostTag;
+import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
@@ -56,5 +58,13 @@ public class Data {
 
   public TagDto getTagDto() {
     return new TagDto(ID_ONE, TAG);
+  }
+
+  public PostTag getPostTag() {
+    return new PostTag(1L, 1L);
+  }
+
+  public Tag getTag() {
+    return new Tag(1L, TAG);
   }
 }

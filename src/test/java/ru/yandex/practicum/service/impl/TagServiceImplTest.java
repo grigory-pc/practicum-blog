@@ -17,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TagServiceImpl.class)
@@ -33,14 +33,14 @@ class TagServiceImplTest {
   TagService tagService;
 
   @Test
-  void positiveTest_ShouldFindAllTags() {
+  void positiveTest_shouldFindAllTags() {
     try {
-      when(tagRepository.findAll())
-          .thenReturn(
-              List.of(new Tag(1L, TAG_2024),
-                      new Tag(2L, TAG_2025)));
-      when(tagMapper.toDto(anyList()))
-          .thenReturn(List.of(new TagDto(1L, TAG_2024), new TagDto(2L, TAG_2025)));
+      doReturn(List.of(new Tag(1L, TAG_2024),
+                       new Tag(2L, TAG_2025)))
+          .when(tagRepository).findAll();
+
+      doReturn(List.of(new TagDto(1L, TAG_2024), new TagDto(2L, TAG_2025)))
+          .when(tagMapper).toDto(anyList());
 
       assertDoesNotThrow(
           () -> tagService.findAllTags());

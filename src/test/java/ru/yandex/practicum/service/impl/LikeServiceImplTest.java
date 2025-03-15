@@ -17,9 +17,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = LikeServiceImpl.class)
@@ -32,10 +31,12 @@ class LikeServiceImplTest {
   private LikeService likeService;
 
   @Test
-  void positiveTest_ShouldSaveLike() {
+  void positiveTest_shouldSaveLike() {
     try {
-      doNothing().when(likeRepository)
-                 .save(any(Like.class));
+      Like like = Data.getLike(POST_ID);
+
+      doReturn(like)
+          .when(likeRepository).save(any(Like.class));
 
       assertDoesNotThrow(
           () -> likeService.saveLike(POST_ID));
@@ -48,18 +49,17 @@ class LikeServiceImplTest {
   }
 
   @Test
-  void positiveTest_ShouldAddLike() {
+  void positiveTest_shouldAddLike() {
     try {
       Like like = Data.getLike(POST_ID);
 
-      when(likeRepository.findByPostId(anyLong()))
-          .thenReturn(Optional.of(like));
-
-      doNothing().when(likeRepository)
-                 .save(any(Like.class));
+      doReturn(Optional.of(like))
+          .when(likeRepository).findByPostId(anyLong());
+      doReturn(like)
+          .when(likeRepository).save(any(Like.class));
 
       assertDoesNotThrow(
-          () -> likeService.saveLike(POST_ID));
+          () -> likeService.addLike(POST_ID));
 
       verify(likeRepository, atLeastOnce()).findByPostId(anyLong());
       verify(likeRepository, atLeastOnce()).save(any(Like.class));
