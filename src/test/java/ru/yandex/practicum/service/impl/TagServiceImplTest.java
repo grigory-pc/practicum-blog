@@ -1,12 +1,12 @@
 package ru.yandex.practicum.service.impl;
 
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.mapper.TagMapper;
@@ -20,21 +20,17 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TagServiceImpl.class)
 class TagServiceImplTest {
   private static final String TAG_2024 = "TAG_2024";
   private static final String TAG_2025 = "TAG_2025";
-  @Autowired
+  @MockitoBean
   TagRepository tagRepository;
-  @Autowired
+  @MockitoBean
   TagMapper tagMapper;
+  @Autowired
   TagService tagService;
-
-  @BeforeEach
-  void setUp() {
-    tagService = new TagServiceImpl(tagRepository, tagMapper);
-  }
 
   @Test
   void positiveTest_ShouldFindAllTags() {

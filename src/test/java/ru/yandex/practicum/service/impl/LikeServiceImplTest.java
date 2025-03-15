@@ -1,12 +1,12 @@
 package ru.yandex.practicum.service.impl;
 
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.dao.Like;
 import ru.yandex.practicum.repository.LikeRepository;
 import ru.yandex.practicum.service.LikeService;
@@ -21,19 +21,15 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = LikeServiceImpl.class)
 class LikeServiceImplTest {
   private static final Long POST_ID = 1L;
 
-  @Autowired
+  @MockitoBean
   LikeRepository likeRepository;
+  @Autowired
   private LikeService likeService;
-
-  @BeforeEach
-  void setUp() {
-    likeService = new LikeServiceImpl(likeRepository);
-  }
 
   @Test
   void positiveTest_ShouldSaveLike() {

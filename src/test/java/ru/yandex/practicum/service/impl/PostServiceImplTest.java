@@ -2,15 +2,15 @@ package ru.yandex.practicum.service.impl;
 
 import java.util.List;
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dto.PostFullDto;
@@ -34,26 +34,22 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = PostServiceImpl.class)
 class PostServiceImplTest {
   private static final Long POST_ID = 1L;
-  @Autowired
+  @MockitoBean
   private PostRepository postRepository;
-  @Autowired
+  @MockitoBean
   private PostTagRepository postTagRepository;
+  @MockitoBean
   private TagRepository tagRepository;
-  @Autowired
+  @MockitoBean
   private PostMapper postMapper;
-  @Autowired
+  @MockitoBean
   private LikeService likeService;
+  @Autowired
   private PostService postService;
-
-  @BeforeEach
-  void setUp() {
-    postService = new PostServiceImpl(postRepository, postTagRepository, tagRepository, postMapper,
-                                      likeService);
-  }
 
   @Test
   void positiveTest_ShouldFindAllPosts() {

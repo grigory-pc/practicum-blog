@@ -1,12 +1,14 @@
 package ru.yandex.practicum.service.impl;
 
 import java.util.Optional;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.yandex.practicum.config.DataTestSource;
 import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.CommentDto;
@@ -22,27 +24,23 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
-@ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = CommentServiceImpl.class)
+@ExtendWith(SpringExtension.class)
+@Import(DataTestSource.class)
+@ContextConfiguration(classes = {CommentServiceImpl.class})
 class CommentServiceImplTest {
   private static final Long ID = 1L;
-  @Autowired
+  @MockitoBean
   private PostRepository postRepository;
-  @Autowired
+  @MockitoBean
   private CommentRepository commentRepository;
-  @Autowired
+  @MockitoBean
   private CommentMapper commentMapper;
+  @Autowired
   private CommentService commentService;
-
-
-  @BeforeEach
-  void setUp() {
-    commentService = new CommentServiceImpl(postRepository, commentRepository, commentMapper);
-  }
 
   @Test
   void positiveTest_ShouldSaveComment() {
@@ -51,14 +49,14 @@ class CommentServiceImplTest {
       Comment comment = Data.getComment(ID);
       CommentDto commentDto = Data.getCommentDto(null);
 
-      when(commentMapper.toComment(any(CommentDto.class)))
-          .thenReturn(comment);
+      doReturn(comment)
+          .when(commentMapper).toComment(any(CommentDto.class));
 
-      when(postRepository.findById(anyLong()))
-          .thenReturn(Optional.of(post));
+      doReturn(Optional.of(post))
+          .when(postRepository).findById(anyLong());
 
-      doNothing().when(commentRepository)
-                 .save(any(Comment.class));
+      doReturn(comment)
+          .when(commentRepository).save(any(Comment.class));
 
       assertDoesNotThrow(
           () -> commentService.saveComment(ID, commentDto));
@@ -78,11 +76,11 @@ class CommentServiceImplTest {
       Comment comment = Data.getComment(ID);
       CommentDto commentDto = Data.getCommentDto(null);
 
-      when(commentRepository.findById(anyLong()))
-          .thenReturn(Optional.of(comment));
+      doReturn(Optional.of(comment))
+          .when(commentRepository).findById(anyLong());
 
-      doNothing().when(commentRepository)
-                 .save(any(Comment.class));
+      doReturn(comment)
+          .when(commentRepository).save(any(Comment.class));
 
       assertDoesNotThrow(
           () -> commentService.updateComment(ID, ID, commentDto));

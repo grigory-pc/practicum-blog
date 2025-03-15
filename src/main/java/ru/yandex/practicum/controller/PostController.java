@@ -39,8 +39,6 @@ public class PostController {
   @GetMapping
   public Page<PostPreviewDto> getPosts(@RequestParam(defaultValue = "0") int from,
                                        @RequestParam(defaultValue = "10") int size) {
-    System.out.println("получен запрос");
-
     log.info("Получен запрос на получение preview постов");
 
     Page<PostPreviewDto> postsPreviewPage = postService.findAllPosts(from, size);
@@ -58,8 +56,6 @@ public class PostController {
    */
   @GetMapping("/{id}")
   public PostFullDto getPostById(@PathVariable(name = "id") Long id) {
-    System.out.println("получен запрос");
-
     log.info("Получен запрос на получение поста для id = {}", id);
 
     PostFullDto postFullDto = postService.getPostById(id);

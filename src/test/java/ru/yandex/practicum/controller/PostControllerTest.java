@@ -21,6 +21,7 @@ import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.service.CommentService;
 import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
@@ -39,6 +40,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -77,6 +79,7 @@ class PostControllerTest {
       String size = "10";
       List<PostPreviewDto> postPreviewDtos = List.of(Data.getPostPreviewDto());
       Page<PostPreviewDto> page = new PageImpl<>(postPreviewDtos, PageRequest.of(0, 10), 1);
+      String expectedBody = objectMapper.writeValueAsString(page);
 
       doReturn(page)
           .when(postService).findAllPosts(anyInt(), anyInt());
@@ -85,7 +88,8 @@ class PostControllerTest {
                           .param("from", from)
                           .param("size", size)
                           .accept(MediaType.APPLICATION_JSON))
-             .andExpect(status().isOk());
+             .andExpect(status().isOk())
+             .andExpect(content().json(expectedBody));
 
       verify(postService, atLeastOnce()).findAllPosts(anyInt(), anyInt());
 
@@ -98,13 +102,15 @@ class PostControllerTest {
   void positiveTest_ShouldGetPostById() {
     try {
       PostFullDto postFullDto = Data.getPostFullDto();
+      String expectedBody = objectMapper.writeValueAsString(postFullDto);
 
       when(postService.getPostById(anyLong()))
           .thenReturn(postFullDto);
 
       mockMvc.perform(get(BASE_URL + "/" + POST_ID)
                           .contentType(MediaType.APPLICATION_JSON))
-             .andExpect(status().isOk());
+             .andExpect(status().isOk())
+             .andExpect(content().json(expectedBody));
 
       verify(postService, atLeastOnce()).getPostById(anyLong());
 
@@ -122,7 +128,7 @@ class PostControllerTest {
       mockMvc.perform(post(BASE_URL)
                           .contentType(MediaType.APPLICATION_JSON)
                           .content(objectMapper.writeValueAsString(Data.getPostSaveDto())))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(postService, atLeastOnce()).savePost(any(PostSaveDto.class));
 
@@ -140,7 +146,7 @@ class PostControllerTest {
       mockMvc.perform(patch(BASE_URL + "/" + POST_ID)
                           .contentType(MediaType.APPLICATION_JSON)
                           .content(objectMapper.writeValueAsString(Data.getPostSaveDto())))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(postService, atLeastOnce()).updatePost(anyLong(), any(PostSaveDto.class));
 
@@ -155,9 +161,9 @@ class PostControllerTest {
       doNothing().when(likeService)
                  .addLike(anyLong());
 
-      mockMvc.perform(post(BASE_URL + "/"  + POST_ID + "/like")
+      mockMvc.perform(post(BASE_URL + "/" + POST_ID + "/like")
                           .contentType(MediaType.APPLICATION_JSON))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(likeService, atLeastOnce()).addLike(anyLong());
 
@@ -172,10 +178,10 @@ class PostControllerTest {
       doNothing().when(commentService)
                  .saveComment(anyLong(), any(CommentDto.class));
 
-      mockMvc.perform(post(BASE_URL + "/"  + POST_ID + "/comment")
+      mockMvc.perform(post(BASE_URL + "/" + POST_ID + "/comment")
                           .contentType(MediaType.APPLICATION_JSON)
                           .content(objectMapper.writeValueAsString(Data.getCommentDto(POST_ID))))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(commentService, atLeastOnce()).saveComment(anyLong(), any(CommentDto.class));
 
@@ -190,10 +196,10 @@ class PostControllerTest {
       doNothing().when(commentService)
                  .updateComment(anyLong(), anyLong(), any(CommentDto.class));
 
-      mockMvc.perform(patch(BASE_URL + "/"  + POST_ID + "/comment/" + COMMENT_ID)
+      mockMvc.perform(patch(BASE_URL + "/" + POST_ID + "/comment/" + COMMENT_ID)
                           .contentType(MediaType.APPLICATION_JSON)
                           .content(objectMapper.writeValueAsString(Data.getCommentDto(POST_ID))))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(commentService, atLeastOnce()).updateComment(anyLong(), anyLong(),
                                                           any(CommentDto.class));
@@ -209,9 +215,9 @@ class PostControllerTest {
       doNothing().when(postService)
                  .deletePostById(anyLong());
 
-      mockMvc.perform(post(BASE_URL + "/"  + POST_ID)
+      mockMvc.perform(post(BASE_URL + "/" + POST_ID)
                           .param("_method", "delete"))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(postService, atLeastOnce()).deletePostById(anyLong());
 
@@ -226,11 +232,32 @@ class PostControllerTest {
       doNothing().when(commentService)
                  .deleteCommentById(anyLong());
 
-      mockMvc.perform(post(BASE_URL + "comment/" + COMMENT_ID)
+      mockMvc.perform(post(BASE_URL + "/comment/" + COMMENT_ID)
                           .param("_method", "delete"))
-             .andExpect(status().is3xxRedirection());
+             .andExpect(status().isOk());
 
       verify(commentService, atLeastOnce()).deleteCommentById(anyLong());
+
+    } catch (Exception e) {
+      fail("Не ожидали получить исключение");
+    }
+  }
+
+  @Test
+  void positiveTest_ShouldGetTags() {
+    try {
+      List<TagDto> tags = List.of(Data.getTagDto());
+      String expectedBody = objectMapper.writeValueAsString(tags);
+
+      when(tagService.findAllTags())
+          .thenReturn(tags);
+
+      mockMvc.perform(get(BASE_URL + "/tags")
+                          .contentType(MediaType.APPLICATION_JSON))
+             .andExpect(status().isOk())
+             .andExpect(content().json(expectedBody));
+
+      verify(tagService, atLeastOnce()).findAllTags();
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");
