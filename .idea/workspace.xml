@@ -4,10 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: ИТ">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: настройка модуля frontend">
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/configuration/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/configuration/DataSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/configuration/DataSourceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/configuration/HibernateConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/configuration/WebConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dao/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dao/Like.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dao/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dao/PostTag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dao/PostTagKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dao/Tag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dto/CommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dto/PostFullDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dto/PostSaveDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/dto/TagDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/exceptions/NotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/mapper/CommentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/mapper/PostMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/mapper/TagMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/repository/CommentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/repository/LikeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/repository/PostRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/repository/PostTagRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/repository/TagRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/EndpointLogger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/LikeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/PostService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/TagService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/impl/CommentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/impl/LikeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/java/ru/yandex/practicum/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/config/DataSourceTestConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/config/HibernateTestConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/config/WebConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/service/impl/LikeServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/service/impl/TagServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/resources/application-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/resources/man.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-backend/src/test/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-backend/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-backend/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-backend/src/main/webapp/icons/icon.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +103,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feat/split__module/create-blog",
     "jdk.selected.JAVA_MODULE": "21",
-    "last_opened_file_path": "J:/Development/Yandex.Praktikum/Java/practicum-blog/src/test/resources",
+    "last_opened_file_path": "J:/Development/Yandex.Praktikum/Java/practicum-blog/blog-backend/src/test/java/ru/yandex/practicum",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,7 +120,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\blog-backend\src\test\java\ru\yandex\practicum" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\blog-backend\src\test\resources" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\blog-backend\src\test\java" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\blog-backend\src\main\resources" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\blog-backend\src\main\java\ru\yandex\practicum" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ru.yandex.practicum.service.impl" />
@@ -81,7 +137,7 @@
       <command value="mvn clean install -Dmaven.test.skip=true" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PostControllerTest">
+  <component name="RunManager" selected="JUnit.PostControllerTest.positiveTest_shouldGetPosts (1)">
     <configuration name="PostControllerIT.getUsers_shouldReturnPagePosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
@@ -113,8 +169,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerTest.positiveTest_shouldGetPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project-base" />
+    <configuration name="PostControllerTest.positiveTest_shouldGetPosts (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog-backend" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
@@ -129,17 +185,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostControllerTest.positiveTest_shouldGetPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
+          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.PostServiceImplTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
+      <option name="METHOD_NAME" value="positiveTest_shouldGetPosts" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -182,18 +239,18 @@
     <list>
       <item itemvalue="JUnit.PostControllerIT.getUsers_shouldReturnPagePosts" />
       <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts" />
-      <item itemvalue="JUnit.PostServiceImplTest" />
+      <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts (1)" />
       <item itemvalue="JUnit.java in project-base" />
       <item itemvalue="JUnit.PostControllerTest" />
       <item itemvalue="Remote JVM Debug.test blog" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts (1)" />
         <item itemvalue="JUnit.PostControllerTest" />
         <item itemvalue="JUnit.PostControllerIT.getUsers_shouldReturnPagePosts" />
         <item itemvalue="JUnit.java in project-base" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts" />
-        <item itemvalue="JUnit.PostServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +263,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742031330010</updated>
       <workItem from="1742031331223" duration="70000" />
-      <workItem from="1742031405652" duration="12624000" />
+      <workItem from="1742031405652" duration="15285000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -248,7 +305,39 @@
       <option name="project" value="LOCAL" />
       <updated>1742055163639</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: обновление parent pom">
+      <option name="closed" value="true" />
+      <created>1742055713038</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742055713038</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: обновление pom">
+      <option name="closed" value="true" />
+      <created>1742056475847</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742056475848</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: настройка модуля frontend">
+      <option name="closed" value="true" />
+      <created>1742057419005</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742057419005</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: настройка модуля frontend">
+      <option name="closed" value="true" />
+      <created>1742057505409</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742057505409</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +359,10 @@
     <MESSAGE value="feat: тесты для контроллеров" />
     <MESSAGE value="feat: тесты для сервисов" />
     <MESSAGE value="feat: ИТ" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: ИТ" />
+    <MESSAGE value="feat: обновление parent pom" />
+    <MESSAGE value="feat: обновление pom" />
+    <MESSAGE value="feat: настройка модуля frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: настройка модуля frontend" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -309,6 +401,16 @@
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java</url>
           <line>47</line>
           <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/blog-backend/src/test/java/ru/yandex/practicum/utils/Data.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
