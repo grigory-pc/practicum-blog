@@ -50,14 +50,14 @@ public class Data {
                                                       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                                                       Set.of(new TagDto(1L, "test"),
                                                              new TagDto(2L, "2024")),
-                                                      List.of(new CommentDto(1L, "comment1"),
+                                                      List.of(new CommentDto(1L, "comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment "),
                                                               new CommentDto(2L, "comment2"))),
                                       new PostFullDto(2L, "Abagail Libbie", imageWomanBytes,
                                                       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                                                       Set.of(new TagDto(1L, "test"),
                                                              new TagDto(4L, "2025")),
                                                       List.of(new CommentDto(4L, "comment4"),
-                                                              new CommentDto(3L, "comment3"))));
+                                                              new CommentDto(3L, "comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment "))));
 
 
     return posts.stream()

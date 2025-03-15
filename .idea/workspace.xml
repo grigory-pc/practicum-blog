@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: корректировка логов">
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: ИТ">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +195,8 @@
       <updated>1742031330010</updated>
       <workItem from="1742031331223" duration="70000" />
       <workItem from="1742031405652" duration="11911000" />
-      <workItem from="1742073624134" duration="1093000" />
+      <workItem from="1742073624134" duration="1469000" />
+      <workItem from="1742080377483" duration="690000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -244,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742073432978</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: ИТ">
+      <option name="closed" value="true" />
+      <created>1742075086013</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742075086013</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,10 +275,10 @@
     <MESSAGE value="feat: правка зависимостей" />
     <MESSAGE value="feat: тесты для контроллеров" />
     <MESSAGE value="feat: тесты для сервисов" />
-    <MESSAGE value="feat: ИТ" />
     <MESSAGE value="feat: обновление pom" />
     <MESSAGE value="feat: корректировка логов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: корректировка логов" />
+    <MESSAGE value="feat: ИТ" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ИТ" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

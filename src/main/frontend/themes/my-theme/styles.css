@@ -81,3 +81,8 @@ vaadin-text-field.bordered::part(input-field) {
     display: flex;
     flex-direction: column;
 }
+
+.post-image {
+    max-width: 10%;
+    height: auto;
+}

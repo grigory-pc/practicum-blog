@@ -24,7 +24,6 @@ import ru.yandex.practicum.view.utility.HttpRequestService;
 
 @PageTitle("Post Details")
 @Route("/post/:postId")
-//@SpringUI(path = "/main-view")
 public class PostDetailsView extends Div implements AfterNavigationObserver {
   private Long postId;
   private FormLayout form;
@@ -46,10 +45,6 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
 
     titleField = new TextField("Заголовок");
     titleField.setReadOnly(true);
-
-    image = new Image();
-    image.setWidth("100px");
-    image.setHeight("auto");
 
     postTextArea = new TextArea("Текст поста");
     postTextArea.setReadOnly(true);
@@ -85,8 +80,7 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
                                                          postFullDto.image()));
 
         image = new Image(resource, "image");
-        image.setWidth("100px");
-        image.setHeight("auto");
+        image.addClassName("post-image");
       }
 
       tagsLayout.removeAll();
