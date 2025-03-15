@@ -83,7 +83,6 @@ public class PostController {
    *
    * @param id   - id поста.
    * @param post - данные поста.
-   * @return возврат на страницу post.html, чтобы она перезагрузилась.
    */
   @PatchMapping("/{id}")
   public void updatePost(@PathVariable(name = "id") Long id, @RequestBody PostSaveDto post) {
@@ -146,7 +145,7 @@ public class PostController {
    *
    * @param id - id поста.
    */
-  @PostMapping(value = "/{id}", params = "_method=delete")
+  @DeleteMapping(value = "/{id}")
   public void deletePost(@PathVariable(name = "id") Long id) {
     log.info("Получен запрос на удаление поста id = {}", id);
 
@@ -160,7 +159,7 @@ public class PostController {
    *
    * @param commentId - id комментария.
    */
-  @PostMapping(value = "/comment/{commentId}", params = "_method=delete")
+  @DeleteMapping(value = "/comment/{commentId}")
   public void deleteComment(@PathVariable(name = "commentId") Long commentId) {
     log.info("Получен запрос на удаление комментария для id = {}", commentId);
 
