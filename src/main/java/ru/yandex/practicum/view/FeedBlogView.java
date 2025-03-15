@@ -143,13 +143,14 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
 
   private void initFilterButton() {
     Button clearFilterButton = new Button("Очистить фильтр");
+    clearFilterButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
     clearFilterButton.addClickListener(click -> clearFilter());
 
     FlexLayout buttonLayout = new FlexLayout(clearFilterButton);
-    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-    buttonLayout.addClassName("filter-button-layout");
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+    buttonLayout.addClassName("add-button-layout");
 
-    add(buttonLayout);
+     add(buttonLayout);
   }
 
   private void initAddPostButton() {

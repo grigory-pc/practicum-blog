@@ -1,12 +1,17 @@
 package ru.yandex.practicum.view;
 
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -17,8 +22,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.stream.Collectors;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
+import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.view.utility.HttpRequestService;
 
@@ -32,6 +40,8 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
   private TextArea postTextArea;
   private HorizontalLayout tagsLayout;
   private VerticalLayout commentsLayout;
+  private Button deleteButton;
+  private Notification deleteFailedNotification;
 
   public PostDetailsView() {
     addClassName("post-details-view");
@@ -56,6 +66,8 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
 
     commentsLayout = new VerticalLayout();
     commentsLayout.addClassName("comments");
+
+    initDeletePostButton();
 
     add(form);
   }
@@ -117,5 +129,21 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     commentContent.add(commentText);
 
     return commentContainer;
+  }
+
+  private void initDeletePostButton() {
+    Button deleteButton = new Button("Удалить пост");
+    deleteButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    deleteButton.addClickListener(this::deletePost);
+
+    FlexLayout buttonLayout = new FlexLayout(deleteButton);
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+    buttonLayout.addClassName("add-button-layout");
+
+    add(buttonLayout);
+  }
+
+  private void deletePost(ClickEvent<Button> event) {
+    System.out.println("Пост удален");
   }
 }
