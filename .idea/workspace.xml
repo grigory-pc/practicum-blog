@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: тесты для сервисов">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/man.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataTestSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataTestSourceConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateTestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateTestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/WebConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/WebConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.yml" afterDir="false" />
-    </list>
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: ИТ" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +77,7 @@
       <command value="mvn clean install -Dmaven.test.skip=true" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.java in project-base">
+  <component name="RunManager" selected="JUnit.PostControllerIT.getUsers_shouldReturnPagePosts">
     <configuration name="PostControllerIT.getUsers_shouldReturnPagePosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="project-base" />
       <extension name="coverage">
@@ -199,8 +186,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.java in project-base" />
         <item itemvalue="JUnit.PostControllerIT.getUsers_shouldReturnPagePosts" />
+        <item itemvalue="JUnit.java in project-base" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts" />
         <item itemvalue="JUnit.PostServiceImplTest" />
         <item itemvalue="JUnit.PostServiceImplTest.positiveTest_shouldFindAllPosts" />
@@ -216,7 +203,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742031330010</updated>
       <workItem from="1742031331223" duration="70000" />
-      <workItem from="1742031405652" duration="11124000" />
+      <workItem from="1742031405652" duration="11911000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -242,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742040347954</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: ИТ">
+      <option name="closed" value="true" />
+      <created>1742044486213</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742044486213</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +258,8 @@
     <MESSAGE value="feat: правка зависимостей" />
     <MESSAGE value="feat: тесты для контроллеров" />
     <MESSAGE value="feat: тесты для сервисов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: тесты для сервисов" />
+    <MESSAGE value="feat: ИТ" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ИТ" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -297,6 +293,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java</url>
           <line>71</line>
           <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
