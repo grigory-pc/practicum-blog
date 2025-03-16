@@ -22,11 +22,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.stream.Collectors;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
-import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.view.utility.HttpRequestService;
 
@@ -40,8 +37,6 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
   private TextArea postTextArea;
   private HorizontalLayout tagsLayout;
   private VerticalLayout commentsLayout;
-  private Button deleteButton;
-  private Notification deleteFailedNotification;
 
   public PostDetailsView() {
     addClassName("post-details-view");
@@ -128,6 +123,8 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     commentContainer.add(commentContent);
     commentContent.add(commentText);
 
+    commentContent.add(initDeleteCommentButton());
+
     return commentContainer;
   }
 
@@ -143,7 +140,23 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     add(buttonLayout);
   }
 
+  private FlexLayout initDeleteCommentButton() {
+    Button deleteCommentButton = new Button("Удалить Комментарий");
+    deleteCommentButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    deleteCommentButton.addClickListener(this::deleteComment);
+
+    FlexLayout buttonLayout = new FlexLayout(deleteCommentButton);
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+    buttonLayout.addClassName("add-button-layout");
+
+    return buttonLayout;
+  }
+
   private void deletePost(ClickEvent<Button> event) {
     System.out.println("Пост удален");
+  }
+
+  private void deleteComment(ClickEvent<Button> event) {
+    System.out.println("Комментарий удален");
   }
 }
