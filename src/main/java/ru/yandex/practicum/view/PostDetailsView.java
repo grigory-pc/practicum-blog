@@ -137,10 +137,56 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     Paragraph commentText = new Paragraph(comment.commentText());
     commentText.addClassName("comment-text");
 
-    commentContainer.add(commentContent);
-    commentContent.add(commentText);
+    // Создаем текстовое поле для редактирования
+    TextArea editCommentArea = new TextArea();
+    editCommentArea.setValue(comment.commentText());
+    editCommentArea.setVisible(false); // Скрываем по умолчанию
 
-    commentContent.add(initDeleteCommentButton());
+    // Создаем кнопку редактирования
+    Button editCommentButton = new Button("Редактировать");
+    editCommentButton.addClassName("edit-button");
+    editCommentButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+
+    // Создаем кнопку сохранения
+    Button saveCommentButton = new Button("Сохранить");
+    saveCommentButton.addClassName("save-button");
+    saveCommentButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+    saveCommentButton.setVisible(false); // Скрываем по умолчанию
+
+    // Обработчик клика для кнопки редактирования
+    editCommentButton.addClickListener(click -> {
+      commentText.setVisible(false);
+      editCommentArea.setVisible(true);
+      saveCommentButton.setVisible(true);
+      editCommentButton.setVisible(false);
+    });
+
+    // Обработчик клика для кнопки сохранения
+    saveCommentButton.addClickListener(click -> {
+      // Создаем новый объект comment с обновленным текстом
+      CommentDto updatedComment = new CommentDto(
+          comment.id(),
+          editCommentArea.getValue()
+      );
+
+      // Обновляем текст в параграфе
+      commentText.setText(editCommentArea.getValue());
+
+      // Обновляем отображение
+      commentText.setVisible(true);
+      editCommentArea.setVisible(false);
+      saveCommentButton.setVisible(false);
+      editCommentButton.setVisible(true);
+
+      // Здесь можно добавить вызов метода сохранения на сервере
+      saveComment(updatedComment);
+    });
+
+    commentContainer.add(commentContent);
+    commentContent.add(commentText, commentText, editCommentArea, editCommentButton,
+                       saveCommentButton, initDeleteCommentButton());
 
     return commentContainer;
   }
@@ -189,6 +235,10 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
 
   private void deleteComment(ClickEvent<Button> event) {
     System.out.println("Комментарий удален");
+  }
+
+  private void saveComment(CommentDto commentDto) {
+    System.out.println("Комментарий сохранен: " + commentDto.commentText());
   }
 
   private void createEditPostDialog() {
