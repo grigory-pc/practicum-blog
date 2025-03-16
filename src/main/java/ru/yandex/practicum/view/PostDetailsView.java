@@ -11,6 +11,8 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
@@ -119,7 +121,18 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
         commentsLayout.add(createCommentComponent(comment));
       }
 
-      form.add(image, titleField, postTextArea, tagsLayout, commentsLayout);
+      Icon likeIcon = new Icon(VaadinIcon.HEART_O);
+      likeIcon.addClassName("like-icon");
+
+      likeIcon.addClickListener(click -> {
+        boolean isLiked = likePost(postId);
+        if (isLiked) {
+          likeIcon.getStyle().set("color", "red");
+          likeIcon.setIcon(VaadinIcon.HEART);
+        }
+      });
+
+      form.add(image, titleField, postTextArea, likeIcon, tagsLayout, commentsLayout);
 
     } else {
       Notification.show("Пост не найден", 3000, Notification.Position.BOTTOM_CENTER);
@@ -333,5 +346,9 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
   private Set<TagDto> loadTagsLocal() {
     return Set.of(new TagDto(1L, "test"), new TagDto(2L, "2024"), new TagDto(3L, "practicum"),
                   new TagDto(4L, "2025"), new TagDto(5L, "practicum"));
+  }
+
+  private boolean likePost(Long postId) {
+    return true;
   }
 }

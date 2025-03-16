@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: добавлено редактирование поста">
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: добавлено редактирование комментария">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" afterDir="false" />
     </list>
@@ -195,7 +195,8 @@
       <workItem from="1742031405652" duration="11911000" />
       <workItem from="1742073624134" duration="1469000" />
       <workItem from="1742080377483" duration="2099000" />
-      <workItem from="1742113845306" duration="3981000" />
+      <workItem from="1742113845306" duration="4344000" />
+      <workItem from="1742141152910" duration="1928000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -285,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742116571263</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat: добавлено редактирование комментария">
+      <option name="closed" value="true" />
+      <created>1742119905233</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1742119905233</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +322,8 @@
     <MESSAGE value="feat: добавлена кнопка удаления поста. обновлен стиль кнопки очистки фильтра" />
     <MESSAGE value="feat: добавлена кнопка удаления комментария" />
     <MESSAGE value="feat: добавлено редактирование поста" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: добавлено редактирование поста" />
+    <MESSAGE value="feat: добавлено редактирование комментария" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: добавлено редактирование комментария" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

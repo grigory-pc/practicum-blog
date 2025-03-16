@@ -86,3 +86,9 @@ vaadin-text-field.bordered::part(input-field) {
     max-width: 10%;
     height: auto;
 }
+
+.like-icon {
+    margin-top: 16px;
+    cursor: pointer;
+    font-size: 20px;
+}
