@@ -20,10 +20,12 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
+import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.Menu;
@@ -32,8 +34,10 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
@@ -51,11 +55,16 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
   private TextField titleField;
   private Upload imageUpload;
   private TextArea postTextArea;
-  MultiSelectComboBox<TagDto> tagSelect = new MultiSelectComboBox<>("Теги");
   private Dialog addPostDialog;
   private MemoryBuffer imageBuffer;
   private Button saveButton;
-
+  private Select<Integer> pageSizeSelect;
+  private Div paginationControls;
+  private ListDataProvider<PostPreviewDto> dataProvider;
+  private Integer currentPage = 0;
+  private Integer currentPageSize = 10;
+  private Page<PostPreviewDto> currentPageData;
+  MultiSelectComboBox<TagDto> tagSelect = new MultiSelectComboBox<>("Теги");
   Grid<PostPreviewDto> grid = new Grid<>();
 
   public FeedBlogView() {
@@ -67,11 +76,27 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
 
     initFilterButton();
     initAddPostButton();
-    add(grid);
+
+    pageSizeSelect = new Select<>();
+    pageSizeSelect.setLabel("Страниц на странице");
+    pageSizeSelect.setItems(10, 20, 50);
+    pageSizeSelect.setValue(currentPageSize);
+    pageSizeSelect.addValueChangeListener(e -> {
+      currentPageSize = e.getValue();
+      currentPage = 0;
+      updatePagination();
+    });
+
+    paginationControls = new Div();
+    paginationControls.addClassName("pagination-controls");
+
+    add(grid, paginationControls);
 
     dataView = grid.getListDataView();
 
     loadTagsLocal();
+
+    updatePagination();
   }
 
   private VerticalLayout createCard(PostPreviewDto postPreviewDto) {
@@ -138,7 +163,31 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
 
   @Override
   public void afterNavigation(AfterNavigationEvent event) {
-    grid.setItems(Data.getPosts());
+    currentPage = 0;
+    currentPageSize = 10;
+
+    Page<PostPreviewDto> pageData = Data.getPosts(currentPage, currentPageSize);
+
+    dataProvider = new ListDataProvider<>(pageData.getContent());
+
+    grid.setDataProvider(dataProvider);
+
+    Button prevPage = new Button("Предыдущая", e -> {
+      if (currentPage > 0) {
+        currentPage--;
+        updatePagination();
+      }
+    });
+
+    Button nextPage = new Button("Следующая", e -> {
+      if (pageData.hasNext()) {
+        currentPage++;
+        updatePagination();
+      }
+    });
+
+    paginationControls.removeAll();
+    paginationControls.add(pageSizeSelect, prevPage, nextPage);
   }
 
   private void initFilterButton() {
@@ -280,6 +329,31 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     tagSelect.setValue(Set.of());
     titleField.focus();
     errorMessage.remove();
+  }
+
+  private void updatePagination() {
+    System.out.println("запрошены посты для from = " + currentPage + " size = " + currentPageSize);
+    currentPageData = Data.getPosts(currentPage, currentPageSize);
+
+    dataProvider = new ListDataProvider<>(currentPageData.getContent());
+    grid.setDataProvider(dataProvider);
+
+    Button prevPage = new Button("Предыдущая", e -> {
+      if (currentPage > 0) {
+        currentPage--;
+        updatePagination();
+      }
+    });
+
+    Button nextPage = new Button("Следующая", e -> {
+      if (currentPageData.hasNext()) {
+        currentPage++;
+        updatePagination();
+      }
+    });
+
+    paginationControls.removeAll();
+    paginationControls.add(pageSizeSelect, prevPage, nextPage);
   }
 
   private Set<TagDto> loadTagsLocal() {

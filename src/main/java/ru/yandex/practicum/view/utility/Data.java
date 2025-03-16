@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import lombok.experimental.UtilityClass;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.client.RestTemplate;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
@@ -21,20 +24,20 @@ public class Data {
   private static final String IMAGE_MAN_PATH = "C:\\Users\\Data\\Desktop\\man.jpg";
   private static final String IMAGE_WOMAN_PATH = "C:\\Users\\Data\\Desktop\\woman.jpg";
 
-  public List<PostPreviewDto> getRestPosts() {
-    String response = restTemplate.getForObject(BASE_URL, String.class);
-    System.out.println("получен ответ : " + response);
+  //  public List<PostPreviewDto> getRestPosts() {
+  //    String response = restTemplate.getForObject(BASE_URL, String.class);
+  //    System.out.println("получен ответ : " + response);
+  //
+  //    return getPosts(0, 0);
+  //  }
 
-    return getPosts();
-  }
 
-
-  public List<PostPreviewDto> getPosts() {
+  public Page<PostPreviewDto> getPosts(Integer from, Integer size) {
 
     byte[] imageManBytes = getImageBytes(IMAGE_MAN_PATH);
     byte[] imageWomanBytes = getImageBytes(IMAGE_WOMAN_PATH);
 
-    return Arrays.asList(
+    List<PostPreviewDto> posts = Arrays.asList(
         createPost(1L, imageManBytes, "John Smith",
                    "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                    1000, 300, Set.of(new TagDto(1L, "test"), new TagDto(2L, "2024"))),
@@ -51,6 +54,12 @@ public class Data {
         createPost(5L, imageManBytes, "Alf Huncoot",
                    "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                    1000, 138, Set.of(new TagDto(1L, "test")))
+    );
+
+    return new PageImpl<>(
+        posts,
+        PageRequest.of(from, size),
+        posts.size()
     );
   }
 
