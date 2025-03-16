@@ -1,25 +1,13 @@
 package ru.yandex.practicum.view.utility;
 
-import com.vaadin.flow.component.notification.Notification;
-import java.util.HashSet;
 import java.util.Set;
 import lombok.experimental.UtilityClass;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 
 @UtilityClass
-public class HttpRequestService {
+public class RestService {
 //  @Autowired
 //  private RestTemplate restTemplate;
 

@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import lombok.experimental.UtilityClass;
+import org.springframework.web.client.RestTemplate;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
@@ -14,8 +15,19 @@ import ru.yandex.practicum.dto.TagDto;
 
 @UtilityClass
 public class Data {
+  private static final String BASE_URL = "http://localhost:8080/api/posts";
+
+  private RestTemplate restTemplate = new RestTemplate();
   private static final String IMAGE_MAN_PATH = "C:\\Users\\Data\\Desktop\\man.jpg";
   private static final String IMAGE_WOMAN_PATH = "C:\\Users\\Data\\Desktop\\woman.jpg";
+
+  public List<PostPreviewDto> getRestPosts() {
+    String response = restTemplate.getForObject(BASE_URL, String.class);
+    System.out.println("получен ответ : " + response);
+
+    return getPosts();
+  }
+
 
   public List<PostPreviewDto> getPosts() {
 
@@ -50,14 +62,16 @@ public class Data {
                                                       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                                                       Set.of(new TagDto(1L, "test"),
                                                              new TagDto(2L, "2024")),
-                                                      List.of(new CommentDto(1L, "comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment "),
+                                                      List.of(new CommentDto(1L,
+                                                                             "comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment "),
                                                               new CommentDto(2L, "comment2"))),
                                       new PostFullDto(2L, "Abagail Libbie", imageWomanBytes,
                                                       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                                                       Set.of(new TagDto(1L, "test"),
                                                              new TagDto(4L, "2025")),
                                                       List.of(new CommentDto(4L, "comment4"),
-                                                              new CommentDto(3L, "comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment "))));
+                                                              new CommentDto(3L,
+                                                                             "comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment comment "))));
 
 
     return posts.stream()

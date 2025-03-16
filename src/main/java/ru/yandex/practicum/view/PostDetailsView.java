@@ -35,7 +35,7 @@ import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
-import ru.yandex.practicum.view.utility.HttpRequestService;
+import ru.yandex.practicum.view.utility.RestService;
 
 @PageTitle("Post Details")
 @Route("/post/:postId")
@@ -94,7 +94,7 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
   }
 
   private void loadPostData() {
-    PostFullDto postFullDto = HttpRequestService.getPostFullDto(postId);
+    PostFullDto postFullDto = RestService.getPostFullDto(postId);
 
     if (postFullDto != null) {
       titleField.setValue(postFullDto.title());
@@ -322,7 +322,7 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
                    .collect(Collectors.toSet())
       );
 
-      if (HttpRequestService.sendPostToServer(postDto)) {
+      if (RestService.sendPostToServer(postDto)) {
         clearForm();
       } else {
         errorMessage.setText("Не удалось сохранить данные");

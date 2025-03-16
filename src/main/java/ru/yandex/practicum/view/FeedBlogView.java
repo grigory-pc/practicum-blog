@@ -38,7 +38,7 @@ import org.vaadin.lineawesome.LineAwesomeIconUrl;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
-import ru.yandex.practicum.view.utility.HttpRequestService;
+import ru.yandex.practicum.view.utility.RestService;
 import ru.yandex.practicum.view.utility.Data;
 
 @PageTitle("Feed Posts")
@@ -150,7 +150,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
     buttonLayout.addClassName("add-button-layout");
 
-     add(buttonLayout);
+    add(buttonLayout);
   }
 
   private void initAddPostButton() {
@@ -250,7 +250,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
                    .collect(Collectors.toSet())
       );
 
-      if (HttpRequestService.sendPostToServer(postDto)) {
+      if (RestService.sendPostToServer(postDto)) {
         clearForm();
       } else {
         errorMessage.setText("Не удалось сохранить данные");
@@ -263,7 +263,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
   }
 
   private void loadTags() {
-    Set<TagDto> tagDtos = HttpRequestService.loadTagsFromBackend();
+    Set<TagDto> tagDtos = RestService.loadTagsFromBackend();
     if (tagDtos.isEmpty()) {
       Notification.show("Ошибка получения тегов", 5000, Notification.Position.BOTTOM_CENTER);
     } else {
