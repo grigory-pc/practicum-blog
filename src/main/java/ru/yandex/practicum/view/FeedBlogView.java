@@ -34,7 +34,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
@@ -94,7 +94,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
 
     dataView = grid.getListDataView();
 
-    loadTagsLocal();
+    loadTags();
 
     updatePagination();
   }
@@ -247,7 +247,7 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     postTextArea.setWidth("100%");
 
     MultiSelectComboBox<TagDto> tagsSelect = new MultiSelectComboBox<>("Теги");
-    tagsSelect.setItems(loadTagsLocal());
+    tagsSelect.setItems(loadTags());
     tagsSelect.setItemLabelGenerator(TagDto::tagName);
     tagsSelect.setWidth("100%");
 
@@ -311,15 +311,16 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
     }
   }
 
-  private void loadTags() {
+  private Set<TagDto> loadTags() {
     Set<TagDto> tagDtos = RestService.loadTagsFromBackend();
     if (tagDtos.isEmpty()) {
       Notification.show("Ошибка получения тегов", 5000, Notification.Position.BOTTOM_CENTER);
     } else {
       tagSelect.setItems(tagDtos);
       tagSelect.setItemLabelGenerator(TagDto::tagName);
+      return tagDtos;
     }
-
+    return new HashSet<>();
   }
 
   private void clearForm() {
@@ -354,10 +355,5 @@ public class FeedBlogView extends Div implements AfterNavigationObserver {
 
     paginationControls.removeAll();
     paginationControls.add(pageSizeSelect, prevPage, nextPage);
-  }
-
-  private Set<TagDto> loadTagsLocal() {
-    return Set.of(new TagDto(1L, "test"), new TagDto(2L, "2024"), new TagDto(3L, "practicum"),
-                  new TagDto(4L, "2025"), new TagDto(5L, "practicum"));
   }
 }

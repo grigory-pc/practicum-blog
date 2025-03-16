@@ -2,6 +2,7 @@ package ru.yandex.practicum.view;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
@@ -29,6 +30,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import ru.yandex.practicum.dto.CommentDto;
@@ -94,30 +96,31 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
   }
 
   private void loadPostData() {
-    PostFullDto postFullDto = RestService.getPostFullDto(postId);
+    Optional<PostFullDto> postFullDto = RestService.getPostFullDto(postId);
 
-    if (postFullDto != null) {
-      titleField.setValue(postFullDto.title());
-      postTextArea.setValue(postFullDto.postText());
+    if (postFullDto.isPresent()) {
+      PostFullDto post = postFullDto.get();
+      titleField.setValue(post.title());
+      postTextArea.setValue(post.postText());
 
-      if (postFullDto.image() != null) {
+      if (post.image() != null) {
         StreamResource resource = new StreamResource("image.png",
                                                      () -> new ByteArrayInputStream(
-                                                         postFullDto.image()));
+                                                         post.image()));
 
         image = new Image(resource, "image");
         image.addClassName("post-image");
       }
 
       tagsLayout.removeAll();
-      for (TagDto tag : postFullDto.tags()) {
+      for (TagDto tag : post.tags()) {
         Span tagSpan = new Span("#" + tag.tagName());
         tagSpan.addClassName("tag");
         tagsLayout.add(tagSpan);
       }
 
       commentsLayout.removeAll();
-      for (CommentDto comment : postFullDto.comments()) {
+      for (CommentDto comment : post.comments()) {
         commentsLayout.add(createCommentComponent(comment));
       }
 
@@ -150,25 +153,20 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     Paragraph commentText = new Paragraph(comment.commentText());
     commentText.addClassName("comment-text");
 
-    // Создаем текстовое поле для редактирования
     TextArea editCommentArea = new TextArea();
     editCommentArea.setValue(comment.commentText());
-    editCommentArea.setVisible(false); // Скрываем по умолчанию
+    editCommentArea.setVisible(false);
 
-    // Создаем кнопку редактирования
     Button editCommentButton = new Button("Редактировать");
     editCommentButton.addClassName("edit-button");
     editCommentButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-
-    // Создаем кнопку сохранения
     Button saveCommentButton = new Button("Сохранить");
     saveCommentButton.addClassName("save-button");
     saveCommentButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-    saveCommentButton.setVisible(false); // Скрываем по умолчанию
+    saveCommentButton.setVisible(false);
 
-    // Обработчик клика для кнопки редактирования
     editCommentButton.addClickListener(click -> {
       commentText.setVisible(false);
       editCommentArea.setVisible(true);
@@ -176,24 +174,19 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
       editCommentButton.setVisible(false);
     });
 
-    // Обработчик клика для кнопки сохранения
     saveCommentButton.addClickListener(click -> {
-      // Создаем новый объект comment с обновленным текстом
       CommentDto updatedComment = new CommentDto(
           comment.id(),
           editCommentArea.getValue()
       );
 
-      // Обновляем текст в параграфе
       commentText.setText(editCommentArea.getValue());
 
-      // Обновляем отображение
       commentText.setVisible(true);
       editCommentArea.setVisible(false);
       saveCommentButton.setVisible(false);
       editCommentButton.setVisible(true);
 
-      // Здесь можно добавить вызов метода сохранения на сервере
       saveComment(updatedComment);
     });
 
@@ -243,15 +236,22 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
   }
 
   private void deletePost(ClickEvent<Button> event) {
-    System.out.println("Пост удален");
+    if (RestService.deletePost(postId)) {
+      UI.getCurrent().navigate(FeedBlogView.class);
+    }
   }
 
+  //ToDo доделать
   private void deleteComment(ClickEvent<Button> event) {
-    System.out.println("Комментарий удален");
+    if (RestService.deleteComment(1L)) {
+      UI.getCurrent().navigate(PostDetailsView.class);
+    }
   }
 
   private void saveComment(CommentDto commentDto) {
-    System.out.println("Комментарий сохранен: " + commentDto.commentText());
+    if (RestService.sendCommentToServer(postId, commentDto)) {
+      UI.getCurrent().navigate(PostDetailsView.class);
+    }
   }
 
   private void createEditPostDialog() {
@@ -285,7 +285,7 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     editPostTextArea.setWidth("100%");
 
     MultiSelectComboBox<TagDto> tagsSelect = new MultiSelectComboBox<>("Теги");
-    tagsSelect.setItems(loadTagsLocal());
+    tagsSelect.setItems(RestService.loadTagsFromBackend());
     tagsSelect.setItemLabelGenerator(TagDto::tagName);
     tagsSelect.setWidth("100%");
 
@@ -341,11 +341,6 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     tagSelect.setValue(Set.of());
     editTitleField.focus();
     errorMessage.remove();
-  }
-
-  private Set<TagDto> loadTagsLocal() {
-    return Set.of(new TagDto(1L, "test"), new TagDto(2L, "2024"), new TagDto(3L, "practicum"),
-                  new TagDto(4L, "2025"), new TagDto(5L, "practicum"));
   }
 
   private boolean likePost(Long postId) {

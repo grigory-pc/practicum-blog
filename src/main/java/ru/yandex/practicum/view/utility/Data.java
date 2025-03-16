@@ -44,7 +44,7 @@ public class Data {
         createPost(2L, imageWomanBytes, "Abagail Libbie",
                    "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                    50, 400, Set.of(new TagDto(1L, "test"), new TagDto(4L, "2025"),
-                                   new TagDto(3L, "practicum"))),
+                                   new TagDto(3L, "blog"))),
         createPost(3L, imageManBytes, "Alberto Raya",
                    "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content (also called greeking).",
                    1020, 5, Set.of(new TagDto(5L, "practicum"))),
@@ -121,4 +121,10 @@ public class Data {
 
     return result.toString().trim();
   }
+
+  public Set<TagDto> getTags() {
+    return Set.of(new TagDto(1L, "test"), new TagDto(2L, "2024"), new TagDto(3L, "blog"),
+                  new TagDto(4L, "2025"), new TagDto(5L, "practicum"));
+  }
+
 }
