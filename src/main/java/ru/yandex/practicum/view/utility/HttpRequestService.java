@@ -24,7 +24,7 @@ public class HttpRequestService {
 //  private RestTemplate restTemplate;
 
   public boolean sendPostToServer(PostSaveDto postDto) {
-    System.out.println("Request sended: " + postDto);
+    System.out.println("Request sended: " + postDto.title());
 
     return true;
 //    try {

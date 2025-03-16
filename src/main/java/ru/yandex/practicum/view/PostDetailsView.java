@@ -4,6 +4,8 @@ import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.MultiSelectComboBox;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
@@ -16,14 +18,20 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Set;
+import java.util.stream.Collectors;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
+import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.view.utility.HttpRequestService;
 
@@ -37,6 +45,15 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
   private TextArea postTextArea;
   private HorizontalLayout tagsLayout;
   private VerticalLayout commentsLayout;
+  private Dialog editPostDialog;
+  private MemoryBuffer imageBuffer;
+  private FormLayout editPostForm;
+  private Upload imageUpload;
+  private Button saveButton;
+  MultiSelectComboBox<TagDto> tagSelect = new MultiSelectComboBox<>("Теги");
+  private Div errorMessage = new Div();
+  private TextField editTitleField;
+  private TextArea editPostTextArea;
 
   public PostDetailsView() {
     addClassName("post-details-view");
@@ -62,8 +79,6 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     commentsLayout = new VerticalLayout();
     commentsLayout.addClassName("comments");
 
-    initDeletePostButton();
-
     add(form);
   }
 
@@ -72,6 +87,8 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     postId = event.getRouteParameters().getLong("postId").orElse(null);
 
     loadPostData();
+    initDeletePostButton();
+    initEditPostButton();
   }
 
   private void loadPostData() {
@@ -152,11 +169,119 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     return buttonLayout;
   }
 
+  private void initEditPostButton() {
+    Button editPostButton = new Button("Редактировать пост");
+    editPostButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    editPostButton.addClickListener(click -> editPostDialog.open());
+
+    FlexLayout buttonLayout = new FlexLayout(editPostButton);
+    buttonLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+    buttonLayout.addClassName("add-button-layout");
+
+    add(buttonLayout);
+
+    createEditPostDialog();
+  }
+
   private void deletePost(ClickEvent<Button> event) {
     System.out.println("Пост удален");
   }
 
   private void deleteComment(ClickEvent<Button> event) {
     System.out.println("Комментарий удален");
+  }
+
+  private void createEditPostDialog() {
+    imageBuffer = new MemoryBuffer();
+
+    editPostDialog = new Dialog();
+    editPostDialog.addClassName("custom-dialog");
+    editPostDialog.setCloseOnEsc(true);
+    editPostDialog.setCloseOnOutsideClick(true);
+    editPostDialog.setModal(true);
+
+    editPostForm = new FormLayout();
+    editPostForm.setResponsiveSteps(
+        new FormLayout.ResponsiveStep("0", 1),
+        new FormLayout.ResponsiveStep("400px", 2)
+    );
+
+    editTitleField = new TextField("Заголовок");
+    editTitleField.setValue(titleField.getValue());
+    editTitleField.setWidth("100%");
+
+    imageUpload = new Upload(imageBuffer);
+    imageUpload.setAcceptedFileTypes("image/*");
+    imageUpload.setMaxFileSize(10 * 1024 * 1024); // 10MB
+    imageUpload.setAutoUpload(true);
+    imageUpload.setWidth("100%");
+
+    editPostTextArea = new TextArea("Текст поста");
+    editPostTextArea.setValue(postTextArea.getValue());
+    editPostTextArea.setHeight("200px");
+    editPostTextArea.setWidth("100%");
+
+    MultiSelectComboBox<TagDto> tagsSelect = new MultiSelectComboBox<>("Теги");
+    tagsSelect.setItems(loadTagsLocal());
+    tagsSelect.setItemLabelGenerator(TagDto::tagName);
+    tagsSelect.setWidth("100%");
+
+    saveButton = new Button("Сохранить");
+    saveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+    saveButton.addClickListener(this::savePost);
+
+    HorizontalLayout buttonLayout = new HorizontalLayout();
+    buttonLayout.setAlignSelf(FlexComponent.Alignment.END);
+    buttonLayout.add(saveButton);
+
+    editPostForm.add(
+        editTitleField,
+        imageUpload,
+        editPostTextArea,
+        tagsSelect,
+        saveButton
+    );
+
+    editPostDialog.add(editPostForm);
+  }
+
+  private void savePost(ClickEvent<Button> event) {
+    try {
+      InputStream imageInputStream = imageBuffer.getInputStream();
+      byte[] imageBytes = imageInputStream != null ? imageInputStream.readAllBytes() : null;
+
+      PostSaveDto postDto = new PostSaveDto(
+          titleField.getValue(),
+          imageBytes,
+          postTextArea.getValue(),
+          tagSelect.getValue().stream()
+                   .map(TagDto::id)
+                   .collect(Collectors.toSet())
+      );
+
+      if (HttpRequestService.sendPostToServer(postDto)) {
+        clearForm();
+      } else {
+        errorMessage.setText("Не удалось сохранить данные");
+        editPostForm.add(errorMessage);
+        clearForm();
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private void clearForm() {
+    editTitleField.clear();
+    imageBuffer = new MemoryBuffer();
+    editPostTextArea.clear();
+    tagSelect.setValue(Set.of());
+    editTitleField.focus();
+    errorMessage.remove();
+  }
+
+  private Set<TagDto> loadTagsLocal() {
+    return Set.of(new TagDto(1L, "test"), new TagDto(2L, "2024"), new TagDto(3L, "practicum"),
+                  new TagDto(4L, "2025"), new TagDto(5L, "practicum"));
   }
 }
