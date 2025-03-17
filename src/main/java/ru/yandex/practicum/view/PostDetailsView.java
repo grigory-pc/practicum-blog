@@ -254,6 +254,10 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     }
   }
 
+  private boolean likePost(Long postId) {
+    return RestService.addLike(postId);
+  }
+
   private void createEditPostDialog() {
     imageBuffer = new MemoryBuffer();
 
@@ -341,9 +345,5 @@ public class PostDetailsView extends Div implements AfterNavigationObserver {
     tagSelect.setValue(Set.of());
     editTitleField.focus();
     errorMessage.remove();
-  }
-
-  private boolean likePost(Long postId) {
-    return true;
   }
 }

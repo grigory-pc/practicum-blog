@@ -133,28 +133,49 @@ public class RestService {
     return true;
   }
 
-  public boolean sendCommentToServer(Long postId,CommentDto commentDto) {
+  public boolean sendCommentToServer(Long postId, CommentDto commentDto) {
+    //ToDo закоментированно до решения проблемы с одновременной работой двух сервлетов и доступности
+    // REST-контроллеров.
+
+    //    try {
+    //      HttpHeaders headers = new HttpHeaders();
+    //      headers.setContentType(MediaType.APPLICATION_JSON);
+    //
+    //      HttpEntity<CommentDto> requestEntity = new HttpEntity<>(commentDto, headers);
+    //      ResponseEntity<String> response = restTemplate.postForEntity(
+    //          BASE_URL + "/" + postId + "/comment",
+    //          requestEntity,
+    //          String.class
+    //      );
+    //
+    //      if (response.getStatusCode().is2xxSuccessful()) {
+    //        Notification.show("Комментарий успешно создан");
+    //        return true;
+    //      } else {
+    //        return false;
+    //      }
+    //    } catch (Exception e) {
+    //      return false;
+    //    }
+
+    //Загрушка
+    return true;
+  }
+
+  public boolean addLike(Long postId) {
     //ToDo закоментированно до решения проблемы с одновременной работой двух сервлетов и доступности
     // REST-контроллеров.
 
 //    try {
-//      HttpHeaders headers = new HttpHeaders();
-//      headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//      HttpEntity<CommentDto> requestEntity = new HttpEntity<>(commentDto, headers);
-//      ResponseEntity<String> response = restTemplate.postForEntity(
-//          BASE_URL + "/" + postId + "/comment",
-//          requestEntity,
-//          String.class
+//      ResponseEntity<Void> response = restTemplate.exchange(
+//          BASE_URL + "/" + postId + "/like",
+//          HttpMethod.POST,
+//          null,
+//          new ParameterizedTypeReference<>() {
+//          }
 //      );
-//
-//      if (response.getStatusCode().is2xxSuccessful()) {
-//        Notification.show("Комментарий успешно создан");
-//        return true;
-//      } else {
-//        return false;
-//      }
-//    } catch (Exception e) {
+//      return response.getStatusCode().is2xxSuccessful();
+//    } catch (RestClientException e) {
 //      return false;
 //    }
 

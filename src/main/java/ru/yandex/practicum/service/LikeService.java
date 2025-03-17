@@ -17,8 +17,8 @@ public interface LikeService {
   /**
    * Добавление лайка к посту.
    *
-   * @param id - id поста.
+   * @param postId - id поста.
    * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
    */
-  void addLike(Long id) throws NotFoundException;
+  void addLike(Long postId) throws NotFoundException;
 }

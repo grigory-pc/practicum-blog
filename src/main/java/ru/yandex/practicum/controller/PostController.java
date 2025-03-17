@@ -96,15 +96,15 @@ public class PostController {
   /**
    * Добавление лайка к посту.
    *
-   * @param id - id поста.
+   * @param postId - id поста.
    */
   @PostMapping("/{id}/like")
-  public void addLike(@PathVariable(name = "id") Long id) {
-    log.info("Получен запрос на добавление лайка для поста id = {}", id);
+  public void addLike(@PathVariable(name = "id") Long postId) {
+    log.info("Получен запрос на добавление лайка для поста id = {}", postId);
 
-    likeService.addLike(id);
+    likeService.addLike(postId);
 
-    log.info("Для поста id = {} добавлен лайк в базу данных", id);
+    log.info("Для поста id = {} добавлен лайк в базу данных", postId);
   }
 
   /**

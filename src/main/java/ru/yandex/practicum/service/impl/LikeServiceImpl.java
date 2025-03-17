@@ -25,8 +25,8 @@ public class LikeServiceImpl implements LikeService {
   }
 
   @Override
-  public void addLike(Long id) {
-    Optional<Like> existingLikesOptional = likeRepository.findByPostId(id);
+  public void addLike(Long postId) {
+    Optional<Like> existingLikesOptional = likeRepository.findByPostId(postId);
 
     log.info("Из БД получена запись = {}", existingLikesOptional);
 
