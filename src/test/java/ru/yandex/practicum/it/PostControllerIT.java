@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,6 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 import ru.yandex.practicum.config.DataSourceTestConfig;
 import ru.yandex.practicum.config.WebConfiguration;
 import ru.yandex.practicum.dao.Post;
+import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
@@ -36,7 +38,6 @@ import ru.yandex.practicum.utils.Data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -52,7 +53,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PostControllerIT {
   private static final String BASE_URL = "/posts";
   public static final long ID_POST = 1L;
-  public static final long ID_NEW_POST = 2L;
   public static final int POSTS_SIZE = 1;
   private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -69,7 +69,6 @@ public class PostControllerIT {
   public static void initTables(@Autowired DataSource dataSource) {
     try (Connection conn = dataSource.getConnection()) {
       ScriptUtils.executeSqlScript(conn, new ClassPathResource("/schema.sql"));
-      System.out.println();
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -77,19 +76,31 @@ public class PostControllerIT {
 
   @BeforeEach
   void setUp() {
-    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     Post post = Data.getPost();
+    Set<Tag> tags = Data.getTags();
+
+    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
     jdbcTemplate = webApplicationContext.getBean(JdbcTemplate.class);
 
     jdbcTemplate.execute("DELETE FROM posts");
-    String sql = "INSERT INTO posts (id, title, image, text, count_likes)VALUES (?, ?, ?, ?, ?)";
-    jdbcTemplate.update(sql,
+    jdbcTemplate.execute("DELETE FROM tags");
+
+    String sqlPosts
+        = "INSERT INTO posts (id, title, image, text, count_likes)VALUES (?, ?, ?, ?, ?)";
+    jdbcTemplate.update(sqlPosts,
                         post.getId(),
                         post.getTitle(),
                         post.getImage(),
                         post.getPostText(),
                         post.getCountLikes());
+
+    for (Tag tag : tags) {
+      String sqlTags = "INSERT INTO tags (id, tag_name)VALUES (?, ?)";
+      jdbcTemplate.update(sqlTags,
+                          tag.getId(),
+                          tag.getTagName());
+    }
   }
 
   @Test
@@ -124,23 +135,21 @@ public class PostControllerIT {
 
   @Test
   void getUsers_shouldSavePost() throws Exception {
+    jdbcTemplate.execute("DELETE FROM posts");
+
     PostSaveDto postSaveDto = Data.getPostSaveDto();
 
-    if (postRepository.findAll().size() == POSTS_SIZE) {
+    mockMvc.perform(post(BASE_URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(postSaveDto)))
+           .andExpect(status().isOk());
 
-      mockMvc.perform(post(BASE_URL)
-                          .contentType(MediaType.APPLICATION_JSON)
-                          .content(objectMapper.writeValueAsString(postSaveDto)))
-             .andExpect(status().isOk());
+    Optional<Post> savedPost = postRepository.findById(ID_POST);
 
-      Optional<Post> savedPost = postRepository.findById(ID_NEW_POST);
+    assertTrue(savedPost.isPresent());
+    assertEquals(postSaveDto.title(), savedPost.get().getTitle());
+    assertEquals(postSaveDto.postText(), savedPost.get().getPostText());
 
-      assertTrue(savedPost.isPresent());
-      assertEquals(postSaveDto.title(), savedPost.get().getTitle());
-      assertEquals(postSaveDto.postText(), savedPost.get().getPostText());
-    } else {
-      fail("в базе данных больше одной записи, а ожидали только одну");
-    }
   }
 
   @Test

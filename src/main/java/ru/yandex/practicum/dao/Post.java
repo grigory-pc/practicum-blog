@@ -32,7 +32,7 @@ public class Post {
   private Long id;
   @Column(name = "title", nullable = false)
   private String title;
-  @Column(name = "image", nullable = false)
+  @Column(name = "image")
   private byte[] image;
   @Column(name = "text", nullable = false)
   private String postText;

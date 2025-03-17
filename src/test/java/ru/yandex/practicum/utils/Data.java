@@ -23,6 +23,7 @@ public class Data {
   public static final Long ID_ONE = 1L;
   public static final Long ID_TWO = 2L;
   public static final String TAG = "test";
+  public static final String TAG_TWO = "test_two";
 
   public PostPreviewDto getPostPreviewDto() {
     return new PostPreviewDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text", 0, 0,
@@ -40,7 +41,7 @@ public class Data {
   }
 
   public PostSaveDto getPostSaveDto() {
-    return new PostSaveDto("test", getImageBytes(IMAGE_MAN_PATH), "text",
+    return new PostSaveDto("test", null, "text",
                            Set.of(ID_ONE, ID_TWO));
   }
 
@@ -62,6 +63,10 @@ public class Data {
 
   public Tag getTag() {
     return new Tag(1L, TAG);
+  }
+
+  public Set<Tag> getTags() {
+    return Set.of(new Tag(1L, TAG), new Tag(2L, TAG_TWO));
   }
 
   private static byte[] getImageBytes(String path) {
