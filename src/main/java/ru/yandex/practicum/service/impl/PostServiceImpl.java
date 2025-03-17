@@ -22,7 +22,6 @@ import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
 import ru.yandex.practicum.repository.TagRepository;
-import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 
 @Slf4j
@@ -34,13 +33,12 @@ public class PostServiceImpl implements PostService {
   private final PostTagRepository postTagRepository;
   private final TagRepository tagRepository;
   private final PostMapper postMapper;
-  private final LikeService likeService;
 
   @Override
   public Page<PostPreviewDto> findAllPosts(int from, int size) {
     Pageable pageable = PageRequest.of(from, size);
 
-    Page<Post> posts = postRepository.findAllPosts(pageable);
+    Page<Post> posts = postRepository.findAll(pageable);
 
     Map<Long, Set<Tag>> postTagMap = getPostTagsForSetPosts(posts);
 
@@ -66,11 +64,13 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public void savePost(PostSaveDto postSaveDto) {
-    Post post = postRepository.save(postMapper.toPost(postSaveDto));
+    Post newPost = postMapper.toPost(postSaveDto);
+    newPost.setCountLikes(0);
 
-    postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(new PostTag(post.getId(), tagId)));
+    Post savedPost = postRepository.save(newPost);
 
-    likeService.saveLike(post.getId());
+    postSaveDto.tagIds()
+               .forEach(tagId -> postTagRepository.save(new PostTag(savedPost.getId(), tagId)));
   }
 
   @Override
@@ -92,6 +92,11 @@ public class PostServiceImpl implements PostService {
     postRepository.deleteById(id);
 
     postTagRepository.deleteAllByPostId(id);
+  }
+
+  @Override
+  public void addLike(Long postId) throws NotFoundException {
+    postRepository.increaseLikesCount(postId);
   }
 
   private Map<Long, Set<Tag>> getPostTagsForSetPosts(Page<Post> posts) {

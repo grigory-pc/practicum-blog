@@ -23,7 +23,6 @@ import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.service.CommentService;
-import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 import ru.yandex.practicum.service.TagService;
 import ru.yandex.practicum.utils.Data;
@@ -57,8 +56,6 @@ class PostControllerTest {
   PostService postService;
   @MockitoBean
   CommentService commentService;
-  @MockitoBean
-  LikeService likeService;
   @MockitoBean
   TagService tagService;
 
@@ -159,14 +156,14 @@ class PostControllerTest {
   @Test
   void positiveTest_shouldAddLike() {
     try {
-      doNothing().when(likeService)
+      doNothing().when(postService)
                  .addLike(anyLong());
 
       mockMvc.perform(post(BASE_URL + "/" + POST_ID + "/like")
                           .contentType(MediaType.APPLICATION_JSON))
              .andExpect(status().isOk());
 
-      verify(likeService, atLeastOnce()).addLike(anyLong());
+      verify(postService, atLeastOnce()).addLike(anyLong());
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");

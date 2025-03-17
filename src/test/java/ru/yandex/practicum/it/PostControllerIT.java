@@ -1,18 +1,24 @@
 package ru.yandex.practicum.it;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import javax.sql.DataSource;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -44,7 +50,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource(locations = "classpath:application-test.properties")
 @Profile("test")
 public class PostControllerIT {
-  private static final String BASE_URL = "/api/posts";
+  private static final String BASE_URL = "/posts";
   public static final long ID_POST = 1L;
   public static final long ID_NEW_POST = 2L;
   public static final int POSTS_SIZE = 1;
@@ -59,19 +65,31 @@ public class PostControllerIT {
 
   private MockMvc mockMvc;
 
+  @BeforeAll
+  public static void initTables(@Autowired DataSource dataSource) {
+    try (Connection conn = dataSource.getConnection()) {
+      ScriptUtils.executeSqlScript(conn, new ClassPathResource("/schema.sql"));
+      System.out.println();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   @BeforeEach
   void setUp() {
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     Post post = Data.getPost();
 
-    // Очистка и заполнение тестовых данных в базе
+    jdbcTemplate = webApplicationContext.getBean(JdbcTemplate.class);
+
     jdbcTemplate.execute("DELETE FROM posts");
-    String sql = "INSERT INTO posts (id, title, image, text)VALUES (?, ?, ?, ?)";
+    String sql = "INSERT INTO posts (id, title, image, text, count_likes)VALUES (?, ?, ?, ?, ?)";
     jdbcTemplate.update(sql,
                         post.getId(),
                         post.getTitle(),
                         post.getImage(),
-                        post.getPostText());
+                        post.getPostText(),
+                        post.getCountLikes());
   }
 
   @Test
@@ -89,6 +107,7 @@ public class PostControllerIT {
            .andExpect(status().isOk())
            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
            .andExpect(content().json(expectedBody));
+
   }
 
   @Test
@@ -110,7 +129,8 @@ public class PostControllerIT {
     if (postRepository.findAll().size() == POSTS_SIZE) {
 
       mockMvc.perform(post(BASE_URL)
-                          .accept(MediaType.APPLICATION_JSON))
+                          .contentType(MediaType.APPLICATION_JSON)
+                          .content(objectMapper.writeValueAsString(postSaveDto)))
              .andExpect(status().isOk());
 
       Optional<Post> savedPost = postRepository.findById(ID_NEW_POST);

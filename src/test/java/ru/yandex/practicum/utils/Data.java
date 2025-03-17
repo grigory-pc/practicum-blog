@@ -3,12 +3,11 @@ package ru.yandex.practicum.utils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import lombok.experimental.UtilityClass;
 import ru.yandex.practicum.dao.Comment;
-import ru.yandex.practicum.dao.Like;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dao.Tag;
@@ -26,18 +25,18 @@ public class Data {
   public static final String TAG = "test";
 
   public PostPreviewDto getPostPreviewDto() {
-    return new PostPreviewDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text", 2, 1,
-                              Set.of(getTagDto()));
+    return new PostPreviewDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text", 0, 0,
+                              new HashSet<>());
   }
 
   public PostFullDto getPostFullDto() {
     return new PostFullDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text",
-                           Set.of(getTagDto()), List.of(getCommentDto(ID_ONE)));
+                           new HashSet<>(), new ArrayList<>());
   }
 
   public Post getPost() {
     return new Post(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text",
-                    new HashSet<>(), getLike(ID_ONE), new HashSet<>());
+                    new ArrayList<>(), 0, new HashSet<>());
   }
 
   public PostSaveDto getPostSaveDto() {
@@ -51,10 +50,6 @@ public class Data {
 
   public Comment getComment(Long id) {
     return new Comment(id, getPost(), "text");
-  }
-
-  public Like getLike(Long postId) {
-    return new Like(ID_ONE, postId, 1);
   }
 
   public TagDto getTagDto() {

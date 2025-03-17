@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
@@ -12,7 +13,6 @@ import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
 import ru.yandex.practicum.dto.TagDto;
 import ru.yandex.practicum.service.CommentService;
-import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 import ru.yandex.practicum.service.TagService;
 
@@ -27,7 +27,6 @@ public class PostController {
   private final PostService postService;
   private final CommentService commentService;
   private final TagService tagService;
-  private final LikeService likeService;
 
   /**
    * Обрабатывает GET-запросы на получение списка превью постов для ленты.
@@ -37,7 +36,7 @@ public class PostController {
    * @return список превью постов.
    */
   @GetMapping
-  public Page<PostPreviewDto> getPosts(@RequestParam(defaultValue = "0") int from,
+  public ResponseEntity<Page<PostPreviewDto>> getPosts(@RequestParam(defaultValue = "0") int from,
                                        @RequestParam(defaultValue = "10") int size) {
     log.info("Получен запрос на получение preview постов");
 
@@ -45,7 +44,7 @@ public class PostController {
 
     log.info("Получен список preview постов размером: {}", postsPreviewPage.getTotalElements());
 
-    return postsPreviewPage;
+    return ResponseEntity.ok(postsPreviewPage);
   }
 
   /**
@@ -55,14 +54,14 @@ public class PostController {
    * @return объект поста.
    */
   @GetMapping("/{id}")
-  public PostFullDto getPostById(@PathVariable(name = "id") Long id) {
+  public ResponseEntity<PostFullDto> getPostById(@PathVariable(name = "id") Long id) {
     log.info("Получен запрос на получение поста для id = {}", id);
 
     PostFullDto postFullDto = postService.getPostById(id);
 
     log.info("Из базы данных получен пост с id: {}", postFullDto.id());
 
-    return postFullDto;
+    return ResponseEntity.ok(postFullDto);
   }
 
   /**
@@ -102,7 +101,7 @@ public class PostController {
   public void addLike(@PathVariable(name = "id") Long postId) {
     log.info("Получен запрос на добавление лайка для поста id = {}", postId);
 
-    likeService.addLike(postId);
+    postService.addLike(postId);
 
     log.info("Для поста id = {} добавлен лайк в базу данных", postId);
   }
@@ -174,9 +173,9 @@ public class PostController {
    * @return список тегов.
    */
   @GetMapping("/tags")
-  public List<TagDto> getTags() {
+  public ResponseEntity<List<TagDto>> getTags() {
     log.info("Получен запрос на получение тегов");
 
-    return tagService.findAllTags();
+    return ResponseEntity.ok(tagService.findAllTags());
   }
 }

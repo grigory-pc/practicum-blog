@@ -13,7 +13,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Component;
 
 /**
- * Конфигурация dataSource (H2 in memory DB).
+ * Конфигурация dataSource.
  */
 @Component
 @PropertySource(value = "classpath:application-test.properties")

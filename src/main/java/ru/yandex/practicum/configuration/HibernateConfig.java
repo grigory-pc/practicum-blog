@@ -41,11 +41,6 @@ public class HibernateConfig {
     }
 
     @Bean
-    public DataSource dataSource() {
-        return dataSourceConfig.getDataSource();
-    }
-
-    @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);

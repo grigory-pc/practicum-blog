@@ -51,4 +51,12 @@ public interface PostService {
    * @param id - id поста.
    */
   void deletePostById(Long id);
+
+  /**
+   * Добавление лайка к посту.
+   *
+   * @param postId - id поста.
+   * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
+   */
+  void addLike(Long postId) throws NotFoundException;
 }

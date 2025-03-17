@@ -21,7 +21,6 @@ import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
 import ru.yandex.practicum.repository.TagRepository;
-import ru.yandex.practicum.service.LikeService;
 import ru.yandex.practicum.service.PostService;
 import ru.yandex.practicum.utils.Data;
 
@@ -48,8 +47,6 @@ class PostServiceImplTest {
   private TagRepository tagRepository;
   @MockitoBean
   private PostMapper postMapper;
-  @MockitoBean
-  private LikeService likeService;
   @Autowired
   private PostService postService;
 
@@ -63,7 +60,7 @@ class PostServiceImplTest {
       PostPreviewDto expectedPostPreviewDto = Data.getPostPreviewDto();
 
       doReturn(postPage)
-          .when(postRepository).findAllPosts(any(Pageable.class));
+          .when(postRepository).findAll(any(Pageable.class));
       doReturn(Set.of(Data.getPostTag()))
           .when(postTagRepository).findAllByPostIdIn(anySet());
       doReturn(Set.of(Data.getTag()))
@@ -119,16 +116,12 @@ class PostServiceImplTest {
       doReturn(Data.getPostTag())
           .when(postTagRepository).save(any(PostTag.class));
 
-      doNothing().when(likeService)
-                 .saveLike(anyLong());
-
       assertDoesNotThrow(
           () -> postService.savePost(postSaveDto));
 
       verify(postMapper, atLeastOnce()).toPost(any(PostSaveDto.class));
       verify(postRepository, atLeastOnce()).save(any(Post.class));
       verify(postTagRepository, atLeastOnce()).save(any(PostTag.class));
-      verify(likeService, atLeastOnce()).saveLike(anyLong());
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");

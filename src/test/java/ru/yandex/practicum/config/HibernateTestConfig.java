@@ -41,11 +41,6 @@ public class HibernateTestConfig {
     }
 
     @Bean
-    public DataSource dataSource() {
-        return dataSourceTestConfig.getDataSource();
-    }
-
-    @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
