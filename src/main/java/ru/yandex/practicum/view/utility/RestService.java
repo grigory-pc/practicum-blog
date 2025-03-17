@@ -20,34 +20,34 @@ import ru.yandex.practicum.dto.TagDto;
 
 @UtilityClass
 public class RestService {
-  private static final String BASE_URL = "http://localhost:8080/api/posts";
+//  private static final String BASE_URL = "http://localhost:8080/api/posts";
+    private static final String BASE_URL = "http://localhost:8080/posts";
 
-  private RestTemplate restTemplate;
+  private RestTemplate restTemplate = new RestTemplate();
 
   public boolean sendPostToServer(PostSaveDto postDto) {
     //ToDo закоментированно до решения проблемы с одновременной работой двух сервлетов и доступности
     // REST-контроллеров.
 
-    //    try {
-    //      HttpHeaders headers = new HttpHeaders();
-    //      headers.setContentType(MediaType.APPLICATION_JSON);
-    //
-    //      HttpEntity<PostSaveDto> requestEntity = new HttpEntity<>(postDto, headers);
-    //      ResponseEntity<String> response = restTemplate.postForEntity(
-    //          "http://localhost:8080/posts",
-    //          requestEntity,
-    //          String.class
-    //      );
-    //
-    //      if (response.getStatusCode().is2xxSuccessful()) {
-    //        Notification.show("Пост успешно создан");
-    //        return true;
-    //      } else {
-    //        return false;
-    //      }
-    //    } catch (Exception e) {
-    //      return false;
-    //    }
+//    try {
+//      HttpHeaders headers = new HttpHeaders();
+//      headers.setContentType(MediaType.APPLICATION_JSON);
+//
+//      HttpEntity<PostSaveDto> requestEntity = new HttpEntity<>(postDto, headers);
+//      ResponseEntity<String> response = restTemplate.postForEntity(BASE_URL,
+//                                                                   requestEntity,
+//                                                                   String.class
+//      );
+//
+//      if (response.getStatusCode().is2xxSuccessful()) {
+//        Notification.show("Пост успешно создан");
+//        return true;
+//      } else {
+//        return false;
+//      }
+//    } catch (Exception e) {
+//      return false;
+//    }
 
     //Загрушка
     return true;
@@ -166,18 +166,18 @@ public class RestService {
     //ToDo закоментированно до решения проблемы с одновременной работой двух сервлетов и доступности
     // REST-контроллеров.
 
-//    try {
-//      ResponseEntity<Void> response = restTemplate.exchange(
-//          BASE_URL + "/" + postId + "/like",
-//          HttpMethod.POST,
-//          null,
-//          new ParameterizedTypeReference<>() {
-//          }
-//      );
-//      return response.getStatusCode().is2xxSuccessful();
-//    } catch (RestClientException e) {
-//      return false;
-//    }
+    //    try {
+    //      ResponseEntity<Void> response = restTemplate.exchange(
+    //          BASE_URL + "/" + postId + "/like",
+    //          HttpMethod.POST,
+    //          null,
+    //          new ParameterizedTypeReference<>() {
+    //          }
+    //      );
+    //      return response.getStatusCode().is2xxSuccessful();
+    //    } catch (RestClientException e) {
+    //      return false;
+    //    }
 
     //Загрушка
     return true;

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: корректировка зависимостей, объектов и конфигурации. Обновление сервисов в части работы с лайками. Корректировка данных для тестов">
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: вынесение версий зависимостей">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/RestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/RestService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,13 +80,13 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn clean install" />
       <command value="mvn clean install -Dmaven.test.skip=true" />
       <command value="mvn dependency:analyze" />
       <command value="mvn dependency:tree -Dverbose | find &quot;omitted for conflict&quot;" />
       <command value="mvn dependency:tree -Dverbose" />
       <command value="mvn clean compile -Dmaven.test.skip=true" />
       <command value="mvn clean compile" />
+      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunManager" selected="JUnit.PostControllerIT">
@@ -230,7 +228,7 @@
       <workItem from="1742113845306" duration="4344000" />
       <workItem from="1742141152910" duration="11811000" />
       <workItem from="1742197876146" duration="5271000" />
-      <workItem from="1742206146794" duration="12057000" />
+      <workItem from="1742206146794" duration="13035000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -392,7 +390,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742233037358</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="feat: корректировка ИТ">
+      <option name="closed" value="true" />
+      <created>1742234430814</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1742234430814</updated>
+    </task>
+    <task id="LOCAL-00022" summary="feat: вынесение версий зависимостей">
+      <option name="closed" value="true" />
+      <created>1742234769524</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1742234769524</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +442,9 @@
     <MESSAGE value="feat: корректировка тестов" />
     <MESSAGE value="feat: корректировка зависимостей, объектов и конфигурации" />
     <MESSAGE value="feat: корректировка зависимостей, объектов и конфигурации. Обновление сервисов в части работы с лайками. Корректировка данных для тестов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: корректировка зависимостей, объектов и конфигурации. Обновление сервисов в части работы с лайками. Корректировка данных для тестов" />
+    <MESSAGE value="feat: корректировка ИТ" />
+    <MESSAGE value="feat: вынесение версий зависимостей" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: вынесение версий зависимостей" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
