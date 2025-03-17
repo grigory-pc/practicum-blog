@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     classes = {DataSourceTestConfig.class, WebConfiguration.class, PostRepository.class})
 @Import(DataSourceTestConfig.class)
 @WebAppConfiguration
-@TestPropertySource(locations = "classpath:application-test.yml")
+@TestPropertySource(locations = "classpath:application-test.properties")
 @Profile("test")
 public class PostControllerIT {
   private static final String BASE_URL = "/api/posts";

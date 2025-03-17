@@ -17,7 +17,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
  * Конфигурация для работы с БД.
  */
 @Configuration
-@PropertySource(value = "classpath:application-test.yml")
+@PropertySource(value = "classpath:application-test.properties")
 @RequiredArgsConstructor
 public class DataSourceTestConfig {
   private final Environment environment;

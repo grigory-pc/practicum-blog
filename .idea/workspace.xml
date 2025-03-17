@@ -4,23 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: корректировка тестов">
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: корректировка зависимостей, объектов и конфигурации">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSource.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSourceConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/HibernateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/HibernateConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Like.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostFullDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostFullDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostSaveDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostSaveDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/mapper/PostMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/CommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/PostTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/PostTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dao/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTestConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateTestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/HibernateTestConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +213,7 @@
       <workItem from="1742080377483" duration="2099000" />
       <workItem from="1742113845306" duration="4344000" />
       <workItem from="1742141152910" duration="11811000" />
-      <workItem from="1742197876146" duration="3602000" />
+      <workItem from="1742197876146" duration="5271000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -361,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742198568528</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat: корректировка зависимостей, объектов и конфигурации">
+      <option name="closed" value="true" />
+      <created>1742201845018</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1742201845018</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +401,8 @@
     <MESSAGE value="feat: для frontend добавлена работа с пагинацией" />
     <MESSAGE value="feat: для frontend добавлены rest запросы" />
     <MESSAGE value="feat: корректировка тестов" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: корректировка тестов" />
+    <MESSAGE value="feat: корректировка зависимостей, объектов и конфигурации" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: корректировка зависимостей, объектов и конфигурации" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -422,7 +429,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java</url>
-          <line>82</line>
+          <line>84</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -444,11 +451,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/config/DataSourceTestConfig.java</url>
           <line>26</line>
           <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/configuration/DataSourceConfig.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

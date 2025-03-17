@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * Конфигурация dataSource (H2 in memory DB).
  */
 @Component
-@PropertySource(value = "classpath:application-test.yml")
+@PropertySource(value = "classpath:application-test.properties")
 @RequiredArgsConstructor
 public class DataSourceConfig {
   private final Environment environment;

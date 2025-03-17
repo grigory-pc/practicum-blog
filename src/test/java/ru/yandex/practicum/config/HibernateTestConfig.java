@@ -14,7 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@PropertySource(value = "classpath:application-test.yml")
+@PropertySource(value = "classpath:application-test.properties")
 @EnableJpaRepositories(basePackages = "ru.yandex.practicum.repository")
 public class HibernateTestConfig {
     private final Environment environment;
