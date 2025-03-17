@@ -33,7 +33,7 @@ public class Post {
   @Column(name = "image", nullable = false)
   private byte[] image;
   @Column(name = "text", nullable = false)
-  private String text;
+  private String postText;
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
   private Set<Comment> comments;

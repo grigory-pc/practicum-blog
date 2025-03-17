@@ -21,21 +21,23 @@
         <jetty.version>12.0.15</jetty.version>
 
         <spring.data.version>2024.1.1</spring.data.version>
+        <spring.data.commons.version>3.4.1</spring.data.commons.version>
         <spring.webmvc.version>6.2.1</spring.webmvc.version>
         <jakarta.servlet.version>4.0.2</jakarta.servlet.version>
         <thymeleaf.version>3.1.2.RELEASE</thymeleaf.version>
         <jakarta.validation.version>3.0.2</jakarta.validation.version>
         <lombok.version>1.18.36</lombok.version>
-        <jackson.annotations.version>2.15.3</jackson.annotations.version>
+        <jackson.annotations.version>2.18.2</jackson.annotations.version>
         <mapstruct.version>1.5.2.Final</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <spring.data.jdbc.version>3.4.1</spring.data.jdbc.version>
         <javax.persistence.version>2.2</javax.persistence.version>
         <hibernate.version>5.6.9.Final</hibernate.version>
-        <spring.orm.version>5.3.18</spring.orm.version>
+        <spring.orm.version>6.2.1</spring.orm.version>
         <h2database.version>2.2.224</h2database.version>
         <spring.test.version>6.2.1</spring.test.version>
-        <junit.version>5.11.2</junit.version>
+        <junit.version>5.11.3</junit.version>
+        <mockito.version>5.11.0</mockito.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
     </properties>
@@ -247,20 +249,20 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>3.1.4</version>
+            <version>${spring.data.commons.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.11.0</version>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.11.0</version>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -274,14 +276,14 @@
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>LATEST</version>
+            <version>1.15.11</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy-agent</artifactId>
-            <version>LATEST</version>
+            <version>1.15.11</version>
             <scope>test</scope>
         </dependency>
 

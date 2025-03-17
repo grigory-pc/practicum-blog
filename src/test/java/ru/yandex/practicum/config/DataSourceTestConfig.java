@@ -23,7 +23,7 @@ public class DataSourceTestConfig {
   private final Environment environment;
 
   @Bean
-  public javax.sql.DataSource getDataSource() {
+  public DataSource getDataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
     dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
@@ -41,8 +41,7 @@ public class DataSourceTestConfig {
    */
   @EventListener
   public void populate(ContextRefreshedEvent event) {
-    javax.sql.DataSource dataSource = event.getApplicationContext()
-                                           .getBean(javax.sql.DataSource.class);
+    DataSource dataSource = event.getApplicationContext().getBean(DataSource.class);
 
     ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
     populator.addScript(new ClassPathResource("schema.sql"));

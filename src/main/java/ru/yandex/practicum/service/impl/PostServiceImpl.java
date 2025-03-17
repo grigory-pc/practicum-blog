@@ -118,7 +118,7 @@ public class PostServiceImpl implements PostService {
 
   private Post getUpdatedPost(Post postForUpdate, PostSaveDto newPostSaveDto) {
     postForUpdate.setTitle(newPostSaveDto.title());
-    postForUpdate.setText(newPostSaveDto.postText());
+    postForUpdate.setPostText(newPostSaveDto.postText());
     postForUpdate.setImage(newPostSaveDto.image());
 
     return postForUpdate;

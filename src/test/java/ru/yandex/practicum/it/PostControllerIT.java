@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -41,8 +42,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(DataSourceTestConfig.class)
 @WebAppConfiguration
 @TestPropertySource(locations = "classpath:application-test.yml")
+@Profile("test")
 public class PostControllerIT {
-  private static final String BASE_URL = "/posts";
+  private static final String BASE_URL = "/api/posts";
   public static final long ID_POST = 1L;
   public static final long ID_NEW_POST = 2L;
   public static final int POSTS_SIZE = 1;
@@ -69,7 +71,7 @@ public class PostControllerIT {
                         post.getId(),
                         post.getTitle(),
                         post.getImage(),
-                        post.getText());
+                        post.getPostText());
   }
 
   @Test
@@ -115,7 +117,7 @@ public class PostControllerIT {
 
       assertTrue(savedPost.isPresent());
       assertEquals(postSaveDto.title(), savedPost.get().getTitle());
-      assertEquals(postSaveDto.postText(), savedPost.get().getText());
+      assertEquals(postSaveDto.postText(), savedPost.get().getPostText());
     } else {
       fail("в базе данных больше одной записи, а ожидали только одну");
     }

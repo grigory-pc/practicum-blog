@@ -61,7 +61,7 @@ public class CommentServiceImpl implements CommentService {
   }
 
   private Comment getUpdatedComment(Comment existingComment, CommentDto commentDto) {
-    existingComment.setText(commentDto.commentText());
+    existingComment.setCommentText(commentDto.commentText());
 
     return existingComment;
   }

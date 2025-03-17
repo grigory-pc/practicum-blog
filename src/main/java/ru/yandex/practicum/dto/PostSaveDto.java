@@ -60,7 +60,7 @@ public record PostSaveDto(@JsonProperty(value = "title",
            + ", \"title\": " + (title == null ? null : '"' + title + '"')
            + ", \"image\": " + (image == null ? null
                                               : "{\"blob\": {\"size\": " + image.length + "}}")
-           + ", \"postText\": " + (postText == null ? null : '"' + postText + '"')
+           + ", \"textpostText\": " + (postText == null ? null : '"' + postText + '"')
            + ", \"tagIds\": " + (tagIds == null ? null : (tagIds).stream()
                                                                  .map(Objects::toString)
                                                                  .collect(

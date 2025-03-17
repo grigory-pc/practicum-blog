@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.Builder;
 
 /**
@@ -29,14 +30,14 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
                           @JsonProperty(value = "comments",
                                         required = true) List<CommentDto> comments) {
   @Override
-  public boolean equals(Object object) {
-    if (this == object) {
+  public boolean equals(Object o) {
+    if (this == o) {
       return true;
     }
-    if (object == null || getClass() != object.getClass()) {
+    if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PostFullDto that = (PostFullDto) object;
+    PostFullDto that = (PostFullDto) o;
     return Objects.equals(id, that.id) && Objects.equals(title, that.title)
            && Arrays.equals(image, that.image) && Objects.equals(postText,
                                                                  that.postText)
@@ -51,15 +52,32 @@ public record PostFullDto(@JsonProperty(value = "id") Long id,
     return result;
   }
 
+  /**
+   * Собирает строковое JSON-представление сущности.
+   *
+   * @return JSON представление сущности, сгенерировано с помощью авто-генерации кода версии 1.0.2
+   * @see <a href="https://gitlab.ebsbio.tech/nbp/utils/intelij-idea-templates">Проект с шаблонами
+   * для генерации кода</a>
+   */
   @Override
   public String toString() {
-    return "PostFullDto{" +
-           "id=" + id +
-           ", title='" + title + '\'' +
-           ", image=" + Arrays.toString(image) +
-           ", postText='" + postText + '\'' +
-           ", tags=" + tags +
-           ", comments=" + comments +
-           '}';
+    return "{\"_class\":\"ru.yandex.practicum.dto.PostFullDto\""
+           + ", \"id\": " + id
+           + ", \"title\": " + (title == null ? null : '"' + title + '"')
+           + ", \"image\": " + (image == null ? null
+                                              : "{\"blob\": {\"size\": " + image.length + "}}")
+           + ", \"postText\": " + (postText == null ? null : '"' + postText + '"')
+           + ", \"tags\": " + (tags == null ? null : (tags).stream()
+                                                           .map(Objects::toString)
+                                                           .collect(
+                                                               Collectors.joining(
+                                                                   ", ", "[", "]")))
+           + ", \"comments\": " + (comments == null ? null : (comments).stream()
+                                                                       .map(
+                                                                           Objects::toString)
+                                                                       .collect(
+                                                                           Collectors.joining(
+                                                                               ", ", "[", "]")))
+           + "}";
   }
 }

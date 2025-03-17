@@ -1,7 +1,7 @@
 package ru.yandex.practicum.configuration;
 
+import jakarta.persistence.EntityManagerFactory;
 import java.util.Properties;
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 @PropertySource(value = "classpath:application.yml")
-@EnableJpaRepositories(basePackages = "ru.yandex.practicum")
+@EnableJpaRepositories(basePackages = "ru.yandex.practicum.repository")
 public class HibernateConfig {
     private final Environment environment;
 

@@ -21,10 +21,8 @@ public interface PostMapper {
   @Mapping(target = "countComments",
            expression = "java(post.getComments() != null ? post.getComments().size() : 0)")
   @Mapping(target = "countLikes", source = "likes.countLikes")
-  @Mapping(target = "postText", source = "text")
   PostPreviewDto toPreviewDto(Post post);
 
-  @Mapping(target = "postText", source = "text")
   PostFullDto toFullDto(Post post);
 
   default Page<PostPreviewDto> toDtoPage(Page<Post> posts) {
