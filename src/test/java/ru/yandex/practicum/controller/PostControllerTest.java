@@ -37,6 +37,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -215,8 +216,7 @@ class PostControllerTest {
       doNothing().when(postService)
                  .deletePostById(anyLong());
 
-      mockMvc.perform(post(BASE_URL + "/" + POST_ID)
-                          .param("_method", "delete"))
+      mockMvc.perform(delete(BASE_URL + "/" + POST_ID))
              .andExpect(status().isOk());
 
       verify(postService, atLeastOnce()).deletePostById(anyLong());
@@ -232,8 +232,7 @@ class PostControllerTest {
       doNothing().when(commentService)
                  .deleteCommentById(anyLong());
 
-      mockMvc.perform(post(BASE_URL + "/comment/" + COMMENT_ID)
-                          .param("_method", "delete"))
+      mockMvc.perform(delete(BASE_URL + "/comment/" + COMMENT_ID))
              .andExpect(status().isOk());
 
       verify(commentService, atLeastOnce()).deleteCommentById(anyLong());
