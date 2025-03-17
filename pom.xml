@@ -40,6 +40,11 @@
         <mockito.version>5.11.0</mockito.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
+        <byte.buddy.version>1.15.11</byte.buddy.version>
+        <hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
+        <jsonassert.version>1.5.0</jsonassert.version>
+        <jakartaee.api.version>10.0.0</jakartaee.api.version>
+        <parttio.line.awesome.version>2.1.0</parttio.line.awesome.version>
     </properties>
 
     <repositories>
@@ -145,7 +150,7 @@
         <dependency>
             <groupId>org.parttio</groupId>
             <artifactId>line-awesome</artifactId>
-            <version>2.1.0</version>
+            <version>${parttio.line.awesome.version}</version>
         </dependency>
 
         <!-- Spring Web MVC -->
@@ -206,7 +211,7 @@
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>10.0.0</version>
+            <version>${jakartaee.api.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -276,27 +281,27 @@
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
-            <version>1.15.11</version>
+            <version>${byte.buddy.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy-agent</artifactId>
-            <version>1.15.11</version>
+            <version>${byte.buddy.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>8.0.1.Final</version>
+            <version>${hibernate.validator.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.skyscreamer</groupId>
             <artifactId>jsonassert</artifactId>
-            <version>1.5.0</version>
+            <version>${jsonassert.version}</version>
             <scope>test</scope>
         </dependency>
 
