@@ -1,24 +1,29 @@
 package ru.yandex.practicum.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Function;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dao.Tag;
-import ru.yandex.practicum.dto.PostFullDto;
-import ru.yandex.practicum.dto.PostPreviewDto;
-import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.PostDto;
 import ru.yandex.practicum.exceptions.NotFoundException;
+import ru.yandex.practicum.exceptions.SaveFileException;
 import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
@@ -36,61 +41,57 @@ public class PostServiceImpl implements PostService {
   private final PostMapper postMapper;
 
   @Override
-  public Page<PostPreviewDto> findAllPosts(int from, int size) {
-    Pageable pageable = PageRequest.of(from, size);
+  public Page<PostDto> findAllPosts(String search, Pageable pageable) {
+    if (search.isEmpty()) {
+      Page<Post> posts = postRepository.findAll(pageable);
 
-    Page<Post> posts = postRepository.findAll(pageable);
+      return postMapper.toDtoPage(posts);
+    } else {
+      Page<Post> posts = postRepository.findByTags_NameContainingIgnoreCase(search, pageable);
 
-    Map<Long, Set<Tag>> postTagMap = getPostTagsForSetPosts(posts);
-
-    posts.getContent().forEach(
-        post -> post.setTags(postTagMap.getOrDefault(post.getId(), Collections.emptySet())));
-
-    return postMapper.toDtoPage(posts);
+      return postMapper.toDtoPage(posts);
+    }
   }
 
   @Override
-  public PostFullDto getPostById(Long id) throws NotFoundException {
+  public PostDto getPostById(Long id) throws NotFoundException {
     Post post = postRepository.findById(id)
                               .orElseThrow(NotFoundException::new);
 
-    post.setTags(postTagRepository.findAllByPostId(post.getId())
-                                  .stream()
-                                  .flatMap(postTag -> tagRepository.findById(postTag.getTagId())
-                                                                   .stream())
-                                  .collect(Collectors.toSet()));
+    PostDto postDto = postMapper.toDto(post);
 
-    return postMapper.toFullDto(post);
+    postDto.setTags(postTagRepository.findAllByPostId(post.getId())
+                                     .stream()
+                                     .map(postTag -> tagRepository.findById(postTag.getTagId())
+                                                                  .orElseThrow(
+                                                                      () -> new EntityNotFoundException(
+                                                                          "Tag not found"))
+                                                                  .getTagName())
+                                     .collect(Collectors.toList()));
+
+    return postDto;
   }
 
   @Override
   @Transactional
-  public void savePost(PostSaveDto postSaveDto) {
-    Post newPost = postMapper.toPost(postSaveDto);
-    newPost.setCountLikes(0);
+  public PostDto savePost(PostDto postDto, String tags, MultipartFile image) {
+    List<String> tagList = Arrays.stream(tags.split(","))
+                                 .map(String::trim)
+                                 .filter(tag -> !tag.isEmpty())
+                                 .toList();
 
-    Post savedPost = postRepository.save(newPost);
+    postDto.setTags(tagList);
 
-    postSaveDto.tagIds()
-               .forEach(tagId -> postTagRepository.save(new PostTag(savedPost.getId(), tagId)));
-  }
-
-  @Override
-  @Transactional
-  public void updatePost(Long id, PostSaveDto postSaveDto) {
-    Post existingPost = postRepository.findById(id)
-                                      .orElseThrow(NotFoundException::new);
-
-    log.info("Из БД получена запись = {}", existingPost);
-
-    Post updatedPost = getUpdatedPost(existingPost, postSaveDto);
-    postRepository.save(updatedPost);
-
-    postTagRepository.deleteAllByPostId(id);
-
-    if (postSaveDto.tagIds() != null) {
-      postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(new PostTag(id, tagId)));
+    if (image != null) {
+      String imagePath = saveFile(image);
+      postDto.setImagePath(imagePath);
     }
+
+    Post savedPost = postRepository.save(postMapper.toPost(postDto));
+
+    updatePostTag(postDto, savedPost);
+
+    return postMapper.toDto(savedPost);
   }
 
   @Override
@@ -101,37 +102,47 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void addLike(Long postId) throws NotFoundException {
-    postRepository.increaseLikesCount(postId);
+  public void addLike(Long postId, boolean like) throws NotFoundException {
+    if (like) {
+      postRepository.increaseLikesCount(postId);
+    }
+    postRepository.decreaseLikesCount(postId);
   }
 
-  private Map<Long, Set<Tag>> getPostTagsForSetPosts(Page<Post> posts) {
-    Set<Long> postIds = posts.getContent().stream()
-                             .map(Post::getId)
-                             .collect(Collectors.toSet());
+  private String saveFile(MultipartFile multipartFile) throws SaveFileException {
+    try {
+      Path uploadDir = Paths.get("uploads");
+      if (!Files.exists(uploadDir)) {
+        Files.createDirectories(uploadDir);
+      }
 
-    Set<PostTag> postTags = postTagRepository.findAllByPostIdIn(postIds);
+      String filename = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
 
-    Set<Long> tagIds = postTags.stream()
-                               .map(PostTag::getTagId)
-                               .collect(Collectors.toSet());
+      Path filePath = uploadDir.resolve(filename);
+      Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-    Map<Long, Tag> tagsMap = tagRepository.findAllByIdIn(tagIds)
-                                          .stream()
-                                          .collect(
-                                              Collectors.toMap(Tag::getId, Function.identity()));
-
-    return postTags.stream()
-                   .collect(Collectors.groupingBy(PostTag::getPostId, Collectors.mapping(
-                       postTag -> tagsMap.get(postTag.getTagId()), Collectors.toSet())
-                   ));
+      return filePath.toString();
+    } catch (IOException e) {
+      throw new SaveFileException("Ошибка при сохранении файла", e);
+    }
   }
 
-  private Post getUpdatedPost(Post postForUpdate, PostSaveDto newPostSaveDto) {
-    postForUpdate.setTitle(newPostSaveDto.title());
-    postForUpdate.setPostText(newPostSaveDto.postText());
-    postForUpdate.setImage(newPostSaveDto.image());
+  private void updatePostTag(PostDto postDto, Post savedPost) {
+    postTagRepository.deleteAllByPostId(savedPost.getId());
 
-    return postForUpdate;
+    List<PostTag> newPostTags = new ArrayList<>();
+
+    for (String tagName : postDto.getTags()) {
+      Tag tag = tagRepository.findDistinctByTagName(tagName)
+                             .orElseGet(() -> tagRepository.save(new Tag(tagName)));
+
+      PostTag postTag = new PostTag();
+      postTag.setPostId(savedPost.getId());
+      postTag.setTagId(tag.getId());
+
+      newPostTags.add(postTag);
+    }
+
+    postTagRepository.saveAll(newPostTags);
   }
 }

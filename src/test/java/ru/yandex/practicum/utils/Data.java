@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lombok.experimental.UtilityClass;
 import ru.yandex.practicum.dao.Comment;
@@ -12,9 +12,7 @@ import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.dto.CommentDto;
-import ru.yandex.practicum.dto.PostFullDto;
-import ru.yandex.practicum.dto.PostPreviewDto;
-import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.PostDto;
 import ru.yandex.practicum.dto.TagDto;
 
 @UtilityClass
@@ -25,24 +23,37 @@ public class Data {
   public static final String TAG = "test";
   public static final String TAG_TWO = "test_two";
 
-  public PostPreviewDto getPostPreviewDto() {
-    return new PostPreviewDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text", 0, 0,
-                              new HashSet<>());
-  }
-
-  public PostFullDto getPostFullDto() {
-    return new PostFullDto(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text",
-                           new HashSet<>(), new ArrayList<>());
+  public PostDto getPostDto() {
+    return PostDto.builder()
+                  .id(ID_ONE)
+                  .title("test")
+                  .text("text")
+                  .imagePath("image_path")
+                  .likesCount(0)
+                  .comments(new ArrayList<>())
+                  .tags(new ArrayList<>())
+                  .build();
   }
 
   public Post getPost() {
-    return new Post(ID_ONE, "test", getImageBytes(IMAGE_MAN_PATH), "text",
-                    new ArrayList<>(), 0, new HashSet<>());
+    return Post.builder()
+               .id(ID_ONE)
+               .title("test")
+               .imagePath("image_path")
+               .postText("text")
+               .comments(new ArrayList<>())
+               .likesCount(0)
+               .build();
   }
 
-  public PostSaveDto getPostSaveDto() {
-    return new PostSaveDto("test", null, "text",
-                           Set.of(ID_ONE, ID_TWO));
+  public PostDto getPostSaveDto() {
+    return PostDto.builder()
+                  .title("test")
+                  .text("text")
+                  .imagePath("image_path")
+                  .likesCount(0)
+                  .tags(List.of("one", "two"))
+                  .build();
   }
 
   public CommentDto getCommentDto(Long id) {

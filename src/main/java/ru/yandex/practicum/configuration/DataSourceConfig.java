@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * Конфигурация dataSource.
  */
 @Component
-@PropertySource(value = "classpath:application-test.properties")
+@PropertySource(value = "classpath:application.properties")
 @RequiredArgsConstructor
 public class DataSourceConfig {
   private final Environment environment;

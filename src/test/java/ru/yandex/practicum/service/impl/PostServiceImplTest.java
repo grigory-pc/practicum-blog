@@ -8,15 +8,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.PostTag;
-import ru.yandex.practicum.dto.PostFullDto;
-import ru.yandex.practicum.dto.PostPreviewDto;
-import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dao.Tag;
+import ru.yandex.practicum.dto.PostDto;
 import ru.yandex.practicum.mapper.PostMapper;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
@@ -28,8 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anySet;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -53,26 +54,22 @@ class PostServiceImplTest {
   @Test
   void positiveTest_shouldFindAllPosts() {
     try {
-      int from = 0;
-      int size = 10;
+      String search = "";
+      Pageable pageable = PageRequest.of(0, 10);
 
       Page<Post> postPage = new PageImpl<>(List.of(Data.getPost()));
-      PostPreviewDto expectedPostPreviewDto = Data.getPostPreviewDto();
+      PostDto expectedPostDto = Data.getPostDto();
 
       doReturn(postPage)
           .when(postRepository).findAll(any(Pageable.class));
-      doReturn(Set.of(Data.getPostTag()))
-          .when(postTagRepository).findAllByPostIdIn(anySet());
-      doReturn(Set.of(Data.getTag()))
-          .when(tagRepository).findAllByIdIn(anySet());
-      doReturn(new PageImpl<>(List.of(expectedPostPreviewDto)))
+      doReturn(new PageImpl<>(List.of(expectedPostDto)))
           .when(postMapper).toDtoPage(any());
 
 
-      Page<PostPreviewDto> actualPostPreviewDto = postService.findAllPosts(from, size);
+      Page<PostDto> actualPostPreviewDto = postService.findAllPosts(search, pageable);
 
       assertEquals(1, actualPostPreviewDto.getTotalElements());
-      assertEquals(expectedPostPreviewDto, actualPostPreviewDto.getContent().get(0));
+      assertEquals(expectedPostDto, actualPostPreviewDto.getContent().get(0));
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");
@@ -83,20 +80,21 @@ class PostServiceImplTest {
   void positiveTest_shouldGetPostById() {
     try {
       Post post = Data.getPost();
-      PostFullDto expectedPostFullDto = Data.getPostFullDto();
+      PostDto expectedPostDto = Data.getPostDto();
 
       doReturn(Optional.of(post))
           .when(postRepository).findById(anyLong());
+      doReturn(expectedPostDto)
+          .when(postMapper).toDto(any(Post.class));
       doReturn(Set.of(Data.getPostTag()))
           .when(postTagRepository).findAllByPostId(anyLong());
       doReturn(Optional.of(Data.getTag()))
           .when(tagRepository).findById(anyLong());
-      doReturn(expectedPostFullDto)
-          .when(postMapper).toFullDto(any(Post.class));
 
-      PostFullDto actualPostFullDto = postService.getPostById(POST_ID);
 
-      assertEquals(expectedPostFullDto, actualPostFullDto);
+      PostDto actualPostFullDto = postService.getPostById(POST_ID);
+
+      assertEquals(expectedPostDto, actualPostFullDto);
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");
@@ -107,49 +105,28 @@ class PostServiceImplTest {
   void positiveTest_shouldSavePost() {
     try {
       Post post = Data.getPost();
-      PostSaveDto postSaveDto = Data.getPostSaveDto();
+      PostDto postSaveDto = Data.getPostSaveDto();
+      String tags = "test";
 
       doReturn(post)
-          .when(postMapper).toPost(any(PostSaveDto.class));
-      doReturn(post)
-          .when(postRepository).save(any(Post.class));
-      doReturn(Data.getPostTag())
-          .when(postTagRepository).save(any(PostTag.class));
-
-      assertDoesNotThrow(
-          () -> postService.savePost(postSaveDto));
-
-      verify(postMapper, atLeastOnce()).toPost(any(PostSaveDto.class));
-      verify(postRepository, atLeastOnce()).save(any(Post.class));
-      verify(postTagRepository, atLeastOnce()).save(any(PostTag.class));
-
-    } catch (Exception e) {
-      fail("Не ожидали получить исключение");
-    }
-  }
-
-  @Test
-  void positiveTest_shouldUpdatePost() {
-    try {
-      Post post = Data.getPost();
-      PostSaveDto postSaveDto = Data.getPostSaveDto();
-
-      doReturn(Optional.of(post))
-          .when(postRepository).findById(anyLong());
+          .when(postMapper).toPost(any(PostDto.class));
       doReturn(post)
           .when(postRepository).save(any(Post.class));
-      doReturn(Data.getPostTag())
-          .when(postTagRepository).save(any(PostTag.class));
       doNothing().when(postTagRepository)
                  .deleteAllByPostId(anyLong());
+      doReturn(Data.getTag())
+          .when(tagRepository).findDistinctByTagName(anyString());
+      doReturn(Data.getTag())
+          .when(tagRepository).save(any(Tag.class));
+      doReturn(List.of(Data.getPostTag()))
+          .when(postTagRepository).saveAll(anyList());
 
       assertDoesNotThrow(
-          () -> postService.updatePost(POST_ID, postSaveDto));
+          () -> postService.savePost(postSaveDto, tags, null));
 
-      verify(postRepository, atLeastOnce()).findById(anyLong());
+      verify(postMapper, atLeastOnce()).toPost(any(PostDto.class));
       verify(postRepository, atLeastOnce()).save(any(Post.class));
       verify(postTagRepository, atLeastOnce()).save(any(PostTag.class));
-      verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");
@@ -168,5 +145,16 @@ class PostServiceImplTest {
 
     verify(postRepository, atLeastOnce()).deleteById(anyLong());
     verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
+  }
+
+  @Test
+  void positiveTest_shouldAddLike() {
+    doNothing().when(postRepository)
+               .increaseLikesCount(anyLong());
+
+    assertDoesNotThrow(
+        () -> postService.addLike(POST_ID, true));
+
+    verify(postRepository, atLeastOnce()).increaseLikesCount(anyLong());
   }
 }

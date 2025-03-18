@@ -6,10 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -19,8 +17,6 @@ import lombok.Setter;
 @Setter
 @Entity
 @Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Table(name = "tags")
 public class Tag {
   @Id
@@ -29,4 +25,13 @@ public class Tag {
   private Long id;
   @Column(name = "tag_name", nullable = false)
   private String tagName;
+
+  public Tag(Long id, String tagName) {
+    this.id = id;
+    this.tagName = tagName;
+  }
+
+  public Tag(String tagName) {
+    this.tagName = tagName;
+  }
 }

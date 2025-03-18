@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-/**
- * DTO комментария.
- */
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class CommentDto {
-  private Long id;
-  private String text;
+public class PagingDto {
+  private int pageNumber;
+  private int pageSize;
+  private boolean hasPrevious;
+  private boolean hasNext;
 }

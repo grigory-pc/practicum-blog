@@ -1,95 +1,107 @@
 package ru.yandex.practicum.controller;
 
-import java.util.List;
+import jakarta.validation.constraints.NotBlank;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.dto.CommentDto;
-import ru.yandex.practicum.dto.PostFullDto;
-import ru.yandex.practicum.dto.PostPreviewDto;
-import ru.yandex.practicum.dto.PostSaveDto;
-import ru.yandex.practicum.dto.TagDto;
+import org.springframework.web.multipart.MultipartFile;
+import ru.yandex.practicum.dto.PagingDto;
+import ru.yandex.practicum.dto.PostDto;
 import ru.yandex.practicum.service.CommentService;
 import ru.yandex.practicum.service.PostService;
-import ru.yandex.practicum.service.TagService;
 
 /**
  * Контроллер обрабатывает запросы /posts.
  */
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
   private final PostService postService;
   private final CommentService commentService;
-  private final TagService tagService;
 
   /**
    * Обрабатывает GET-запросы на получение списка превью постов для ленты.
    *
-   * @param from - номер страницы.
-   * @param size - количество постов на странице.
-   * @return список превью постов.
+   * @param pageNumber - номер страницы.
+   * @param pageSize - количество постов на странице.
+   * @return страница превью постов.
    */
   @GetMapping
-  public ResponseEntity<Page<PostPreviewDto>> getPosts(@RequestParam(defaultValue = "0") int from,
-                                       @RequestParam(defaultValue = "10") int size) {
-    log.info("Получен запрос на получение preview постов");
+  public String getPosts(@RequestParam(defaultValue = "") String search,
+                         @RequestParam(defaultValue = "10") int pageSize,
+                         @RequestParam(defaultValue = "1") int pageNumber,
+                         Model model) {
 
-    Page<PostPreviewDto> postsPreviewPage = postService.findAllPosts(from, size);
+    Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+    Page<PostDto> posts = postService.findAllPosts(search, pageable);
 
-    log.info("Получен список preview постов размером: {}", postsPreviewPage.getTotalElements());
+    model.addAttribute("posts", posts.getContent());
+    model.addAttribute("search", search);
+    model.addAttribute("paging", new PagingDto(
+        pageNumber,
+        pageSize,
+        posts.hasPrevious(),
+        posts.hasNext()
+    ));
 
-    return ResponseEntity.ok(postsPreviewPage);
+    return "posts";
   }
+
+  @GetMapping("/add")
+  public String showAddPostForm(Model model) {
+    return "add-post";
+  }
+
 
   /**
    * Обрабатывает GET-запросы на получение поста по id.
    *
    * @param id - id поста.
-   * @return объект поста.
+   * @return страница поста.
    */
   @GetMapping("/{id}")
-  public ResponseEntity<PostFullDto> getPostById(@PathVariable(name = "id") Long id) {
+  public String getPostById(@PathVariable(name = "id") Long id, Model model) {
     log.info("Получен запрос на получение поста для id = {}", id);
 
-    PostFullDto postFullDto = postService.getPostById(id);
+    PostDto postDto = postService.getPostById(id);
+    log.info("Из базы данных получен пост с id: {}", postDto.getId());
 
-    log.info("Из базы данных получен пост с id: {}", postFullDto.id());
+    model.addAttribute("post", postDto);
 
-    return ResponseEntity.ok(postFullDto);
+    return "post";
   }
 
   /**
    * Сохранение поста.
-   *
-   * @param post - данные поста.
    */
   @PostMapping
-  public void savePost(@RequestBody PostSaveDto post) {
-    log.info("Получен запрос на добавление поста: {}", post);
+  public String savePost(@RequestPart("title") @NotBlank String title,
+                         @RequestPart("image") MultipartFile image,
+                         @RequestPart("text") @NotBlank String text,
+                         @RequestPart("tags") String tags,
+                         Model model) {
+    log.info("Получен запрос на добавление поста: title={}, text={}, tags={}", title, text, tags);
 
-    postService.savePost(post);
-    log.info("Пост сохранен в базу данных");
-  }
+    PostDto postDto = PostDto.builder()
+                             .title(title)
+                             .text(text)
+                             .build();
 
-  /**
-   * Обновление поста.
-   *
-   * @param id   - id поста.
-   * @param post - данные поста.
-   */
-  @PatchMapping("/{id}")
-  public void updatePost(@PathVariable(name = "id") Long id, @RequestBody PostSaveDto post) {
-    log.info("Получен запрос на обновление поста: {} для id = {}", post, id);
+    PostDto savedPost = postService.savePost(postDto, tags, image);
+    Long postId = savedPost.getId();
+    model.addAttribute("post", savedPost);
 
-    postService.updatePost(id, post);
+    log.info("Пост сохранен в базу данных с id={}", postId);
 
-    log.info("Пост id = {} обновлен в базе данных", id);
+    return "post";
   }
 
   /**
@@ -97,85 +109,66 @@ public class PostController {
    *
    * @param postId - id поста.
    */
-  @PostMapping("/{id}/like")
-  public void addLike(@PathVariable(name = "id") Long postId) {
+  @PostMapping("/{id}/{like}")
+  public String addLike(@PathVariable(name = "id") Long postId,
+                        @PathVariable(name = "like") boolean like) {
     log.info("Получен запрос на добавление лайка для поста id = {}", postId);
 
-    postService.addLike(postId);
+    postService.addLike(postId, like);
 
-    log.info("Для поста id = {} добавлен лайк в базу данных", postId);
+    log.info("Для поста id = {} учтен лайк в базе данных", postId);
+
+    return "redirect:/posts/" + postId;
   }
 
   /**
    * Сохранение комментария.
    *
-   * @param id - id поста.
+   * @param postId - id поста.
    */
-  @PostMapping("/{id}/comment")
-  public void saveComment(@PathVariable(name = "id") Long id,
-                          @RequestBody CommentDto comment) {
-    log.info("Получен запрос на добавление комментария: {} для поста id = {}", comment, id);
+  @PostMapping("/{postId}/comments")
+  public String saveComment(@PathVariable(name = "postId") Long postId,
+                            @RequestParam("text") String text) {
+    log.info("Получен запрос на добавление комментария: для поста id = {}", postId);
 
-    commentService.saveComment(id, comment);
+    commentService.saveComment(postId, text);
 
-    log.info("Для поста id = {} добавлен комментарий в базу данных", id);
-  }
+    log.info("Для поста id = {} добавлен комментарий в базу данных", postId);
 
-  /**
-   * Обновление комментария.
-   *
-   * @param id        - id поста.
-   * @param commentId - id комментария.
-   * @param comment   - данные комментария.
-   */
-  @PatchMapping("/{id}/comment/{comment_id}")
-  public void updateComment(@PathVariable(name = "id") Long id,
-                              @PathVariable(name = "comment_id") Long commentId,
-                              @RequestBody CommentDto comment) {
-    log.info("Получен запрос на обновление комментария: {} для поста id = {}", comment, id);
-
-    commentService.updateComment(id, commentId, comment);
-
-    log.info("Для поста id = {} обновлен комментарий в базе данных", id);
+    return "redirect:/posts/" + postId;
   }
 
   /**
    * Удаление поста.
    *
-   * @param id - id поста.
+   * @param postId - id поста.
    */
-  @DeleteMapping(value = "/{id}")
-  public void deletePost(@PathVariable(name = "id") Long id) {
-    log.info("Получен запрос на удаление поста id = {}", id);
+  @DeleteMapping(value = "/{postId}")
+  public String deletePost(@PathVariable(name = "postId") Long postId) {
+    log.info("Получен запрос на удаление поста id = {}", postId);
 
-    postService.deletePostById(id);
+    postService.deletePostById(postId);
 
-    log.info("Пост id = {} удален из базы данных", id);
+    log.info("Пост id = {} удален из базы данных", postId);
+
+    return "redirect:/posts/";
   }
 
   /**
    * Удаление комментария.
    *
+   * @param postId - id поста.
    * @param commentId - id комментария.
    */
-  @DeleteMapping(value = "/comment/{commentId}")
-  public void deleteComment(@PathVariable(name = "commentId") Long commentId) {
+  @DeleteMapping(value = "/{postId}/comments/{commentId}")
+  public String deleteComment(@PathVariable(name = "postId") Long postId,
+                              @PathVariable(name = "commentId") Long commentId) {
     log.info("Получен запрос на удаление комментария для id = {}", commentId);
 
     commentService.deleteCommentById(commentId);
 
     log.info("Комментарий id = {} удален из базы данных", commentId);
-  }
 
-  /**
-   * Обрабатывает GET-запросы на получение списка всех тегов.
-   *
-   * @return список тегов.
-   */
-  @GetMapping("/tags")
-  public ResponseEntity<List<TagDto>> getTags() {
-    log.info("Получен запрос на получение тегов");
-
-    return ResponseEntity.ok(tagService.findAllTags());
+    return "redirect:/posts/" + postId;
   }
 }

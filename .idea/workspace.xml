@@ -4,8 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: ИТ">
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: обновлена схема БД">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/woman.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/theme-editor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/theme.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/EndpointLogger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/AppShell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/Data.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/RestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/types.d.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feat/vaadin/create-blog" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,36 +61,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/vaadin/create-blog&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;21&quot;,
-    &quot;last_opened_file_path&quot;: &quot;J:/Development/Yandex.Praktikum/Java/practicum-blog/src/test/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.6528736&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feat/create-blog-html",
+    "jdk.selected.JAVA_MODULE": "21",
+    "last_opened_file_path": "J:/Development/Yandex.Praktikum/Java/practicum-blog",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6528736",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;h2&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog" />
+      <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -88,7 +112,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PostControllerIT">
+  <component name="RunManager" selected="JUnit.java in blog-project">
     <configuration name="PostControllerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
@@ -156,26 +180,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerIT.positiveTest_shouldUpdateCommentForPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="blog-project" />
+    <configuration default="true" type="JUnit" factoryName="JUnit">
       <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.it.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
-      <option name="METHOD_NAME" value="positiveTest_shouldUpdateCommentForPost" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
+    <configuration name="java in blog-project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -198,17 +214,17 @@
       <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldAddLikeToPost" />
       <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeleteComment" />
       <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldGetTags" />
-      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldUpdateCommentForPost" />
+      <item itemvalue="JUnit.java in blog-project" />
       <item itemvalue="JUnit.PostControllerIT" />
       <item itemvalue="Remote JVM Debug.test blog" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in blog-project" />
         <item itemvalue="JUnit.PostControllerIT" />
         <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldAddLikeToPost" />
         <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldGetTags" />
         <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeleteComment" />
-        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldUpdateCommentForPost" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +245,7 @@
       <workItem from="1742197876146" duration="5271000" />
       <workItem from="1742206146794" duration="13708000" />
       <workItem from="1742250699826" duration="1250000" />
-      <workItem from="1742285707273" duration="7812000" />
+      <workItem from="1742285707273" duration="10026000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -423,7 +439,31 @@
       <option name="project" value="LOCAL" />
       <updated>1742297152884</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat: обновлена схема БД">
+      <option name="closed" value="true" />
+      <created>1742297971097</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1742297971097</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: обновлена схема БД">
+      <option name="closed" value="true" />
+      <created>1742298069799</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1742298069799</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat: обновлена схема БД">
+      <option name="closed" value="true" />
+      <created>1742298183752</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1742298183752</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,14 +502,15 @@
     <MESSAGE value="feat: вынесение версий зависимостей" />
     <MESSAGE value="feat: корректировка в части внешних запросов со стороны view" />
     <MESSAGE value="feat: ИТ" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: ИТ" />
+    <MESSAGE value="feat: обновлена схема БД" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: обновлена схема БД" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>57</line>
+          <line>58</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint type="java-line">

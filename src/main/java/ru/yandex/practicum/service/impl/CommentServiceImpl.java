@@ -7,9 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
-import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.exceptions.NotFoundException;
-import ru.yandex.practicum.mapper.CommentMapper;
 import ru.yandex.practicum.repository.CommentRepository;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.service.CommentService;
@@ -21,38 +19,22 @@ public class CommentServiceImpl implements CommentService {
 
   private final PostRepository postRepository;
   private final CommentRepository commentRepository;
-  private final CommentMapper commentMapper;
 
   @Override
   @Transactional
-  public void saveComment(Long postId, CommentDto commentDto) throws NotFoundException {
-    Comment newComment = commentMapper.toComment(commentDto);
+  public void saveComment(Long postId, String text) throws NotFoundException {
+    Comment comment = Comment.builder()
+                             .commentText(text)
+                             .build();
 
     Optional<Post> post = postRepository.findById(postId);
 
     log.info("Из БД получена запись = {}", post);
 
     if (post.isPresent()) {
-      newComment.setPost(post.get());
+      comment.setPost(post.get());
 
-      commentRepository.save(newComment);
-    } else {
-      throw new NotFoundException();
-    }
-  }
-
-  @Override
-  @Transactional
-  public void updateComment(Long id, Long commentId, CommentDto commentDto)
-      throws NotFoundException {
-    Optional<Comment> existingComment = commentRepository.findById(commentId);
-
-    log.info("Из БД получена запись = {}", existingComment);
-
-    if (existingComment.isPresent()) {
-      Comment updatedComment = getUpdatedComment(existingComment.get(), commentDto);
-
-      commentRepository.save(updatedComment);
+      commentRepository.save(comment);
     } else {
       throw new NotFoundException();
     }
@@ -61,11 +43,5 @@ public class CommentServiceImpl implements CommentService {
   @Override
   public void deleteCommentById(Long id) {
     commentRepository.deleteById(id);
-  }
-
-  private Comment getUpdatedComment(Comment existingComment, CommentDto commentDto) {
-    existingComment.setCommentText(commentDto.commentText());
-
-    return existingComment;
   }
 }

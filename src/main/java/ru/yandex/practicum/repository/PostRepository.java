@@ -33,4 +33,27 @@ public interface PostRepository extends JpaRepository<Post, Long>, CrudRepositor
   @Query(value = "UPDATE posts SET count_likes = count_likes + 1 WHERE id = :postId",
          nativeQuery = true)
   void increaseLikesCount(@Param("postId") Long postId);
+
+  /**
+   * Уменьшение количества лайков на 1.
+   * @param postId - id поста.
+   */
+  @Modifying
+  @Transactional
+  @Query(value = "UPDATE posts SET count_likes = count_likes - 1 WHERE id = :postId",
+         nativeQuery = true)
+  void decreaseLikesCount(@Param("postId") Long postId);
+
+  @Query(value = """
+        SELECT p.* 
+        FROM posts p 
+        JOIN posts_tags pt ON p.id = pt.post_id 
+        JOIN tags t ON pt.tag_id = t.id 
+        WHERE LOWER(t.tag_name) LIKE CONCAT('%', LOWER(:search), '%')
+        GROUP BY p.id
+        """,
+         nativeQuery = true)
+  Page<Post> findByTags_NameContainingIgnoreCase(
+      @Param("search") String search,
+      Pageable pageable);
 }

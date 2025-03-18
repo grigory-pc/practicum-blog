@@ -2,32 +2,27 @@ package ru.yandex.practicum.mapper;
 
 import java.util.List;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import ru.yandex.practicum.dao.Post;
-import ru.yandex.practicum.dto.PostFullDto;
-import ru.yandex.practicum.dto.PostPreviewDto;
-import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.PostDto;
 
 /**
  * Маппер между объектами DAO Post и DTO Post.
  */
 @Mapper(componentModel = "spring", uses = {TagMapper.class, CommentMapper.class})
 public interface PostMapper {
-  Post toPost(PostSaveDto dto);
+  Post toPost(PostDto dto);
 
-  @Mapping(target = "countComments",
-           expression = "java(post.getComments() != null ? post.getComments().size() : 0)")
-  PostPreviewDto toPreviewDto(Post post);
+  PostDto toPreviewDto(Post post);
 
-  PostFullDto toFullDto(Post post);
+  PostDto toDto(Post post);
 
-  default Page<PostPreviewDto> toDtoPage(Page<Post> posts) {
-    List<PostPreviewDto> dtos = posts.stream()
-                                     .map(this::toPreviewDto)
-                                     .toList();
+  default Page<PostDto> toDtoPage(Page<Post> posts) {
+    List<PostDto> dtos = posts.stream()
+                              .map(this::toPreviewDto)
+                              .toList();
     return new PageImpl<>(dtos, pageable(posts), posts.getTotalElements());
   }
 

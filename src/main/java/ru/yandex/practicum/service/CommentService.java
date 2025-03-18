@@ -1,6 +1,5 @@
 package ru.yandex.practicum.service;
 
-import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.exceptions.NotFoundException;
 
 /**
@@ -9,22 +8,13 @@ import ru.yandex.practicum.exceptions.NotFoundException;
 public interface CommentService {
 
   /**
-   * Добавление комментария.
+   * Сохранение комментария.
    *
    * @param postId - id поста.
-   * @param comment - комментарий для сохранения.
+   * @param text - текст комментария для сохранения.
    * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
    */
-  void saveComment(Long postId, CommentDto comment) throws NotFoundException;
-
-  /**
-   * Обновление комментария.
-   *
-   * @param commentId - id комментария.
-   * @param comment - данные комментария.
-   * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
-   */
-  void updateComment(Long id, Long commentId, CommentDto comment) throws NotFoundException;
+  void saveComment(Long postId, String text) throws NotFoundException;
 
   /**
    * Удаление комментария по id.

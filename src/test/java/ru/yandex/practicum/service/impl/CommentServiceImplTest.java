@@ -11,7 +11,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.config.DataSourceTestConfig;
 import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
-import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.mapper.CommentMapper;
 import ru.yandex.practicum.repository.CommentRepository;
 import ru.yandex.practicum.repository.PostRepository;
@@ -45,12 +44,9 @@ class CommentServiceImplTest {
   @Test
   void positiveTest_shouldSaveComment() {
     try {
+      String text = "text";
       Post post = Data.getPost();
       Comment comment = Data.getComment(ID);
-      CommentDto commentDto = Data.getCommentDto(null);
-
-      doReturn(comment)
-          .when(commentMapper).toComment(any(CommentDto.class));
 
       doReturn(Optional.of(post))
           .when(postRepository).findById(anyLong());
@@ -59,33 +55,9 @@ class CommentServiceImplTest {
           .when(commentRepository).save(any(Comment.class));
 
       assertDoesNotThrow(
-          () -> commentService.saveComment(ID, commentDto));
+          () -> commentService.saveComment(ID, text));
 
-      verify(commentMapper, atLeastOnce()).toComment(any(CommentDto.class));
       verify(postRepository, atLeastOnce()).findById(anyLong());
-      verify(commentRepository, atLeastOnce()).save(any(Comment.class));
-
-    } catch (Exception e) {
-      fail("Не ожидали получить исключение");
-    }
-  }
-
-  @Test
-  void positiveTest_shouldUpdateComment() {
-    try {
-      Comment comment = Data.getComment(ID);
-      CommentDto commentDto = Data.getCommentDto(null);
-
-      doReturn(Optional.of(comment))
-          .when(commentRepository).findById(anyLong());
-
-      doReturn(comment)
-          .when(commentRepository).save(any(Comment.class));
-
-      assertDoesNotThrow(
-          () -> commentService.updateComment(ID, ID, commentDto));
-
-      verify(commentRepository, atLeastOnce()).findById(anyLong());
       verify(commentRepository, atLeastOnce()).save(any(Comment.class));
 
     } catch (Exception e) {
