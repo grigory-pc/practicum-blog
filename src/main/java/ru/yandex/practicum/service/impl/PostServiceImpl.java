@@ -22,6 +22,7 @@ import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.PostTag;
 import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.dto.PostDto;
+import ru.yandex.practicum.exceptions.ImageLoadException;
 import ru.yandex.practicum.exceptions.NotFoundException;
 import ru.yandex.practicum.exceptions.SaveFileException;
 import ru.yandex.practicum.mapper.PostMapper;
@@ -107,6 +108,21 @@ public class PostServiceImpl implements PostService {
       postRepository.increaseLikesCount(postId);
     }
     postRepository.decreaseLikesCount(postId);
+  }
+
+  @Override
+  public byte[] getPostImage(Long postId) {
+    try {
+      Post post = postRepository.findById(postId)
+                                .orElseThrow(() -> new NotFoundException());
+
+      String filePath = post.getImagePath();
+
+      return Files.readAllBytes(Paths.get(filePath));
+
+    } catch (IOException e) {
+      throw new ImageLoadException("Ошибка при загрузке изображения", e);
+    }
   }
 
   private String saveFile(MultipartFile multipartFile) throws SaveFileException {

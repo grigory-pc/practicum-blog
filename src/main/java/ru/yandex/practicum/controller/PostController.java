@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,12 +58,24 @@ public class PostController {
     return "posts";
   }
 
-  @GetMapping("/add")
-  public String showAddPostForm() {
-    System.out.println();
-    return "add-post";
-  }
+  @GetMapping("/{postId}")
+  public ResponseEntity<byte[]> getPostImage(@PathVariable Long postId) {
+    try {
+      byte[] imageBytes = postService.getPostImage(postId);
 
+      if (imageBytes == null) {
+        return ResponseEntity.notFound().build();
+      }
+
+      String contentType = "image/jpeg";
+
+      return ResponseEntity.ok()
+                           .contentType(MediaType.parseMediaType(contentType))
+                           .body(imageBytes);
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
 
   /**
    * Обрабатывает GET-запросы на получение поста по id.
@@ -80,6 +95,11 @@ public class PostController {
     return "post";
   }
 
+  @GetMapping("/add")
+  public String showAddPostForm() {
+    return "add-post";
+  }
+
   /**
    * Сохранение поста.
    */
@@ -97,7 +117,6 @@ public class PostController {
 
     PostDto savedPost = postService.savePost(postDto, tags, image);
     Long postId = savedPost.getId();
-    //    model.addAttribute("post", savedPost);
 
     log.info("Пост сохранен в базу данных с id={}", postId);
 
