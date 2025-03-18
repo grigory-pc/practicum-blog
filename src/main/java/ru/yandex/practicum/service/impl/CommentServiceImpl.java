@@ -1,5 +1,6 @@
 package ru.yandex.practicum.service.impl;
 
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class CommentServiceImpl implements CommentService {
   private final CommentMapper commentMapper;
 
   @Override
+  @Transactional
   public void saveComment(Long postId, CommentDto commentDto) throws NotFoundException {
     Comment newComment = commentMapper.toComment(commentDto);
 
@@ -40,6 +42,7 @@ public class CommentServiceImpl implements CommentService {
   }
 
   @Override
+  @Transactional
   public void updateComment(Long id, Long commentId, CommentDto commentDto)
       throws NotFoundException {
     Optional<Comment> existingComment = commentRepository.findById(commentId);

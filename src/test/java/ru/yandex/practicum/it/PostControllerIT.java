@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
@@ -28,11 +29,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ru.yandex.practicum.config.DataSourceTestConfig;
 import ru.yandex.practicum.config.WebConfiguration;
+import ru.yandex.practicum.dao.Comment;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dao.Tag;
+import ru.yandex.practicum.dto.CommentDto;
 import ru.yandex.practicum.dto.PostFullDto;
 import ru.yandex.practicum.dto.PostPreviewDto;
 import ru.yandex.practicum.dto.PostSaveDto;
+import ru.yandex.practicum.dto.TagDto;
+import ru.yandex.practicum.repository.CommentRepository;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.utils.Data;
 
@@ -40,12 +45,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitConfig(
-    classes = {DataSourceTestConfig.class, WebConfiguration.class, PostRepository.class})
+    classes = {DataSourceTestConfig.class, WebConfiguration.class, PostRepository.class,
+               CommentRepository.class})
 @Import(DataSourceTestConfig.class)
 @WebAppConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -53,6 +60,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PostControllerIT {
   private static final String BASE_URL = "/posts";
   public static final long ID_POST = 1L;
+  public static final long ID_COMMENT = 1L;
   public static final int POSTS_SIZE = 1;
   private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -62,6 +70,8 @@ public class PostControllerIT {
   private JdbcTemplate jdbcTemplate;
   @Autowired
   private PostRepository postRepository;
+  @Autowired
+  private CommentRepository commentRepository;
 
   private MockMvc mockMvc;
 
@@ -85,6 +95,7 @@ public class PostControllerIT {
 
     jdbcTemplate.execute("DELETE FROM posts");
     jdbcTemplate.execute("DELETE FROM tags");
+    jdbcTemplate.execute("DELETE FROM comments");
 
     String sqlPosts
         = "INSERT INTO posts (id, title, image, text, count_likes)VALUES (?, ?, ?, ?, ?)";
@@ -104,7 +115,9 @@ public class PostControllerIT {
   }
 
   @Test
-  void getUsers_shouldReturnPagePosts() throws Exception {
+  @DisplayName(
+      "Позитивный тест - проверяем получение списка превью постов с пагинацией из базы данных")
+  void positiveTest_shouldGetPagePosts() throws Exception {
     String from = "0";
     String size = "10";
     List<PostPreviewDto> postPreviewDtos = List.of(Data.getPostPreviewDto());
@@ -122,7 +135,8 @@ public class PostControllerIT {
   }
 
   @Test
-  void getUsers_shouldReturnPostFullDto() throws Exception {
+  @DisplayName("Позитивный тест - проверяем получение данных поста из базы данных")
+  void positiveTest_shouldGetPostFullDto() throws Exception {
     PostFullDto postFullDto = Data.getPostFullDto();
     String expectedBody = objectMapper.writeValueAsString(postFullDto);
 
@@ -134,7 +148,8 @@ public class PostControllerIT {
   }
 
   @Test
-  void getUsers_shouldSavePost() throws Exception {
+  @DisplayName("Позитивный тест - проверяем сохранение поста в базу данных")
+  void positiveTest_shouldSavePost() throws Exception {
     jdbcTemplate.execute("DELETE FROM posts");
 
     PostSaveDto postSaveDto = Data.getPostSaveDto();
@@ -153,12 +168,122 @@ public class PostControllerIT {
   }
 
   @Test
-  void delete_shouldRemovePostFromDatabase() throws Exception {
+  @DisplayName("Позитивный тест - проверяем обновление поста в базе данных")
+  void positiveTest_shouldUpdatePost() throws Exception {
+    PostSaveDto postSaveDto = Data.getPostSaveDto();
+    PostSaveDto newPostSaveDto = new PostSaveDto("new title", postSaveDto.image(), "new text",
+                                                 null);
+
+    mockMvc.perform(patch(BASE_URL + "/" + ID_POST)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(newPostSaveDto)))
+           .andExpect(status().isOk());
+
+    Optional<Post> savedPost = postRepository.findById(ID_POST);
+
+    assertTrue(savedPost.isPresent());
+    assertEquals(newPostSaveDto.title(), savedPost.get().getTitle());
+    assertEquals(newPostSaveDto.postText(), savedPost.get().getPostText());
+  }
+
+  @Test
+  @DisplayName("Позитивный тест - проверяем добавление лайка к посту в базе данных")
+  void positiveTest_shouldAddLikeToPost() throws Exception {
+    Integer incrementLike = 1;
+    Optional<Post> postBeforeLike = postRepository.findById(ID_POST);
+    Integer expectedLikes = postBeforeLike.get().getCountLikes() + incrementLike;
+
+    mockMvc.perform(post(BASE_URL + "/" + ID_POST + "/like"))
+           .andExpect(status().isOk());
+
+    Optional<Post> postAfterLike = postRepository.findById(ID_POST);
+    Integer actualLikes = postAfterLike.get().getCountLikes();
+
+    assertEquals(expectedLikes, actualLikes);
+  }
+
+  @Test
+  @DisplayName("Позитивный тест - проверяем сохранение комментария к посту в базе данных")
+  void positiveTest_shouldSaveCommentForPost() throws Exception {
+    CommentDto commentDto = Data.getCommentDto(ID_POST);
+
+    mockMvc.perform(post(BASE_URL + "/" + ID_POST + "/comment")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(commentDto)))
+           .andExpect(status().isOk());
+
+    Optional<Comment> actualComment = commentRepository.findById(ID_COMMENT);
+
+    assertTrue(actualComment.isPresent());
+    assertEquals(ID_POST, actualComment.get().getPost().getId());
+    assertEquals(commentDto.commentText(), actualComment.get().getCommentText());
+  }
+
+  @Test
+  @DisplayName("Позитивный тест - проверяем обновление комментария к посту в базе данных")
+  void positiveTest_shouldUpdateCommentForPost() throws Exception {
+    insertComment();
+
+    CommentDto newCommentDto = new CommentDto(ID_COMMENT, "new text");
+
+    mockMvc.perform(patch(BASE_URL + "/" + ID_POST + "/comment/" + ID_COMMENT)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(newCommentDto)))
+           .andExpect(status().isOk());
+
+    Optional<Comment> actualComment = commentRepository.findById(ID_POST);
+
+    assertTrue(actualComment.isPresent());
+    assertEquals(ID_POST, actualComment.get().getPost().getId());
+    assertEquals(newCommentDto.commentText(), actualComment.get().getCommentText());
+  }
+
+  @Test
+  @DisplayName("Позитивный тест - проверяем удаление поста из базы данных")
+  void positiveTest_shouldDeletePost() throws Exception {
     mockMvc.perform(delete(BASE_URL + "/" + ID_POST))
            .andExpect(status().isOk());
 
     Optional<Post> deletedPost = postRepository.findById(ID_POST);
 
     assertTrue(deletedPost.isEmpty());
+  }
+
+
+  @Test
+  @DisplayName("Позитивный тест - проверяем удаление комментария из базы данных")
+  void positiveTest_shouldDeleteComment() throws Exception {
+    insertComment();
+
+    mockMvc.perform(delete(BASE_URL + "/comment/" + ID_COMMENT))
+           .andExpect(status().isOk());
+
+    Optional<Comment> deletedComment = commentRepository.findById(ID_COMMENT);
+
+    assertTrue(deletedComment.isEmpty());
+  }
+
+  @Test
+  @DisplayName("Позитивный тест - проверяем получение списка тегов из базы данных")
+  void positiveTest_shouldGetTags() throws Exception {
+    Set<TagDto> tags = Data.getTagDtos();
+    String expectedBody = objectMapper.writeValueAsString(tags);
+
+    mockMvc.perform(get(BASE_URL + "/tags")
+                        .accept(MediaType.APPLICATION_JSON))
+           .andExpect(status().isOk())
+           .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+           .andExpect(content().json(expectedBody));
+  }
+
+  private void insertComment() {
+    Comment comment = Data.getComment(ID_COMMENT);
+
+    String sqlComments
+        = "INSERT INTO comments (id, post_id, text)VALUES (?, ?, ?)";
+    jdbcTemplate.update(sqlComments,
+                        comment.getId(),
+                        comment.getPost().getId(),
+                        comment.getCommentText());
   }
 }

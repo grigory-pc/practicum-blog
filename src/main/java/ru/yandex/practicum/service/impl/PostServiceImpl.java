@@ -1,5 +1,6 @@
 package ru.yandex.practicum.service.impl;
 
+import jakarta.transaction.Transactional;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -63,6 +64,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  @Transactional
   public void savePost(PostSaveDto postSaveDto) {
     Post newPost = postMapper.toPost(postSaveDto);
     newPost.setCountLikes(0);
@@ -74,6 +76,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  @Transactional
   public void updatePost(Long id, PostSaveDto postSaveDto) {
     Post existingPost = postRepository.findById(id)
                                       .orElseThrow(NotFoundException::new);
@@ -84,7 +87,10 @@ public class PostServiceImpl implements PostService {
     postRepository.save(updatedPost);
 
     postTagRepository.deleteAllByPostId(id);
-    postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(new PostTag(id, tagId)));
+
+    if (postSaveDto.tagIds() != null) {
+      postSaveDto.tagIds().forEach(tagId -> postTagRepository.save(new PostTag(id, tagId)));
+    }
   }
 
   @Override

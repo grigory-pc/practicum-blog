@@ -69,6 +69,10 @@ public class Data {
     return Set.of(new Tag(1L, TAG), new Tag(2L, TAG_TWO));
   }
 
+  public Set<TagDto> getTagDtos() {
+    return Set.of(new TagDto(1L, TAG), new TagDto(2L, TAG_TWO));
+  }
+
   private static byte[] getImageBytes(String path) {
     File fileImage = new File(path);
 
