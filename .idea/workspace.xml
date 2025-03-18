@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: корректировка в части внешних запросов со стороны view">
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: ИТ">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/PostControllerIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/utils/Data.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +229,7 @@
       <workItem from="1742197876146" duration="5271000" />
       <workItem from="1742206146794" duration="13708000" />
       <workItem from="1742250699826" duration="1250000" />
-      <workItem from="1742285707273" duration="6441000" />
+      <workItem from="1742285707273" duration="7812000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -419,7 +415,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742235786956</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat: ИТ">
+      <option name="closed" value="true" />
+      <created>1742297152884</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1742297152884</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,7 +446,6 @@
     <MESSAGE value="feat: тесты для сервисов" />
     <MESSAGE value="feat: обновление pom" />
     <MESSAGE value="feat: корректировка логов" />
-    <MESSAGE value="feat: ИТ" />
     <MESSAGE value="feat: корректировка размера картинки для страницы поста" />
     <MESSAGE value="feat: добавлена кнопка удаления поста. обновлен стиль кнопки очистки фильтра" />
     <MESSAGE value="feat: добавлена кнопка удаления комментария" />
@@ -458,7 +461,8 @@
     <MESSAGE value="feat: корректировка ИТ" />
     <MESSAGE value="feat: вынесение версий зависимостей" />
     <MESSAGE value="feat: корректировка в части внешних запросов со стороны view" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: корректировка в части внешних запросов со стороны view" />
+    <MESSAGE value="feat: ИТ" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: ИТ" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -480,7 +484,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
-          <line>68</line>
+          <line>69</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -492,16 +496,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/RestService.java</url>
           <line>33</line>
           <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="63" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
