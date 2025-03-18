@@ -12,7 +12,7 @@
 
 <b>Схема базы данных (БД) основного сервиса:</b>
 
-![Схема БД сервиса practicum-blog](https://github.com/grigory-pc/practicum-blog/blob/feat/create-blog/Scheme_DB.jpg?raw=true)
+![Схема БД сервиса practicum-blog](https://raw.githubusercontent.com/grigory-pc/practicum-blog/refs/heads/feat/vaadin/create-blog/Scheme_DB.jpg)
 
 ---
 Приложение написано на Java.
