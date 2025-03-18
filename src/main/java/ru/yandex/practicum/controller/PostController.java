@@ -177,6 +177,25 @@ public class PostController {
   }
 
   /**
+   * Обновление комментария.
+   *
+   * @param postId - id поста.
+   * @param commentId - id комментария.
+   */
+  @PostMapping("/{postId}/comments/{commentId}")
+  public String updateComment(@PathVariable(name = "postId") Long postId,
+                              @PathVariable(name = "commentId") Long commentId,
+                              @RequestParam("text") String text) {
+    log.info("Получен запрос на обновление комментария: для поста id = {}", postId);
+
+    commentService.updateComment(postId, commentId, text);
+
+    log.info("Для поста id = {} добавлен комментарий в базу данных", postId);
+
+    return "redirect:/posts/" + postId;
+  }
+
+  /**
    * Удаление поста.
    *
    * @param postId - id поста.
@@ -198,7 +217,7 @@ public class PostController {
    * @param postId - id поста.
    * @param commentId - id комментария.
    */
-  @PostMapping(value = "/{postId}/comments/{commentId}")
+  @PostMapping(value = "/{postId}/comments/{commentId}/delete")
   public String deleteComment(@PathVariable(name = "postId") Long postId,
                               @PathVariable(name = "commentId") Long commentId) {
     log.info("Получен запрос на удаление комментария для id = {}", commentId);
