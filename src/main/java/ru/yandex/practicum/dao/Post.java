@@ -33,7 +33,7 @@ public class Post {
   @Column(name = "image_path")
   private String imagePath;
   @Column(name = "text", nullable = false)
-  private String postText;
+  private String text;
   @OneToMany(fetch = FetchType.EAGER)
   @JoinColumn(name = "post_id")
   private List<Comment> comments;

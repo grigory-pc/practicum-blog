@@ -83,7 +83,7 @@ public class PostServiceImpl implements PostService {
 
     postDto.setTags(tagList);
 
-    if (image != null) {
+    if (!image.getOriginalFilename().isBlank()) {
       String imagePath = saveFile(image);
       postDto.setImagePath(imagePath);
     }

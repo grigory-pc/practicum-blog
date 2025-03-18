@@ -1,5 +1,6 @@
 package ru.yandex.practicum.repository;
 
+import jakarta.transaction.Transactional;
 import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yandex.practicum.dao.PostTag;
@@ -30,5 +31,6 @@ public interface PostTagRepository extends JpaRepository<PostTag, Long> {
    *
    * @param postId - id поста.
    */
+  @Transactional
   void deleteAllByPostId(Long postId);
 }
