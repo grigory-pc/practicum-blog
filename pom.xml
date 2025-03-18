@@ -234,11 +234,16 @@
             <version>3.1.2.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
-        <finalName>practicum-blog</finalName>
-        <defaultGoal>jetty:run</defaultGoal>
+        <finalName>ROOT</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>

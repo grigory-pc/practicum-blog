@@ -56,7 +56,8 @@ public class PostController {
   }
 
   @GetMapping("/add")
-  public String showAddPostForm(Model model) {
+  public String showAddPostForm() {
+    System.out.println();
     return "add-post";
   }
 
@@ -83,11 +84,10 @@ public class PostController {
    * Сохранение поста.
    */
   @PostMapping
-  public String savePost(@RequestPart("title") @NotBlank String title,
-                         @RequestPart("image") MultipartFile image,
-                         @RequestPart("text") @NotBlank String text,
-                         @RequestPart("tags") String tags,
-                         Model model) {
+  public String savePost(@RequestPart(value = "title") @NotBlank String title,
+                         @RequestPart(value = "image", required = false) MultipartFile image,
+                         @RequestPart(value = "text") @NotBlank String text,
+                         @RequestPart(value = "tags") String tags) {
     log.info("Получен запрос на добавление поста: title={}, text={}, tags={}", title, text, tags);
 
     PostDto postDto = PostDto.builder()
@@ -97,11 +97,11 @@ public class PostController {
 
     PostDto savedPost = postService.savePost(postDto, tags, image);
     Long postId = savedPost.getId();
-    model.addAttribute("post", savedPost);
+    //    model.addAttribute("post", savedPost);
 
     log.info("Пост сохранен в базу данных с id={}", postId);
 
-    return "post";
+    return "redirect:/posts/" + postId;
   }
 
   /**
