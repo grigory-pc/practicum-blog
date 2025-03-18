@@ -11,7 +11,7 @@ import ru.yandex.practicum.dto.PostDto;
 /**
  * Маппер между объектами DAO Post и DTO Post.
  */
-@Mapper(componentModel = "spring", uses = {TagMapper.class, CommentMapper.class})
+@Mapper(componentModel = "spring", uses = {CommentMapper.class})
 public interface PostMapper {
   Post toPost(PostDto dto);
 
