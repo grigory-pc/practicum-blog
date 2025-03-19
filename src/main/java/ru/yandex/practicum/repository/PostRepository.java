@@ -6,14 +6,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import ru.yandex.practicum.dao.Post;
 
 /**
  * Получение данных из таблицы Posts.
  */
-public interface PostRepository extends JpaRepository<Post, Long>, CrudRepository<Post, Long> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
   /**
    * Получение всех постов.

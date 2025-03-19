@@ -40,7 +40,7 @@ public class Data {
                .id(ID_ONE)
                .title("test")
                .imagePath("image_path")
-               .postText("text")
+               .text("text")
                .comments(new ArrayList<>())
                .likesCount(0)
                .build();

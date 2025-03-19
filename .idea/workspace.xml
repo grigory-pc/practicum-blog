@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: обновлена схема БД">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/woman.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/theme-editor.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/frontend/themes/my-theme/theme.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/dto/PostPreviewDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/EndpointLogger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/AppShell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/FeedBlogView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/PostDetailsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/Data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/RestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/types.d.ts" beforeDir="false" />
-    </list>
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: переработка кода для работы с шаблонами html и Model." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +76,13 @@
       <recent name="J:\Development\Yandex.Praktikum\Java\practicum-blog\src\test\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum" />
       <recent name="ru.yandex.practicum.service.impl" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum.controller" />
+      <recent name="ru.yandex.practicum.exceptions" />
+      <recent name="ru.yandex.practicum.configuration" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -112,7 +96,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.java in blog-project">
+  <component name="RunManager" selected="Remote JVM Debug.test blog">
     <configuration name="PostControllerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
@@ -245,7 +229,7 @@
       <workItem from="1742197876146" duration="5271000" />
       <workItem from="1742206146794" duration="13708000" />
       <workItem from="1742250699826" duration="1250000" />
-      <workItem from="1742285707273" duration="10026000" />
+      <workItem from="1742285707273" duration="37073000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -463,7 +447,55 @@
       <option name="project" value="LOCAL" />
       <updated>1742298183752</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="feat: переработка кодла для работы с шаблонами html и Model. Обновление UT">
+      <option name="closed" value="true" />
+      <created>1742318048540</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1742318048540</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: переработка кодла для работы с шаблонами html и Model. Обновление UT">
+      <option name="closed" value="true" />
+      <created>1742318066553</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1742318066553</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat: переработка кодла для работы с шаблонами html и Model. Обновление UT">
+      <option name="closed" value="true" />
+      <created>1742318110111</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1742318110111</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat: переработка кодла для работы с шаблонами html и Model. Обновление UT">
+      <option name="closed" value="true" />
+      <created>1742321124118</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1742321124118</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feat: переработка кодла для работы с шаблонами html и Model. Обновление UT">
+      <option name="closed" value="true" />
+      <created>1742326835465</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1742326835465</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat: переработка кода для работы с шаблонами html и Model.">
+      <option name="closed" value="true" />
+      <created>1742332165214</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1742332165214</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,31 +535,13 @@
     <MESSAGE value="feat: корректировка в части внешних запросов со стороны view" />
     <MESSAGE value="feat: ИТ" />
     <MESSAGE value="feat: обновлена схема БД" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновлена схема БД" />
+    <MESSAGE value="feat: переработка кодла для работы с шаблонами html и Model. Обновление UT" />
+    <MESSAGE value="feat: переработка кода для работы с шаблонами html и Model." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: переработка кода для работы с шаблонами html и Model." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/CommentServiceImplTest.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/view/utility/RestService.java</url>
           <line>32</line>
@@ -538,8 +552,32 @@
           <line>33</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/exceptions/GlobalExceptionHandler.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/PostService.java</url>
+          <line>66</line>
+          <properties class="ru.yandex.practicum.service.PostService" method="getPostImage">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.springframework.data.domain.PageImpl" memberName="pageable" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="result.getResponse().getContentAsString()" language="JAVA" />

@@ -57,4 +57,12 @@ public interface PostService {
    * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
    */
   void addLike(Long postId, boolean like) throws NotFoundException;
+
+  /**
+   * Получение изображения.
+   *
+   * @param postId - id поста.
+   * @return байтовый массив изображения.
+   */
+  byte[] getPostImage(Long postId);
 }

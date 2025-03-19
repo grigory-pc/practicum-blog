@@ -24,7 +24,27 @@ public class CommentServiceImpl implements CommentService {
   @Transactional
   public void saveComment(Long postId, String text) throws NotFoundException {
     Comment comment = Comment.builder()
-                             .commentText(text)
+                             .text(text)
+                             .build();
+
+    Optional<Post> post = postRepository.findById(postId);
+
+    log.info("Из БД получена запись = {}", post);
+
+    if (post.isPresent()) {
+      comment.setPost(post.get());
+
+      commentRepository.save(comment);
+    } else {
+      throw new NotFoundException();
+    }
+  }
+
+  @Override
+  public void updateComment(Long postId, Long commentId, String text) throws NotFoundException {
+    Comment comment = Comment.builder()
+                             .id(commentId)
+                             .text(text)
                              .build();
 
     Optional<Post> post = postRepository.findById(postId);

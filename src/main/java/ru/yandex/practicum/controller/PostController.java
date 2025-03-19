@@ -55,13 +55,6 @@ public class PostController {
     return "posts";
   }
 
-  @GetMapping("/add")
-  public String showAddPostForm() {
-    System.out.println();
-    return "add-post";
-  }
-
-
   /**
    * Обрабатывает GET-запросы на получение поста по id.
    *
@@ -78,6 +71,27 @@ public class PostController {
     model.addAttribute("post", postDto);
 
     return "post";
+  }
+
+  @GetMapping("/add")
+  public String showAddPostForm() {
+    return "add-post";
+  }
+
+  /**
+   * Редактирование поста.
+   *
+   * @param id
+   * @param model
+   * @return
+   */
+  @GetMapping("/{id}/edit")
+  public String showAddPostForm(@PathVariable(name = "id") Long id, Model model) {
+    PostDto postDto = postService.getPostById(id);
+
+    model.addAttribute("post", postDto);
+
+    return "add-post";
   }
 
   /**
@@ -97,7 +111,31 @@ public class PostController {
 
     PostDto savedPost = postService.savePost(postDto, tags, image);
     Long postId = savedPost.getId();
-    //    model.addAttribute("post", savedPost);
+
+    log.info("Пост сохранен в базу данных с id={}", postId);
+
+    return "redirect:/posts/" + postId;
+  }
+
+  /**
+   * Сохранение поста.
+   */
+  @PostMapping("/{id}")
+  public String updatePost(@PathVariable(name = "id") Long id,
+                           @RequestPart(value = "title") @NotBlank String title,
+                           @RequestPart(value = "image", required = false) MultipartFile image,
+                           @RequestPart(value = "text") @NotBlank String text,
+                           @RequestPart(value = "tags") String tags) {
+    log.info("Получен запрос на добавление поста: title={}, text={}, tags={}", title, text, tags);
+
+    PostDto postDto = PostDto.builder()
+                             .id(id)
+                             .title(title)
+                             .text(text)
+                             .build();
+
+    PostDto savedPost = postService.savePost(postDto, tags, image);
+    Long postId = savedPost.getId();
 
     log.info("Пост сохранен в базу данных с id={}", postId);
 
@@ -111,10 +149,10 @@ public class PostController {
    */
   @PostMapping("/{id}/{like}")
   public String addLike(@PathVariable(name = "id") Long postId,
-                        @PathVariable(name = "like") boolean like) {
+                        @PathVariable(name = "like") String like) {
     log.info("Получен запрос на добавление лайка для поста id = {}", postId);
 
-    postService.addLike(postId, like);
+    postService.addLike(postId, true);
 
     log.info("Для поста id = {} учтен лайк в базе данных", postId);
 
@@ -139,11 +177,30 @@ public class PostController {
   }
 
   /**
+   * Обновление комментария.
+   *
+   * @param postId - id поста.
+   * @param commentId - id комментария.
+   */
+  @PostMapping("/{postId}/comments/{commentId}")
+  public String updateComment(@PathVariable(name = "postId") Long postId,
+                              @PathVariable(name = "commentId") Long commentId,
+                              @RequestParam("text") String text) {
+    log.info("Получен запрос на обновление комментария: для поста id = {}", postId);
+
+    commentService.updateComment(postId, commentId, text);
+
+    log.info("Для поста id = {} добавлен комментарий в базу данных", postId);
+
+    return "redirect:/posts/" + postId;
+  }
+
+  /**
    * Удаление поста.
    *
    * @param postId - id поста.
    */
-  @DeleteMapping(value = "/{postId}")
+  @PostMapping(value = "/{postId}/delete")
   public String deletePost(@PathVariable(name = "postId") Long postId) {
     log.info("Получен запрос на удаление поста id = {}", postId);
 
@@ -151,7 +208,7 @@ public class PostController {
 
     log.info("Пост id = {} удален из базы данных", postId);
 
-    return "redirect:/posts/";
+    return "redirect:/posts";
   }
 
   /**
@@ -160,7 +217,7 @@ public class PostController {
    * @param postId - id поста.
    * @param commentId - id комментария.
    */
-  @DeleteMapping(value = "/{postId}/comments/{commentId}")
+  @PostMapping(value = "/{postId}/comments/{commentId}/delete")
   public String deleteComment(@PathVariable(name = "postId") Long postId,
                               @PathVariable(name = "commentId") Long commentId) {
     log.info("Получен запрос на удаление комментария для id = {}", commentId);
