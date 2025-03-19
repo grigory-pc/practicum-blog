@@ -37,10 +37,10 @@ public class PostController {
   @GetMapping
   public String getPosts(@RequestParam(defaultValue = "") String search,
                          @RequestParam(defaultValue = "10") int pageSize,
-                         @RequestParam(defaultValue = "1") int pageNumber,
+                         @RequestParam(defaultValue = "0") int pageNumber,
                          Model model) {
 
-    Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+    Pageable pageable = PageRequest.of(pageNumber, pageSize);
     Page<PostDto> posts = postService.findAllPosts(search, pageable);
 
     model.addAttribute("posts", posts.getContent());
