@@ -112,10 +112,10 @@ public class PostController {
    * @return перенаправляет на страницу сохраненного поста.
    */
   @PostMapping
-  public String savePost(@RequestPart(value = "title") @NotBlank String title,
+  public String savePost(@RequestPart(value = "title") String title,
                          @RequestPart(value = "image", required = false) MultipartFile image,
-                         @RequestPart(value = "text") @NotBlank String text,
-                         @RequestPart(value = "tags") String tags) {
+                         @RequestPart(value = "text") String text,
+                         @RequestPart(value = "tags", required = false) String tags) {
 
     log.info("Получен запрос на добавление поста: title={}", title);
 

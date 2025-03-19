@@ -72,16 +72,14 @@ public class PostServiceImpl implements PostService {
   @Override
   @Transactional
   public PostDto savePost(PostDto postDto, String tags, MultipartFile image) {
-    List<String> tagList = getTagsFromString(tags);
-
-    postDto.setTags(tagList);
-
     Optional<String> imagePath = saveFile(image);
     imagePath.ifPresent(postDto::setImagePath);
 
     Post savedPost = postRepository.save(postMapper.toPost(postDto));
 
-    updatePostTag(postDto, savedPost);
+    if (tags != null) {
+      updatePostTag(tags, savedPost);
+    }
 
     return postMapper.toDto(savedPost);
   }
@@ -138,12 +136,14 @@ public class PostServiceImpl implements PostService {
     }
   }
 
-  private void updatePostTag(PostDto postDto, Post savedPost) {
+  private void updatePostTag(String tags, Post savedPost) {
+    List<String> tagList = getTagsFromString(tags);
+
     postTagRepository.deleteAllByPostId(savedPost.getId());
 
     List<PostTag> newPostTags = new ArrayList<>();
 
-    for (String tagName : postDto.getTags()) {
+    for (String tagName : tagList) {
       Tag tag = tagRepository.findDistinctByTagName(tagName)
                              .orElseGet(() -> tagRepository.save(new Tag(tagName)));
 
