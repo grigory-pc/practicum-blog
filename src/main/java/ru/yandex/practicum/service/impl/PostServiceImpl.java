@@ -117,7 +117,7 @@ public class PostServiceImpl implements PostService {
   }
 
   private Optional<String> saveFile(MultipartFile image) throws SaveFileException {
-    if (!image.getOriginalFilename().isBlank()) {
+    if (image != null && !image.getOriginalFilename().isBlank()) {
       try {
         Path uploadDir = Paths.get("uploads");
         if (!Files.exists(uploadDir)) {
