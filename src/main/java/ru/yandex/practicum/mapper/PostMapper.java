@@ -9,7 +9,7 @@ import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.PostDto;
 
 /**
- * Маппер между объектами DAO Post и DTO Post.
+ * Маппер между объектами DAO Post и DTO PostDto.
  */
 @Mapper(componentModel = "spring", uses = {CommentMapper.class})
 public interface PostMapper {

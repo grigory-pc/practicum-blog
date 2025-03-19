@@ -4,6 +4,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Исключение в случае проблем с сохранением файла.
+ */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 @NoArgsConstructor
 public class SaveFileException extends RuntimeException {

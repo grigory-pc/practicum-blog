@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartException;
 
+/**
+ * Обработка исключений.
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-  private final static String ERROR = "error";
-  private final static String NOT_FOUND = "Not_Found";
-  private final static String INTERNAL_ERROR = "Internal_Error";
+  private static final String ERROR = "error";
+  private static final String NOT_FOUND = "Not_Found";
+  private static final String INTERNAL_ERROR = "Internal_Error";
 
   @ExceptionHandler(NotFoundException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -25,7 +28,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(MultipartException.class)
   public void handleMultipartException(MultipartException ex) {
-    log.error("error", "Ошибка загрузки файла: {}", ex.getMessage());
+    log.error("Ошибка загрузки файла: {}", ex.getMessage());
   }
 
   @ExceptionHandler(Exception.class)

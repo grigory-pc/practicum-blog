@@ -23,9 +23,20 @@ public class PostDto {
   private List<CommentDto> comments;
   private List<String> tags;
 
+  /**
+   * Метод используется html-страницей.
+   *
+   * @return обрезанный текст для превью поста в ленте.
+   */
   public String getTextPreview() {
     return text.length() > 200 ? text.substring(0, 200) + "..." : text;
   }
+
+  /**
+   * Метод используется html-страницей.
+   *
+   * @return список тегов в виде строки.
+   */
   public String getTagsAsText() {
     return tags.stream()
                .map(tag -> "#" + tag)

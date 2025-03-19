@@ -10,8 +10,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -43,15 +43,18 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public Page<PostDto> findAllPosts(String search, Pageable pageable) {
+    Page<Post> posts;
+
     if (search.isEmpty()) {
-      Page<Post> posts = postRepository.findAll(pageable);
-
-      return postMapper.toDtoPage(posts);
+      posts = postRepository.findAll(pageable);
     } else {
-      Page<Post> posts = postRepository.findByTags_NameContainingIgnoreCase(search, pageable);
-
-      return postMapper.toDtoPage(posts);
+      posts = postRepository.findByTags_NameContainingIgnoreCase(search, pageable);
     }
+    Page<PostDto> postDtos = postMapper.toDtoPage(posts);
+
+    postDtos.getContent().forEach(postDto -> postDto.setTags(getTags(postDto)));
+
+    return postDtos;
   }
 
   @Override
@@ -61,14 +64,7 @@ public class PostServiceImpl implements PostService {
 
     PostDto postDto = postMapper.toDto(post);
 
-    postDto.setTags(postTagRepository.findAllByPostId(post.getId())
-                                     .stream()
-                                     .map(postTag -> tagRepository.findById(postTag.getTagId())
-                                                                  .orElseThrow(
-                                                                      () -> new EntityNotFoundException(
-                                                                          "Tag not found"))
-                                                                  .getTagName())
-                                     .collect(Collectors.toList()));
+    postDto.setTags(getTags(postDto));
 
     return postDto;
   }
@@ -76,17 +72,12 @@ public class PostServiceImpl implements PostService {
   @Override
   @Transactional
   public PostDto savePost(PostDto postDto, String tags, MultipartFile image) {
-    List<String> tagList = Arrays.stream(tags.split(","))
-                                 .map(String::trim)
-                                 .filter(tag -> !tag.isEmpty())
-                                 .toList();
+    List<String> tagList = getTagsFromString(tags);
 
     postDto.setTags(tagList);
 
-    if (!image.getOriginalFilename().isBlank()) {
-      String imagePath = saveFile(image);
-      postDto.setImagePath(imagePath);
-    }
+    Optional<String> imagePath = saveFile(image);
+    imagePath.ifPresent(postDto::setImagePath);
 
     Post savedPost = postRepository.save(postMapper.toPost(postDto));
 
@@ -114,7 +105,7 @@ public class PostServiceImpl implements PostService {
   public byte[] getPostImage(Long postId) {
     try {
       Post post = postRepository.findById(postId)
-                                .orElseThrow(() -> new NotFoundException());
+                                .orElseThrow(NotFoundException::new);
 
       String filePath = post.getImagePath();
 
@@ -125,21 +116,25 @@ public class PostServiceImpl implements PostService {
     }
   }
 
-  private String saveFile(MultipartFile multipartFile) throws SaveFileException {
-    try {
-      Path uploadDir = Paths.get("uploads");
-      if (!Files.exists(uploadDir)) {
-        Files.createDirectories(uploadDir);
+  private Optional<String> saveFile(MultipartFile image) throws SaveFileException {
+    if (!image.getOriginalFilename().isBlank()) {
+      try {
+        Path uploadDir = Paths.get("uploads");
+        if (!Files.exists(uploadDir)) {
+          Files.createDirectories(uploadDir);
+        }
+
+        String filename = UUID.randomUUID() + "-" + image.getOriginalFilename();
+
+        Path filePath = uploadDir.resolve(filename);
+        Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+        return Optional.of(filePath.toString());
+      } catch (IOException e) {
+        throw new SaveFileException("Ошибка при сохранении файла", e);
       }
-
-      String filename = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
-
-      Path filePath = uploadDir.resolve(filename);
-      Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-      return filePath.toString();
-    } catch (IOException e) {
-      throw new SaveFileException("Ошибка при сохранении файла", e);
+    } else {
+      return Optional.empty();
     }
   }
 
@@ -160,5 +155,24 @@ public class PostServiceImpl implements PostService {
     }
 
     postTagRepository.saveAll(newPostTags);
+  }
+
+  private List<String> getTags(PostDto post) {
+    return postTagRepository.findAllByPostId(post.getId())
+                            .stream()
+                            .map(postTag -> tagRepository.findById(postTag.getTagId())
+                                                         .orElseThrow(
+                                                             () -> new EntityNotFoundException(
+                                                                 "Tag not found"))
+                                                         .getTagName())
+                            .toList();
+  }
+
+
+  private static List<String> getTagsFromString(String tags) {
+    return Arrays.stream(tags.split(","))
+                 .map(String::trim)
+                 .filter(tag -> !tag.isEmpty())
+                 .toList();
   }
 }

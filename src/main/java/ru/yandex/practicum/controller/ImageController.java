@@ -16,7 +16,7 @@ import ru.yandex.practicum.service.PostService;
  */
 @Slf4j
 @Controller
-@RequestMapping("/image")
+@RequestMapping("/images")
 @RequiredArgsConstructor
 public class ImageController {
   private final PostService postService;

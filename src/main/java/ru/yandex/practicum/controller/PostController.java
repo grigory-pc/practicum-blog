@@ -31,8 +31,10 @@ public class PostController {
    * Обрабатывает GET-запросы на получение списка превью постов для ленты.
    *
    * @param pageNumber - номер страницы.
-   * @param pageSize - количество постов на странице.
-   * @return страница превью постов.
+   * @param pageSize   - количество постов на странице.
+   * @param search   - строка поиска (фильтрации).
+   * @param model - модель данных.
+   * @return страница ленты постов.
    */
   @GetMapping
   public String getPosts(@RequestParam(defaultValue = "") String search,
@@ -59,6 +61,7 @@ public class PostController {
    * Обрабатывает GET-запросы на получение поста по id.
    *
    * @param id - id поста.
+   * @param model - модель данных.
    * @return страница поста.
    */
   @GetMapping("/{id}")
@@ -73,6 +76,11 @@ public class PostController {
     return "post";
   }
 
+  /**
+   * Возвращает страницу для добавления поста.
+   *
+   * @return название страницы для добавления поста.
+   */
   @GetMapping("/add")
   public String showAddPostForm() {
     return "add-post";
@@ -81,9 +89,9 @@ public class PostController {
   /**
    * Редактирование поста.
    *
-   * @param id
-   * @param model
-   * @return
+   * @param id - id поста.
+   * @param model - модель данных.
+   * @return название страницы для добавления поста.
    */
   @GetMapping("/{id}/edit")
   public String showAddPostForm(@PathVariable(name = "id") Long id, Model model) {
@@ -96,13 +104,20 @@ public class PostController {
 
   /**
    * Сохранение поста.
+   *
+   * @param title - название поста.
+   * @param image - файл изображения для поста.
+   * @param text - текст поста.
+   * @param tags - теги поста.
+   * @return перенаправляет на страницу сохраненного поста.
    */
   @PostMapping
   public String savePost(@RequestPart(value = "title") @NotBlank String title,
                          @RequestPart(value = "image", required = false) MultipartFile image,
                          @RequestPart(value = "text") @NotBlank String text,
                          @RequestPart(value = "tags") String tags) {
-    log.info("Получен запрос на добавление поста: title={}, text={}, tags={}", title, text, tags);
+
+    log.info("Получен запрос на добавление поста: title={}", title);
 
     PostDto postDto = PostDto.builder()
                              .title(title)
@@ -118,7 +133,14 @@ public class PostController {
   }
 
   /**
-   * Сохранение поста.
+   * Обновление поста.
+   *
+   * @param id - id поста.
+   * @param title - название поста.
+   * @param image - файл изображения для поста.
+   * @param text - текст поста.
+   * @param tags - теги поста.
+   * @return перенаправляет на страницу сохраненного поста.
    */
   @PostMapping("/{id}")
   public String updatePost(@PathVariable(name = "id") Long id,
@@ -126,7 +148,7 @@ public class PostController {
                            @RequestPart(value = "image", required = false) MultipartFile image,
                            @RequestPart(value = "text") @NotBlank String text,
                            @RequestPart(value = "tags") String tags) {
-    log.info("Получен запрос на добавление поста: title={}, text={}, tags={}", title, text, tags);
+    log.info("Получен запрос на добавление поста: title={}", title);
 
     PostDto postDto = PostDto.builder()
                              .id(id)
@@ -163,6 +185,7 @@ public class PostController {
    * Сохранение комментария.
    *
    * @param postId - id поста.
+   * @param text - текст комментария.
    */
   @PostMapping("/{postId}/comments")
   public String saveComment(@PathVariable(name = "postId") Long postId,
@@ -179,8 +202,9 @@ public class PostController {
   /**
    * Обновление комментария.
    *
-   * @param postId - id поста.
+   * @param postId    - id поста.
    * @param commentId - id комментария.
+   * @param text - текст комментария.
    */
   @PostMapping("/{postId}/comments/{commentId}")
   public String updateComment(@PathVariable(name = "postId") Long postId,
@@ -214,7 +238,7 @@ public class PostController {
   /**
    * Удаление комментария.
    *
-   * @param postId - id поста.
+   * @param postId    - id поста.
    * @param commentId - id комментария.
    */
   @PostMapping(value = "/{postId}/comments/{commentId}/delete")

@@ -35,6 +35,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
   /**
    * Уменьшение количества лайков на 1.
+   *
    * @param postId - id поста.
    */
   @Modifying
@@ -43,6 +44,14 @@ public interface PostRepository extends JpaRepository<Post, Long> {
          nativeQuery = true)
   void decreaseLikesCount(@Param("postId") Long postId);
 
+  /**
+   * Поиск постов на базе тега.
+   *
+   * @param search - строка с тегами.
+   * @param pageable - данные пагинации.
+   *
+   * @return коллекция постов с параметрами пагинации.
+   */
   @Query(value = """
         SELECT p.* 
         FROM posts p 

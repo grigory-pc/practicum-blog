@@ -9,15 +9,6 @@ import ru.yandex.practicum.dao.PostTag;
  * Получение данных из таблицы tags-posts.
  */
 public interface PostTagRepository extends JpaRepository<PostTag, Long> {
-
-  /**
-   * Поиск всех тегов по коллекции post id.
-   *
-   * @param postIds - коллекция post id.
-   * @return коллекция связей post id и id тега.
-   */
-  Set<PostTag> findAllByPostIdIn(Set<Long> postIds);
-
   /**
    * Поиск всех тегов по  post id.
    *
