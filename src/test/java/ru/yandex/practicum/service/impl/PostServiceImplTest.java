@@ -6,12 +6,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.PostDto;
@@ -39,13 +39,13 @@ import static org.mockito.Mockito.verify;
 @ContextConfiguration(classes = PostServiceImpl.class)
 class PostServiceImplTest {
   private static final Long POST_ID = 1L;
-  @MockitoBean
+  @MockBean
   private PostRepository postRepository;
-  @MockitoBean
+  @MockBean
   private PostTagRepository postTagRepository;
-  @MockitoBean
+  @MockBean
   private TagRepository tagRepository;
-  @MockitoBean
+  @MockBean
   private PostMapper postMapper;
   @Autowired
   private PostService postService;

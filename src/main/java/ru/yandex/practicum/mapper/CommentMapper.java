@@ -6,9 +6,11 @@ import ru.yandex.practicum.dto.CommentDto;
 
 /**
  * Маппер между объектами DAO Comment и DTO CommentDto.
- */@Mapper(componentModel = "spring")
+ */
+@Mapper(componentModel = "spring")
 public interface CommentMapper {
 
-   CommentDto toDto (Comment comment);
-   Comment toComment (CommentDto commentDto);
+  CommentDto toDto(Comment comment);
+
+  Comment toComment(CommentDto commentDto);
 }
