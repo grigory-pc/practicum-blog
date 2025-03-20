@@ -10,7 +10,7 @@
 7. Добавить лайк к посту.
 ---
 
-<b>Схема базы данных (БД) основного сервиса:</b>
+<b>Схема базы данных (БД) сервиса:</b>
 
 ![Схема БД сервиса practicum-blog](https://raw.githubusercontent.com/grigory-pc/practicum-blog/refs/heads/feat/vaadin/create-blog/Scheme_DB.jpg)
 
