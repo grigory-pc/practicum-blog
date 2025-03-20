@@ -147,7 +147,7 @@ public class PostController {
                            @RequestPart(value = "image", required = false) MultipartFile image,
                            @RequestPart(value = "text") String text,
                            @RequestPart(value = "tags", required = false) String tags) {
-    log.info("Получен запрос на добавление поста: title={}", title);
+    log.info("Получен запрос на обновление поста: title={}", title);
 
     PostDto postDto = PostDto.builder()
                              .id(id)
@@ -155,12 +155,11 @@ public class PostController {
                              .text(text)
                              .build();
 
-    PostDto savedPost = postService.savePost(postDto, tags, image);
-    Long postId = savedPost.getId();
+    postService.savePost(postDto, tags, image);
 
-    log.info("Пост сохранен в базу данных с id={}", postId);
+    log.info("Пост сохранен в базу данных с id={}", id);
 
-    return REDIRECT_POSTS + postId;
+    return REDIRECT_POSTS + id;
   }
 
   /**

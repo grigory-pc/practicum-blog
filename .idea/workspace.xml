@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: обновление ИТ">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerUT.java" afterDir="false" />
+    <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: рефакторинг">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/service/impl/PostServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,17 +102,17 @@
       <command value="mvn dependency:tree -Dverbose | find &quot;omitted for conflict&quot;" />
       <command value="mvn dependency:tree -Dverbose" />
       <command value="mvn clean compile -Dmaven.test.skip=true" />
-      <command value="mvn clean install" />
       <command value="mvn clean compile" />
+      <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PostControllerUT.positiveTest_shouldGetPagePosts">
+  <component name="RunManager" selected="Remote JVM Debug.test blog">
     <configuration name="ImageControllerIT.positiveTest_shouldGetPostFullDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.it.*" />
+          <option name="PATTERN" value="ru.yandex.practicum.it.PostControllerIT" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,7 +129,7 @@
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.it.*" />
+          <option name="PATTERN" value="ru.yandex.practicum.it.PostControllerIT" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -138,7 +141,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerIT.positiveTest_shouldDeletePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
@@ -148,9 +151,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
-      <option name="METHOD_NAME" value="positiveTest_shouldDeletePost" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -211,20 +213,20 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.PostControllerTest" />
       <item itemvalue="JUnit.ImageControllerIT.positiveTest_shouldGetPostFullDto" />
       <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeleteComment" />
-      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeletePost" />
       <item itemvalue="JUnit.PostControllerUT.positiveTest_shouldGetPagePosts" />
       <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts" />
       <item itemvalue="Remote JVM Debug.test blog" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PostControllerTest" />
         <item itemvalue="JUnit.PostControllerUT.positiveTest_shouldGetPagePosts" />
         <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts" />
         <item itemvalue="JUnit.ImageControllerIT.positiveTest_shouldGetPostFullDto" />
         <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeleteComment" />
-        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeletePost" />
       </list>
     </recent_temporary>
   </component>
@@ -248,6 +250,7 @@
       <workItem from="1742285707273" duration="37073000" />
       <workItem from="1742387992287" duration="5732000" />
       <workItem from="1742457390415" duration="2548000" />
+      <workItem from="1742459952180" duration="2076000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -537,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742459541588</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="feat: рефакторинг">
+      <option name="closed" value="true" />
+      <created>1742460382667</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1742460382667</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +566,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: тесты для контроллеров" />
     <MESSAGE value="feat: тесты для сервисов" />
     <MESSAGE value="feat: обновление pom" />
     <MESSAGE value="feat: корректировка логов" />
@@ -580,7 +590,8 @@
     <MESSAGE value="feat: переработка кода для работы с шаблонами html и Model." />
     <MESSAGE value="feat: обновление UT" />
     <MESSAGE value="feat: обновление ИТ" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: обновление ИТ" />
+    <MESSAGE value="feat: рефакторинг" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: рефакторинг" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -601,11 +612,6 @@
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>
           <line>75</line>
           <option name="timeStamp" value="104" />
@@ -614,6 +620,26 @@
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerUT.java</url>
           <line>106</line>
           <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
+          <line>226</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="113" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -625,7 +651,7 @@
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="result.getResponse().getContentAsString()" language="JAVA" />
-        <watch expression="((AssertionFailedError)assertEquals(expectedBody, result.getResponse().getContentAsString())).detailMessage" custom="org.opentest4j.AssertionFailedError" />
+        <watch expression="((AssertionFailedError)assertEquals(expectedBody, result.getResponse().getContentAsString())).detailMessage" language="JAVA" custom="org.opentest4j.AssertionFailedError" />
       </configuration>
     </watches-manager>
   </component>

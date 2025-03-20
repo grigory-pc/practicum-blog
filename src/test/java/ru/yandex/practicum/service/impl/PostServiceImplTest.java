@@ -144,14 +144,14 @@ class PostServiceImplTest {
   @DisplayName("Позитивный тест - проверяем удаление поста")
   void positiveTest_shouldDeletePostById() {
     doNothing().when(postRepository)
-               .deleteById(anyLong());
+               .deletePostById(anyLong());
     doNothing().when(postTagRepository)
                .deleteAllByPostId(anyLong());
 
     assertDoesNotThrow(
         () -> postService.deletePostById(POST_ID));
 
-    verify(postRepository, atLeastOnce()).deleteById(anyLong());
+    verify(postRepository, atLeastOnce()).deletePostById(anyLong());
     verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
   }
 

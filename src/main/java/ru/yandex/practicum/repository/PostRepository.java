@@ -53,15 +53,20 @@ public interface PostRepository extends JpaRepository<Post, Long> {
    * @return коллекция постов с параметрами пагинации.
    */
   @Query(value = """
-        SELECT p.* 
-        FROM posts p 
-        JOIN posts_tags pt ON p.id = pt.post_id 
-        JOIN tags t ON pt.tag_id = t.id 
-        WHERE LOWER(t.tag_name) LIKE CONCAT('%', LOWER(:search), '%')
-        GROUP BY p.id
-        """,
+      SELECT p.* 
+      FROM posts p 
+      JOIN posts_tags pt ON p.id = pt.post_id 
+      JOIN tags t ON pt.tag_id = t.id 
+      WHERE LOWER(t.tag_name) LIKE CONCAT('%', LOWER(:search), '%')
+      GROUP BY p.id
+      """,
          nativeQuery = true)
   Page<Post> findByTags_NameContainingIgnoreCase(
       @Param("search") String search,
       Pageable pageable);
+
+  @Modifying
+  @Transactional
+  @Query(value = "DELETE FROM posts WHERE id = ?1", nativeQuery = true)
+  void deletePostById(Long id);
 }
