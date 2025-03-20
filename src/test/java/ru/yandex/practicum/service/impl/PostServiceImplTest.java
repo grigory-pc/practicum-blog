@@ -2,6 +2,7 @@ package ru.yandex.practicum.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ class PostServiceImplTest {
   private PostService postService;
 
   @Test
+  @DisplayName("Позитивный тест - проверяем получение списка превью постов")
   void positiveTest_shouldFindAllPosts() {
     try {
       String search = "";
@@ -78,6 +80,7 @@ class PostServiceImplTest {
   }
 
   @Test
+  @DisplayName("Позитивный тест - проверяем получение данных поста")
   void positiveTest_shouldGetPostById() {
     try {
       Post post = Data.getPost();
@@ -102,6 +105,7 @@ class PostServiceImplTest {
   }
 
   @Test
+  @DisplayName("Позитивный тест - проверяем сохранение поста")
   void positiveTest_shouldSavePost() {
     try {
       Post post = Data.getPost();
@@ -137,6 +141,7 @@ class PostServiceImplTest {
   }
 
   @Test
+  @DisplayName("Позитивный тест - проверяем удаление поста")
   void positiveTest_shouldDeletePostById() {
     doNothing().when(postRepository)
                .deleteById(anyLong());
@@ -151,6 +156,7 @@ class PostServiceImplTest {
   }
 
   @Test
+  @DisplayName("Позитивный тест - проверяем добавление лайка к посту")
   void positiveTest_shouldAddLike() {
     doNothing().when(postRepository)
                .increaseLikesCount(anyLong());
@@ -162,6 +168,7 @@ class PostServiceImplTest {
   }
 
   @Test
+  @DisplayName("Позитивный тест - проверяем получение байтового массива поста")
   void positiveTest_shouldGetImage() {
     doReturn(Optional.of(Data.getPost()))
         .when(postRepository).findById(anyLong());
