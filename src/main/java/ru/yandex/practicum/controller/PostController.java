@@ -1,7 +1,5 @@
 package ru.yandex.practicum.controller;
 
-import jakarta.validation.constraints.NotBlank;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -24,6 +22,7 @@ import ru.yandex.practicum.service.PostService;
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
+  public static final String REDIRECT_POSTS = "redirect:/posts/";
   private final PostService postService;
   private final CommentService commentService;
 
@@ -129,7 +128,7 @@ public class PostController {
 
     log.info("Пост сохранен в базу данных с id={}", postId);
 
-    return "redirect:/posts/" + postId;
+    return REDIRECT_POSTS + postId;
   }
 
   /**
@@ -144,10 +143,10 @@ public class PostController {
    */
   @PostMapping("/{id}")
   public String updatePost(@PathVariable(name = "id") Long id,
-                           @RequestPart(value = "title") @NotBlank String title,
+                           @RequestPart(value = "title") String title,
                            @RequestPart(value = "image", required = false) MultipartFile image,
-                           @RequestPart(value = "text") @NotBlank String text,
-                           @RequestPart(value = "tags") String tags) {
+                           @RequestPart(value = "text") String text,
+                           @RequestPart(value = "tags", required = false) String tags) {
     log.info("Получен запрос на добавление поста: title={}", title);
 
     PostDto postDto = PostDto.builder()
@@ -161,7 +160,7 @@ public class PostController {
 
     log.info("Пост сохранен в базу данных с id={}", postId);
 
-    return "redirect:/posts/" + postId;
+    return REDIRECT_POSTS + postId;
   }
 
   /**
@@ -178,7 +177,7 @@ public class PostController {
 
     log.info("Для поста id = {} учтен лайк в базе данных", postId);
 
-    return "redirect:/posts/" + postId;
+    return REDIRECT_POSTS + postId;
   }
 
   /**
@@ -196,7 +195,7 @@ public class PostController {
 
     log.info("Для поста id = {} добавлен комментарий в базу данных", postId);
 
-    return "redirect:/posts/" + postId;
+    return REDIRECT_POSTS + postId;
   }
 
   /**
@@ -216,7 +215,7 @@ public class PostController {
 
     log.info("Для поста id = {} добавлен комментарий в базу данных", postId);
 
-    return "redirect:/posts/" + postId;
+    return REDIRECT_POSTS + postId;
   }
 
   /**
@@ -250,6 +249,6 @@ public class PostController {
 
     log.info("Комментарий id = {} удален из базы данных", commentId);
 
-    return "redirect:/posts/" + postId;
+    return REDIRECT_POSTS + postId;
   }
 }

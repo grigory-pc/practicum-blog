@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7640ccb9-338b-4793-bd3f-8016bc12b8b1" name="Changes" comment="feat: обновление UT">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/yandex/practicum/it/ImageControllerIT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java" afterDir="false" />
@@ -88,6 +89,7 @@
       <recent name="ru.yandex.practicum.service.impl" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.yandex.practicum.it" />
       <recent name="ru.yandex.practicum.controller" />
       <recent name="ru.yandex.practicum.exceptions" />
       <recent name="ru.yandex.practicum.configuration" />
@@ -104,8 +106,8 @@
       <command value="mvn clean compile" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PostControllerIT.positiveTest_shouldSavePost">
-    <configuration name="PostControllerIT.positiveTest_shouldGetPagePosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ImageControllerIT.positiveTest_shouldGetPostFullDto">
+    <configuration name="ImageControllerIT.positiveTest_shouldGetPostFullDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
@@ -115,31 +117,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
-      <option name="METHOD_NAME" value="positiveTest_shouldGetPagePosts" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PostControllerIT.positiveTest_shouldGetPostFullDto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="blog-project" />
-      <shortenClasspath name="ARGS_FILE" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.it.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.ImageControllerIT" />
       <option name="METHOD_NAME" value="positiveTest_shouldGetPostFullDto" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerIT.positiveTest_shouldSavePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostControllerIT.positiveTest_shouldDeleteComment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
@@ -150,41 +135,59 @@
       </extension>
       <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
       <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
-      <option name="METHOD_NAME" value="positiveTest_shouldSavePost" />
+      <option name="METHOD_NAME" value="positiveTest_shouldDeleteComment" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostControllerTest.positiveTest_shouldGetPosts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostControllerIT.positiveTest_shouldDeletePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.controller.*" />
+          <option name="PATTERN" value="ru.yandex.practicum.it.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.controller" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.controller.PostControllerTest" />
-      <option name="METHOD_NAME" value="positiveTest_shouldGetPosts" />
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
+      <option name="METHOD_NAME" value="positiveTest_shouldDeletePost" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PostControllerIT.positiveTest_shouldSaveCommentForPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="blog-project" />
       <shortenClasspath name="ARGS_FILE" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.yandex.practicum.service.impl.*" />
+          <option name="PATTERN" value="ru.yandex.practicum.it.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex.practicum.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.service.impl.PostServiceImplTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
+      <option name="METHOD_NAME" value="positiveTest_shouldSaveCommentForPost" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostControllerIT.positiveTest_shouldUpdateCommentForPost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="blog-project" />
+      <shortenClasspath name="ARGS_FILE" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.practicum.it.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex.practicum.it" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.practicum.it.PostControllerIT" />
+      <option name="METHOD_NAME" value="positiveTest_shouldUpdateCommentForPost" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -211,20 +214,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldGetPagePosts" />
-      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldGetPostFullDto" />
-      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldSavePost" />
-      <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts" />
-      <item itemvalue="JUnit.PostServiceImplTest" />
+      <item itemvalue="JUnit.ImageControllerIT.positiveTest_shouldGetPostFullDto" />
+      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeleteComment" />
+      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeletePost" />
+      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldSaveCommentForPost" />
+      <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldUpdateCommentForPost" />
       <item itemvalue="Remote JVM Debug.test blog" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldSavePost" />
-        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldGetPostFullDto" />
-        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldGetPagePosts" />
-        <item itemvalue="JUnit.PostControllerTest.positiveTest_shouldGetPosts" />
-        <item itemvalue="JUnit.PostServiceImplTest" />
+        <item itemvalue="JUnit.ImageControllerIT.positiveTest_shouldGetPostFullDto" />
+        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeleteComment" />
+        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldDeletePost" />
+        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldUpdateCommentForPost" />
+        <item itemvalue="JUnit.PostControllerIT.positiveTest_shouldSaveCommentForPost" />
       </list>
     </recent_temporary>
   </component>
@@ -247,6 +250,7 @@
       <workItem from="1742250699826" duration="1250000" />
       <workItem from="1742285707273" duration="37073000" />
       <workItem from="1742387992287" duration="5732000" />
+      <workItem from="1742457390415" duration="1970000" />
     </task>
     <task id="LOCAL-00001" summary="feat: правка зависимостей">
       <option name="closed" value="true" />
@@ -590,16 +594,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/exceptions/GlobalExceptionHandler.java</url>
           <line>30</line>
           <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/controller/PostController.java</url>
-          <line>176</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/yandex/practicum/service/impl/PostServiceImpl.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/yandex/practicum/controller/PostControllerTest.java</url>

@@ -95,8 +95,9 @@ public class PostServiceImpl implements PostService {
   public void addLike(Long postId, boolean like) throws NotFoundException {
     if (like) {
       postRepository.increaseLikesCount(postId);
+    } else {
+      postRepository.decreaseLikesCount(postId);
     }
-    postRepository.decreaseLikesCount(postId);
   }
 
   @Override
