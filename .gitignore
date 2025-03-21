@@ -58,3 +58,4 @@ log/
 # Ignore Gradle build output directory
 build
 /uploads/
+/.idea/sonarlint/

@@ -9,25 +9,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ru.yandex.practicum.config.DataSourceTestConfig;
-import ru.yandex.practicum.config.WebConfiguration;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.PostDto;
-import ru.yandex.practicum.repository.CommentRepository;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.utils.Data;
 
@@ -38,14 +33,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringJUnitConfig(
-    classes = {DataSourceTestConfig.class, WebConfiguration.class, PostRepository.class,
-               CommentRepository.class})
-@Import(DataSourceTestConfig.class)
-@WebAppConfiguration
+@ActiveProfiles("test")
 @TestPropertySource(locations = "classpath:application-test.properties")
-@Profile("test")
 @SpringBootTest
+@AutoConfigureMockMvc
 public class ImageControllerIT {
   private static final String BASE_URL = "/images";
   public static final long ID_POST = 1L;
