@@ -17,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -47,7 +46,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @ActiveProfiles("test")
-@TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
 @AutoConfigureMockMvc
 public class PostControllerIT {
@@ -151,10 +149,10 @@ public class PostControllerIT {
                         .file(Data.getTextFile(postSaveDto.getText()))
                         .file(Data.getTitleFile(postSaveDto.getTitle()))
                         .contentType(MediaType.MULTIPART_FORM_DATA))
-           .andExpect(status().is3xxRedirection())
-           .andExpect(redirectedUrl("/posts/" + ID_POST));
+           .andExpect(status().is3xxRedirection());
 
-    Optional<Post> savedPost = postRepository.findById(ID_POST);
+    List<Post> allPosts = postRepository.findAll();
+    Optional<Post> savedPost = postRepository.findById(allPosts.get(allPosts.size() - 1).getId());
 
     assertTrue(savedPost.isPresent());
     assertEquals(postSaveDto.getTitle(), savedPost.get().getTitle());

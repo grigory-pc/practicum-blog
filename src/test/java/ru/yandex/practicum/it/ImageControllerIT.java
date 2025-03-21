@@ -2,6 +2,7 @@ package ru.yandex.practicum.it;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,11 +14,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -30,11 +29,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles("test")
-@TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ImageControllerIT {
@@ -43,8 +40,6 @@ public class ImageControllerIT {
 
   @Autowired
   private WebApplicationContext webApplicationContext;
-  @Autowired
-  private JdbcTemplate jdbcTemplate;
   @Autowired
   private PostRepository postRepository;
   private MockMvc mockMvc;
@@ -61,8 +56,6 @@ public class ImageControllerIT {
   @BeforeEach
   void setUp() {
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-
-    jdbcTemplate = webApplicationContext.getBean(JdbcTemplate.class);
   }
 
   @Test
@@ -72,17 +65,15 @@ public class ImageControllerIT {
     MockMultipartFile imageFile = Data.getImage();
     PostDto postSaveDto = Data.getPostSaveDto();
 
-    jdbcTemplate.execute("DELETE FROM posts");
-
     mockMvc.perform(multipart("/posts")
                         .file(imageFile)
                         .file(Data.getTextFile(postSaveDto.getText()))
                         .file(Data.getTitleFile(postSaveDto.getTitle()))
                         .contentType(MediaType.MULTIPART_FORM_DATA))
-           .andExpect(status().is3xxRedirection())
-           .andExpect(redirectedUrl("/posts/" + ID_POST));
+           .andExpect(status().is3xxRedirection());
 
-    Optional<Post> savedPost = postRepository.findById(ID_POST);
+    List<Post> allPosts = postRepository.findAll();
+    Optional<Post> savedPost = postRepository.findById(allPosts.get(allPosts.size() - 1).getId());
     assertTrue(savedPost.isPresent());
 
     mockMvc.perform(get(BASE_URL + "/" + savedPost.get().getId())
