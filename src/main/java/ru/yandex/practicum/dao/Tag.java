@@ -1,6 +1,5 @@
 package ru.yandex.practicum.dao;
 
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Table(name = "tags")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tag {

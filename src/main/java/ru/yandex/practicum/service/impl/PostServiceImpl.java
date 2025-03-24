@@ -15,7 +15,6 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.yandex.practicum.dao.Post;
@@ -42,13 +41,13 @@ public class PostServiceImpl implements PostService {
   private final PostMapper postMapper;
 
   @Override
-  public Page<PostDto> findAllPosts(String search, Pageable pageable) {
+  public Page<PostDto> findAllPosts(String search, int pageNumber, int pageSize) {
     Page<Post> posts;
 
     if (search.isEmpty()) {
-      posts = postRepository.findAll(pageable);
+      posts = postRepository.findAll(pageNumber, pageSize);
     } else {
-      posts = postRepository.findByTags_NameContainingIgnoreCase(search, pageable);
+      posts = postRepository.findByTags_NameContainingIgnoreCase(search, pageNumber, pageSize);
     }
     Page<PostDto> postDtos = postMapper.toDtoPage(posts);
 
@@ -75,13 +74,13 @@ public class PostServiceImpl implements PostService {
     Optional<String> imagePath = saveFile(image);
     imagePath.ifPresent(postDto::setImagePath);
 
-    Post savedPost = postRepository.save(postMapper.toPost(postDto));
+    Optional<Post> savedPost = postRepository.save(postMapper.toPost(postDto));
 
     if (tags != null) {
-      updatePostTag(tags, savedPost);
+      updatePostTag(tags, savedPost.get());
     }
 
-    return postMapper.toDto(savedPost);
+    return postMapper.toDto(savedPost.get());
   }
 
   @Override

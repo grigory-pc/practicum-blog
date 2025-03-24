@@ -3,8 +3,6 @@ package ru.yandex.practicum.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,8 +39,7 @@ public class PostController {
                          @RequestParam(defaultValue = "0") int pageNumber,
                          Model model) {
 
-    Pageable pageable = PageRequest.of(pageNumber, pageSize);
-    Page<PostDto> posts = postService.findAllPosts(search, pageable);
+    Page<PostDto> posts = postService.findAllPosts(search, pageNumber, pageSize);
 
     model.addAttribute("posts", posts.getContent());
     model.addAttribute("search", search);

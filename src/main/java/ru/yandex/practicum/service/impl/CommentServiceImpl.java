@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
     log.info("Из БД получена запись = {}", post);
 
     if (post.isPresent()) {
-      comment.setPost(post.get());
+      comment.setPostId(postId);
 
       commentRepository.save(comment);
     } else {
@@ -52,7 +52,7 @@ public class CommentServiceImpl implements CommentService {
     log.info("Из БД получена запись = {}", post);
 
     if (post.isPresent()) {
-      comment.setPost(post.get());
+      comment.setPostId(postId);
 
       commentRepository.save(comment);
     } else {

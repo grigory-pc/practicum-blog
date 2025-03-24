@@ -1,36 +1,45 @@
 package ru.yandex.practicum.repository;
 
-import jakarta.transaction.Transactional;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ru.yandex.practicum.dao.Post;
 
 /**
  * Получение данных из таблицы Posts.
  */
-public interface PostRepository extends JpaRepository<Post, Long> {
+public interface PostRepository {
+
+  /**
+   * Поиск поста по id.
+   *
+   * @param id - id поста.
+   * @return найденный пост.
+   */
+  Optional<Post> findById(Long id);
+
+  /**
+   * Сохранение поста.
+   *
+   * @param post - объект поста.
+   * @return - сохраненный пост с id.
+   */
+  Optional<Post> save(Post post);
 
   /**
    * Получение всех постов.
    *
-   * @param pageable - данные для пагинации.
+   * @param pageNumber - с какой страницы
+   * @param pageSize - количество записей.
    * @return список постов.
    */
-  @Override
-  Page<Post> findAll(Pageable pageable);
+  Page<Post> findAll(int pageNumber, int pageSize);
 
   /**
    * Увеличение количества лайков на 1.
+   *
    * @param postId - id поста.
    */
-  @Modifying
-  @Transactional
-  @Query(value = "UPDATE posts SET count_likes = count_likes + 1 WHERE id = :postId",
-         nativeQuery = true)
   void increaseLikesCount(@Param("postId") Long postId);
 
   /**
@@ -38,35 +47,22 @@ public interface PostRepository extends JpaRepository<Post, Long> {
    *
    * @param postId - id поста.
    */
-  @Modifying
-  @Transactional
-  @Query(value = "UPDATE posts SET count_likes = count_likes - 1 WHERE id = :postId",
-         nativeQuery = true)
   void decreaseLikesCount(@Param("postId") Long postId);
 
   /**
    * Поиск постов на базе тега.
    *
-   * @param search - строка с тегами.
-   * @param pageable - данные пагинации.
-   *
+   * @param search   - строка с тегами.
+   * @param from - с какой страницы
+   * @param size - количество записей.
    * @return коллекция постов с параметрами пагинации.
    */
-  @Query(value = """
-      SELECT p.* 
-      FROM posts p 
-      JOIN posts_tags pt ON p.id = pt.post_id 
-      JOIN tags t ON pt.tag_id = t.id 
-      WHERE LOWER(t.tag_name) LIKE CONCAT('%', LOWER(:search), '%')
-      GROUP BY p.id
-      """,
-         nativeQuery = true)
-  Page<Post> findByTags_NameContainingIgnoreCase(
-      @Param("search") String search,
-      Pageable pageable);
+  Page<Post> findByTags_NameContainingIgnoreCase(String search, int from, int size);
 
-  @Modifying
-  @Transactional
-  @Query(value = "DELETE FROM posts WHERE id = ?1", nativeQuery = true)
+  /**
+   * Удаление поста.
+   *
+   * @param id - id поста.
+   */
   void deletePostById(Long id);
 }

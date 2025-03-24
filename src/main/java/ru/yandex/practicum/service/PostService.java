@@ -1,7 +1,6 @@
 package ru.yandex.practicum.service;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 import ru.yandex.practicum.dto.PostDto;
 import ru.yandex.practicum.exceptions.NotFoundException;
@@ -14,11 +13,12 @@ public interface PostService {
   /**
    * Получение всех постов.
    *
-   * @param search - строка поиска
-   * @param pageable - параметры пагинации.
+   * @param search     - строка поиска
+   * @param pageNumber - с какой страницы
+   * @param pageSize   - количество записей.
    * @return список постов.
    */
-  Page<PostDto> findAllPosts(String search, Pageable pageable);
+  Page<PostDto> findAllPosts(String search, int pageNumber, int pageSize);
 
   /**
    * Получение поста по id.
@@ -33,11 +33,9 @@ public interface PostService {
    * Сохранение поста.
    *
    * @param postDto - объект поста.
-   * @param tags - теги.
-   * @param image - картинка.
-   *
+   * @param tags    - теги.
+   * @param image   - картинка.
    * @return сохраненный объект поста.
-   *
    */
   PostDto savePost(PostDto postDto, String tags, MultipartFile image);
 
@@ -53,7 +51,7 @@ public interface PostService {
    * Добавление лайка к посту.
    *
    * @param postId - id поста.
-   * @param like - true или false. Увеличить или уменьшить лайк.
+   * @param like   - true или false. Увеличить или уменьшить лайк.
    * @throws NotFoundException - исключение в случае, если в базе данных не найдена запись.
    */
   void addLike(Long postId, boolean like) throws NotFoundException;

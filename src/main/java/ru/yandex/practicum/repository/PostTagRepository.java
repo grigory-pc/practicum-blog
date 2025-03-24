@@ -1,14 +1,12 @@
 package ru.yandex.practicum.repository;
 
-import jakarta.transaction.Transactional;
 import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yandex.practicum.dao.PostTag;
 
 /**
  * Получение данных из таблицы tags-posts.
  */
-public interface PostTagRepository extends JpaRepository<PostTag, Long> {
+public interface PostTagRepository {
   /**
    * Поиск всех тегов по  post id.
    *
@@ -22,6 +20,5 @@ public interface PostTagRepository extends JpaRepository<PostTag, Long> {
    *
    * @param postId - id поста.
    */
-  @Transactional
   void deleteAllByPostId(Long postId);
 }

@@ -1,10 +1,16 @@
 package ru.yandex.practicum.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 import ru.yandex.practicum.dao.Comment;
 
 /**
  * Получение данных из таблицы Comments.
  */
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+public interface CommentRepository {
+
+  void save(Comment comment);
+
+  Optional<Comment> findById(Long id);
+
+  void deleteById(Long id);
 }
