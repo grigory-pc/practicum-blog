@@ -25,6 +25,7 @@ import ru.yandex.practicum.exceptions.ImageLoadException;
 import ru.yandex.practicum.exceptions.NotFoundException;
 import ru.yandex.practicum.exceptions.SaveFileException;
 import ru.yandex.practicum.mapper.PostMapper;
+import ru.yandex.practicum.repository.CommentRepository;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
 import ru.yandex.practicum.repository.TagRepository;
@@ -38,6 +39,7 @@ public class PostServiceImpl implements PostService {
   private final PostRepository postRepository;
   private final PostTagRepository postTagRepository;
   private final TagRepository tagRepository;
+  private final CommentRepository commentRepository;
   private final PostMapper postMapper;
 
   @Override
@@ -49,6 +51,10 @@ public class PostServiceImpl implements PostService {
     } else {
       posts = postRepository.findByTags_NameContainingIgnoreCase(search, pageNumber, pageSize);
     }
+
+    posts.getContent()
+         .forEach(post -> post.setComments(commentRepository.findAllByPostId(post.getId())));
+
     Page<PostDto> postDtos = postMapper.toDtoPage(posts);
 
     postDtos.getContent().forEach(postDto -> postDto.setTags(getTags(postDto)));
@@ -61,6 +67,8 @@ public class PostServiceImpl implements PostService {
     Post post = postRepository.findById(id)
                               .orElseThrow(NotFoundException::new);
 
+    post.setComments(commentRepository.findAllByPostId(id));
+
     PostDto postDto = postMapper.toDto(post);
 
     postDto.setTags(getTags(postDto));
@@ -70,21 +78,23 @@ public class PostServiceImpl implements PostService {
 
   @Override
   @Transactional
-  public PostDto savePost(PostDto postDto, String tags, MultipartFile image) {
+  public Long savePost(PostDto postDto, String tags, MultipartFile image) {
     Optional<String> imagePath = saveFile(image);
     imagePath.ifPresent(postDto::setImagePath);
 
-    Optional<Post> savedPost = postRepository.save(postMapper.toPost(postDto));
+    Long postId = postRepository.save(postMapper.toPost(postDto));
 
     if (tags != null) {
-      updatePostTag(tags, savedPost.get());
+      updatePostTag(tags, postId);
     }
 
-    return postMapper.toDto(savedPost.get());
+    return postId;
   }
 
   @Override
   public void deletePostById(Long id) {
+    commentRepository.deleteCommentsByPostId(id);
+
     postRepository.deletePostById(id);
 
     postTagRepository.deleteAllByPostId(id);
@@ -136,10 +146,10 @@ public class PostServiceImpl implements PostService {
     }
   }
 
-  private void updatePostTag(String tags, Post savedPost) {
+  private void updatePostTag(String tags, Long postId) {
     List<String> tagList = getTagsFromString(tags);
 
-    postTagRepository.deleteAllByPostId(savedPost.getId());
+    postTagRepository.deleteAllByPostId(postId);
 
     List<PostTag> newPostTags = new ArrayList<>();
 
@@ -148,7 +158,7 @@ public class PostServiceImpl implements PostService {
                              .orElseGet(() -> tagRepository.save(new Tag(tagName)));
 
       PostTag postTag = new PostTag();
-      postTag.setPostId(savedPost.getId());
+      postTag.setPostId(postId);
       postTag.setTagId(tag.getId());
 
       newPostTags.add(postTag);

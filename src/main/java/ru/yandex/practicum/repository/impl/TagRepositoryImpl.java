@@ -61,8 +61,7 @@ public class TagRepositoryImpl implements TagRepository {
     };
 
     try {
-      return Optional.ofNullable(
-          jdbcTemplate.queryForObject(sql, new Object[] {id}, rowMapper)
+      return Optional.ofNullable(jdbcTemplate.queryForObject(sql, new Object[] {id}, rowMapper)
       );
     } catch (Exception e) {
       return Optional.empty();

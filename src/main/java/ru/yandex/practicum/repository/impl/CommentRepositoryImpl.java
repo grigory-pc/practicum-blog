@@ -2,6 +2,7 @@ package ru.yandex.practicum.repository.impl;
 
 import jakarta.transaction.Transactional;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,7 +39,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 
     try {
       return Optional.ofNullable(
-          jdbcTemplate.queryForObject(sql, new Object[]{id}, rowMapper)
+          jdbcTemplate.queryForObject(sql, new Object[] {id}, rowMapper)
       );
     } catch (Exception e) {
       return Optional.empty();
@@ -50,5 +51,28 @@ public class CommentRepositoryImpl implements CommentRepository {
   public void deleteById(Long id) {
     String sql = "DELETE FROM comments WHERE id = ?";
     jdbcTemplate.update(sql, id);
+  }
+
+  @Override
+  public List<Comment> findAllByPostId(Long postId) {
+    String commentsSql = "SELECT c.id, c.post_id, c.text " +
+                         "FROM comments c WHERE c.post_id = ?";
+
+    RowMapper<Comment> commentRowMapper = (ResultSet rs, int rowNum) -> {
+      Comment comment = new Comment();
+      comment.setId(rs.getLong("id"));
+      comment.setPostId(rs.getLong("post_id"));
+      comment.setText(rs.getString("text"));
+      return comment;
+    };
+
+    return jdbcTemplate.query(commentsSql, new Object[] {postId}, commentRowMapper);
+  }
+
+  @Override
+  public void deleteCommentsByPostId(Long postId) {
+    String deleteCommentsSql = "DELETE FROM comments WHERE post_id = ?";
+
+    jdbcTemplate.update(deleteCommentsSql, postId);
   }
 }

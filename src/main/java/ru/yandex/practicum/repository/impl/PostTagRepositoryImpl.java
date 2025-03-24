@@ -37,6 +37,7 @@ public class PostTagRepositoryImpl implements PostTagRepository {
   @Transactional
   public void deleteAllByPostId(Long postId) {
     String sql = "DELETE FROM post_tag WHERE post_id = ?";
+
     jdbcTemplate.update(sql, postId);
   }
 

@@ -35,10 +35,9 @@ public interface PostService {
    * @param postDto - объект поста.
    * @param tags    - теги.
    * @param image   - картинка.
-   * @return сохраненный объект поста.
+   * @return id сохраненного поста.
    */
-  PostDto savePost(PostDto postDto, String tags, MultipartFile image);
-
+  Long savePost(PostDto postDto, String tags, MultipartFile image);
 
   /**
    * Удаление поста по id.

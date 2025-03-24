@@ -23,9 +23,9 @@ public interface PostRepository {
    * Сохранение поста.
    *
    * @param post - объект поста.
-   * @return - сохраненный пост с id.
+   * @return id сохраненного поста.
    */
-  Optional<Post> save(Post post);
+  Long save(Post post);
 
   /**
    * Получение всех постов.
