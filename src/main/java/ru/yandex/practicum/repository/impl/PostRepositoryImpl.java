@@ -47,8 +47,8 @@ public class PostRepositoryImpl implements PostRepository {
     };
 
     try {
-      Post post = jdbcTemplate.queryForObject(postSql, new Object[]{id}, postRowMapper);
-      List<Comment> comments = jdbcTemplate.query(commentsSql, new Object[]{id}, commentRowMapper);
+      Post post = jdbcTemplate.queryForObject(postSql, new Object[] {id}, postRowMapper);
+      List<Comment> comments = jdbcTemplate.query(commentsSql, new Object[] {id}, commentRowMapper);
       post.setComments(comments);
       return Optional.of(post);
     } catch (Exception e) {
@@ -59,8 +59,10 @@ public class PostRepositoryImpl implements PostRepository {
   @Override
   @Transactional
   public Optional<Post> save(Post post) {
-    String insertPostSql = "INSERT INTO posts (title, image_path, text, likes_count) VALUES (?, ?, ?, ?)";
-    String selectPostSql = "SELECT id, title, image_path, text, likes_count FROM posts WHERE id = LAST_INSERT_ID()";
+    String insertPostSql
+        = "INSERT INTO posts (title, image_path, text, likes_count) VALUES (?, ?, ?, ?)";
+    String selectPostSql
+        = "SELECT id, title, image_path, text, likes_count FROM posts WHERE id = LAST_INSERT_ID()";
 
     try {
       jdbcTemplate.update(insertPostSql,
@@ -103,7 +105,7 @@ public class PostRepositoryImpl implements PostRepository {
       return post;
     };
 
-    List<Post> content = jdbcTemplate.query(sql, new Object[]{size, offset}, rowMapper);
+    List<Post> content = jdbcTemplate.query(sql, new Object[] {size, offset}, rowMapper);
 
     RowMapper<Comment> commentRowMapper = (ResultSet rs, int rowNum) -> {
       Comment comment = new Comment();
@@ -119,7 +121,7 @@ public class PostRepositoryImpl implements PostRepository {
                            "WHERE c.post_id = ?";
 
       List<Comment> comments = jdbcTemplate.query(commentsSql,
-                                                  new Object[]{post.getId()},
+                                                  new Object[] {post.getId()},
                                                   commentRowMapper);
 
       post.setComments(comments);
@@ -152,7 +154,7 @@ public class PostRepositoryImpl implements PostRepository {
                       "JOIN tags t ON pt.tag_id = t.id " +
                       "WHERE LOWER(t.tag_name) LIKE CONCAT('%', LOWER(?), '%')";
 
-    long totalElements = jdbcTemplate.queryForObject(countSql, new Object[]{search}, Long.class);
+    long totalElements = jdbcTemplate.queryForObject(countSql, new Object[] {search}, Long.class);
 
     String sql = "SELECT DISTINCT p.* " +
                  "FROM posts p " +
@@ -171,7 +173,7 @@ public class PostRepositoryImpl implements PostRepository {
       return post;
     };
 
-    List<Post> content = jdbcTemplate.query(sql, new Object[]{search, size, offset}, rowMapper);
+    List<Post> content = jdbcTemplate.query(sql, new Object[] {search, size, offset}, rowMapper);
 
     RowMapper<Comment> commentRowMapper = (ResultSet rs, int rowNum) -> {
       Comment comment = new Comment();
@@ -187,7 +189,7 @@ public class PostRepositoryImpl implements PostRepository {
                            "WHERE c.post_id = ?";
 
       List<Comment> comments = jdbcTemplate.query(commentsSql,
-                                                  new Object[]{post.getId()},
+                                                  new Object[] {post.getId()},
                                                   commentRowMapper);
 
       post.setComments(comments);
@@ -208,4 +210,46 @@ public class PostRepositoryImpl implements PostRepository {
     String deleteTagsSql = "DELETE FROM posts_tags WHERE post_id = ?";
     jdbcTemplate.update(deleteTagsSql, id);
   }
+
+  @Override
+  public List<Post> findAll() {
+    String sql = "SELECT p.id, p.title, p.image_path, p.text, p.likes_count " +
+                 "FROM posts p";
+
+    RowMapper<Post> rowMapper = (ResultSet rs, int rowNum) -> {
+      Post post = new Post();
+      post.setId(rs.getLong("id"));
+      post.setTitle(rs.getString("title"));
+      post.setImagePath(rs.getString("image_path"));
+      post.setText(rs.getString("text"));
+      post.setLikesCount(rs.getInt("likes_count"));
+      return post;
+    };
+
+    List<Post> posts = jdbcTemplate.query(sql, rowMapper);
+
+    // Загружаем комментарии для каждого поста
+    RowMapper<Comment> commentRowMapper = (ResultSet rs, int rowNum) -> {
+      Comment comment = new Comment();
+      comment.setId(rs.getLong("id"));
+      comment.setPostId(rs.getLong("post_id"));
+      comment.setText(rs.getString("text"));
+      return comment;
+    };
+
+    for (Post post : posts) {
+      String commentsSql = "SELECT c.id, c.post_id, c.text " +
+                           "FROM comments c " +
+                           "WHERE c.post_id = ?";
+
+      List<Comment> comments = jdbcTemplate.query(commentsSql,
+                                                  new Object[] {post.getId()},
+                                                  commentRowMapper);
+
+      post.setComments(comments);
+    }
+
+    return posts;
+  }
+
 }

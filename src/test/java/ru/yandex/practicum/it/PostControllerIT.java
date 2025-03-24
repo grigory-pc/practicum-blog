@@ -211,7 +211,7 @@ public class PostControllerIT {
     Optional<Comment> actualComment = commentRepository.findById(ID_COMMENT);
 
     assertTrue(actualComment.isPresent());
-    assertEquals(ID_POST, actualComment.get().getPost().getId());
+    assertEquals(ID_POST, actualComment.get().getPostId());
     assertEquals(commentDto.getText(), actualComment.get().getText());
   }
 
@@ -230,7 +230,7 @@ public class PostControllerIT {
     Optional<Comment> actualComment = commentRepository.findById(ID_POST);
 
     assertTrue(actualComment.isPresent());
-    assertEquals(ID_POST, actualComment.get().getPost().getId());
+    assertEquals(ID_POST, actualComment.get().getPostId());
     assertEquals(newCommentText, actualComment.get().getText());
   }
 
@@ -267,7 +267,7 @@ public class PostControllerIT {
         = "INSERT INTO comments (id, post_id, text)VALUES (?, ?, ?)";
     jdbcTemplate.update(sqlComments,
                         comment.getId(),
-                        comment.getPost().getId(),
+                        comment.getPostId(),
                         comment.getText());
   }
 }

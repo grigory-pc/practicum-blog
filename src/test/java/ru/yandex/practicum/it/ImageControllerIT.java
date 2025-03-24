@@ -36,7 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ImageControllerIT {
   private static final String BASE_URL = "/images";
-  public static final long ID_POST = 1L;
 
   @Autowired
   private WebApplicationContext webApplicationContext;

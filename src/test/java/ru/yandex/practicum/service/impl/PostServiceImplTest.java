@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.dao.Post;
@@ -27,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -55,13 +54,14 @@ class PostServiceImplTest {
   void positiveTest_shouldFindAllPosts() {
     try {
       String search = "";
-      Pageable pageable = PageRequest.of(0, 10);
+      int pageNumber = 0;
+      int pageSize = 10;
 
       Page<Post> postPage = new PageImpl<>(List.of(Data.getPost()));
       PostDto expectedPostDto = Data.getPostDto();
 
       doReturn(postPage)
-          .when(postRepository).findAll(any(Pageable.class));
+          .when(postRepository).findAll(anyInt(), anyInt());
       doReturn(new PageImpl<>(List.of(expectedPostDto)))
           .when(postMapper).toDtoPage(any());
       doReturn(List.of(Data.getPostTag()))
@@ -69,7 +69,7 @@ class PostServiceImplTest {
       doReturn(Optional.of(Data.getTag()))
           .when(tagRepository).findById(anyLong());
 
-      Page<PostDto> actualPostPreviewDto = postService.findAllPosts(search, pageable);
+      Page<PostDto> actualPostPreviewDto = postService.findAllPosts(search, pageNumber, pageSize);
 
       assertEquals(1, actualPostPreviewDto.getTotalElements());
       assertEquals(expectedPostDto, actualPostPreviewDto.getContent().get(0));

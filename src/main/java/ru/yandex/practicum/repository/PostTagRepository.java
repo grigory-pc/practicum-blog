@@ -21,4 +21,11 @@ public interface PostTagRepository {
    * @param postId - id поста.
    */
   void deleteAllByPostId(Long postId);
+
+  /**
+   * Сохранение всех связей Post - Tag.
+   *
+   * @param postTags список объектов PostTag.
+   */
+  void saveAll(List<PostTag> postTags);
 }

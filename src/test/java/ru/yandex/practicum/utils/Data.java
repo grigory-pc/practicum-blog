@@ -1,6 +1,5 @@
 package ru.yandex.practicum.utils;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import lombok.experimental.UtilityClass;
@@ -56,7 +55,7 @@ public class Data {
   }
 
   public Comment getComment(Long id) {
-    return new Comment(id, getPost(), "text");
+    return new Comment(id, ID_ONE, "text");
   }
 
   public PostTag getPostTag() {

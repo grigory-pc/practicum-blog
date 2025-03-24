@@ -1,5 +1,6 @@
 package ru.yandex.practicum.repository;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -34,6 +35,13 @@ public interface PostRepository {
    * @return список постов.
    */
   Page<Post> findAll(int pageNumber, int pageSize);
+
+  /**
+   * Получение всех постов без пагинации.
+   *
+   * @return список постов.
+   */
+  List<Post> findAll();
 
   /**
    * Увеличение количества лайков на 1.
