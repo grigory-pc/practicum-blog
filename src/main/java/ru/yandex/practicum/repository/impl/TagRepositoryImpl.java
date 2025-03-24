@@ -1,11 +1,16 @@
 package ru.yandex.practicum.repository.impl;
 
 import jakarta.transaction.Transactional;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.dao.Tag;
 import ru.yandex.practicum.repository.TagRepository;
@@ -26,27 +31,38 @@ public class TagRepositoryImpl implements TagRepository {
       return tag;
     };
 
-    return Optional.ofNullable(
-        jdbcTemplate.queryForObject(sql, new Object[] {tagName}, rowMapper)
-    );
+    try {
+      return Optional.of(jdbcTemplate.queryForObject(sql, new Object[]{tagName}, rowMapper));
+    } catch (EmptyResultDataAccessException e) {
+      return Optional.empty();
+    }
   }
 
   @Transactional
   @Override
   public Tag save(Tag tag) {
     String insertSql = "INSERT INTO tags (tag_name) VALUES (?)";
-    String selectSql = "SELECT id, tag_name FROM tags WHERE id = LAST_INSERT_ID()";
 
-    jdbcTemplate.update(insertSql, tag.getTagName());
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+
+    jdbcTemplate.update(connection -> {
+      PreparedStatement ps = connection.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
+      ps.setString(1, tag.getTagName());
+      return ps;
+    }, keyHolder);
+
+    Long id = keyHolder.getKey().longValue();
+
+    String selectSql = "SELECT tag_name FROM tags WHERE id = ?";
 
     RowMapper<Tag> rowMapper = (ResultSet rs, int rowNum) -> {
       Tag savedTag = new Tag();
-      savedTag.setId(rs.getLong("id"));
+      savedTag.setId(id);
       savedTag.setTagName(rs.getString("tag_name"));
       return savedTag;
     };
 
-    return jdbcTemplate.queryForObject(selectSql, rowMapper);
+    return jdbcTemplate.queryForObject(selectSql, rowMapper, id);
   }
 
   @Override

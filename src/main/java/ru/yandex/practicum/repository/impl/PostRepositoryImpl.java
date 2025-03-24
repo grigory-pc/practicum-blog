@@ -1,7 +1,9 @@
 package ru.yandex.practicum.repository.impl;
 
 import jakarta.transaction.Transactional;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.repository.PostRepository;
@@ -21,7 +25,7 @@ public class PostRepositoryImpl implements PostRepository {
 
   @Override
   public Optional<Post> findById(Long id) {
-    String postSql = "SELECT p.id, p.title, p.image_path, p.text, p.likes_count " +
+    String postSql = "SELECT p.id, p.title, p.image_path, p.text, p.count_likes " +
                      "FROM posts p WHERE p.id = ?";
 
     RowMapper<Post> postRowMapper = (ResultSet rs, int rowNum) -> {
@@ -30,7 +34,7 @@ public class PostRepositoryImpl implements PostRepository {
       post.setTitle(rs.getString("title"));
       post.setImagePath(rs.getString("image_path"));
       post.setText(rs.getString("text"));
-      post.setLikesCount(rs.getInt("likes_count"));
+      post.setLikesCount(rs.getInt("count_likes"));
       return post;
     };
 
@@ -46,51 +50,52 @@ public class PostRepositoryImpl implements PostRepository {
   @Override
   @Transactional
   public Long save(Post post) {
-    String insertPostSql
-        = "INSERT INTO posts (title, image_path, text, likes_count) VALUES (?, ?, ?, ?)";
+    String sql = "INSERT INTO posts (title, image_path, text, count_likes) " +
+                 "VALUES (?, ?, ?, ?)";
 
-    String selectPostSql
-        = "SELECT id, title, image_path, text, likes_count FROM posts WHERE id = LAST_INSERT_ID()";
+    KeyHolder keyHolder = new GeneratedKeyHolder();
+    jdbcTemplate.update(connection -> {
+      PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+      ps.setString(1, post.getTitle());
+      ps.setString(2, post.getImagePath());
+      ps.setString(3, post.getText());
+      ps.setInt(4, post.getLikesCount());
+      return ps;
+    }, keyHolder);
 
-    jdbcTemplate.update(insertPostSql,
-                        post.getTitle(),
-                        post.getImagePath(),
-                        post.getText(),
-                        post.getLikesCount());
-
-    return jdbcTemplate.queryForObject(selectPostSql, Long.class);
+    return keyHolder.getKey().longValue();
   }
 
   @Override
-  public Page<Post> findAll(int from, int size) {
-    int offset = from * size;
+    public Page<Post> findAll(int pageNumber, int pageSize) {
+      int offset = pageNumber * pageSize;
 
-    String countSql = "SELECT COUNT(*) FROM posts";
-    long totalElements = jdbcTemplate.queryForObject(countSql, Long.class);
+      String countSql = "SELECT COUNT(*) FROM posts";
+      long totalElements = jdbcTemplate.queryForObject(countSql, Long.class);
 
-    String sql = "SELECT p.id, p.title, p.image_path, p.text, p.likes_count " +
-                 "FROM posts p " +
-                 "LIMIT ? OFFSET ?";
+      String sql = "SELECT p.id, p.title, p.image_path, p.text, p.count_likes " +
+                   "FROM posts p " +
+                   "LIMIT ? OFFSET ?";
 
-    RowMapper<Post> rowMapper = (ResultSet rs, int rowNum) -> {
-      Post post = new Post();
-      post.setId(rs.getLong("id"));
-      post.setTitle(rs.getString("title"));
-      post.setImagePath(rs.getString("image_path"));
-      post.setText(rs.getString("text"));
-      post.setLikesCount(rs.getInt("likes_count"));
-      return post;
-    };
+      RowMapper<Post> rowMapper = (ResultSet rs, int rowNum) -> {
+        Post post = new Post();
+        post.setId(rs.getLong("id"));
+        post.setTitle(rs.getString("title"));
+        post.setImagePath(rs.getString("image_path"));
+        post.setText(rs.getString("text"));
+        post.setLikesCount(rs.getInt("count_likes"));
+        return post;
+      };
 
-    List<Post> content = jdbcTemplate.query(sql, new Object[] {size, offset}, rowMapper);
+      List<Post> posts = jdbcTemplate.query(sql, new Object[] {pageSize, offset}, rowMapper);
 
-    return new PageImpl<>(content, PageRequest.of(from, size), totalElements);
-  }
+      return new PageImpl<>(posts, PageRequest.of(pageNumber, pageSize), totalElements);
+    }
 
   @Override
   @Transactional
   public void increaseLikesCount(Long postId) {
-    String sql = "UPDATE posts SET likes_count = likes_count + 1 WHERE id = ?";
+    String sql = "UPDATE posts SET count_likes = count_likes + 1 WHERE id = ?";
 
     jdbcTemplate.update(sql, postId);
   }
@@ -98,7 +103,7 @@ public class PostRepositoryImpl implements PostRepository {
   @Override
   @Transactional
   public void decreaseLikesCount(Long postId) {
-    String sql = "UPDATE posts SET likes_count = likes_count - 1 WHERE id = ?";
+    String sql = "UPDATE posts SET count_likes = count_likes - 1 WHERE id = ?";
 
     jdbcTemplate.update(sql, postId);
   }
@@ -128,7 +133,7 @@ public class PostRepositoryImpl implements PostRepository {
       post.setTitle(rs.getString("title"));
       post.setImagePath(rs.getString("image_path"));
       post.setText(rs.getString("text"));
-      post.setLikesCount(rs.getInt("likes_count"));
+      post.setLikesCount(rs.getInt("count_likes"));
       return post;
     };
 
@@ -147,7 +152,7 @@ public class PostRepositoryImpl implements PostRepository {
 
   @Override
   public List<Post> findAll() {
-    String sql = "SELECT p.id, p.title, p.image_path, p.text, p.likes_count " +
+    String sql = "SELECT p.id, p.title, p.image_path, p.text, p.count_likes " +
                  "FROM posts p";
 
     RowMapper<Post> rowMapper = (ResultSet rs, int rowNum) -> {
@@ -156,7 +161,7 @@ public class PostRepositoryImpl implements PostRepository {
       post.setTitle(rs.getString("title"));
       post.setImagePath(rs.getString("image_path"));
       post.setText(rs.getString("text"));
-      post.setLikesCount(rs.getInt("likes_count"));
+      post.setLikesCount(rs.getInt("count_likes"));
       return post;
     };
 

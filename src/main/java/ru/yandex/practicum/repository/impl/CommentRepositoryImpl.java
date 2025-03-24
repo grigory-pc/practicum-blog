@@ -20,6 +20,7 @@ public class CommentRepositoryImpl implements CommentRepository {
   @Transactional
   public void save(Comment comment) {
     String sql = "INSERT INTO comments (post_id, text) VALUES (?, ?)";
+
     jdbcTemplate.update(sql,
                         comment.getPostId(),
                         comment.getText());

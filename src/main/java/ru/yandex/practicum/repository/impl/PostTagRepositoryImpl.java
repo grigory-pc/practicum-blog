@@ -21,7 +21,7 @@ public class PostTagRepositoryImpl implements PostTagRepository {
 
   @Override
   public List<PostTag> findAllByPostId(Long postId) {
-    String sql = "SELECT post_id, tag_id FROM post_tag WHERE post_id = ?";
+    String sql = "SELECT post_id, tag_id FROM posts_tags WHERE post_id = ?";
 
     RowMapper<PostTag> rowMapper = (ResultSet rs, int rowNum) -> {
       PostTag postTag = new PostTag();
@@ -36,14 +36,14 @@ public class PostTagRepositoryImpl implements PostTagRepository {
   @Override
   @Transactional
   public void deleteAllByPostId(Long postId) {
-    String sql = "DELETE FROM post_tag WHERE post_id = ?";
+    String sql = "DELETE FROM posts_tags WHERE post_id = ?";
 
     jdbcTemplate.update(sql, postId);
   }
 
   @Override
   public void saveAll(List<PostTag> postTags) {
-    String sql = "INSERT INTO post_tag (post_id, tag_id) VALUES (?, ?)";
+    String sql = "INSERT INTO posts_tags (post_id, tag_id) VALUES (?, ?)";
 
     for (PostTag postTag : postTags) {
       KeyHolder keyHolder = new GeneratedKeyHolder();
