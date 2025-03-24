@@ -51,6 +51,7 @@ node_modules/
 # Maven
 log/
 /src/main/frontend/generated/
+/.idea/
 
 # Ignore Gradle project-specific cache directory
 .gradle
