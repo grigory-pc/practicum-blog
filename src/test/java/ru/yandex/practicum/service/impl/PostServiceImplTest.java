@@ -14,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.yandex.practicum.dao.Post;
 import ru.yandex.practicum.dto.PostDto;
 import ru.yandex.practicum.mapper.PostMapper;
+import ru.yandex.practicum.repository.CommentRepository;
 import ru.yandex.practicum.repository.PostRepository;
 import ru.yandex.practicum.repository.PostTagRepository;
 import ru.yandex.practicum.repository.TagRepository;
@@ -45,6 +46,8 @@ class PostServiceImplTest {
   @MockBean
   private TagRepository tagRepository;
   @MockBean
+  private CommentRepository commentRepository;
+  @MockBean
   private PostMapper postMapper;
   @Autowired
   private PostService postService;
@@ -62,6 +65,8 @@ class PostServiceImplTest {
 
       doReturn(postPage)
           .when(postRepository).findAll(anyInt(), anyInt());
+      doReturn(List.of(Data.getComment(Data.ID_ONE)))
+          .when(commentRepository).findAllByPostId(anyLong());
       doReturn(new PageImpl<>(List.of(expectedPostDto)))
           .when(postMapper).toDtoPage(any());
       doReturn(List.of(Data.getPostTag()))
@@ -88,6 +93,8 @@ class PostServiceImplTest {
 
       doReturn(Optional.of(post))
           .when(postRepository).findById(anyLong());
+      doReturn(List.of(Data.getComment(Data.ID_ONE)))
+          .when(commentRepository).findAllByPostId(anyLong());
       doReturn(expectedPostDto)
           .when(postMapper).toDto(any(Post.class));
       doReturn(List.of(Data.getPostTag()))
@@ -114,23 +121,54 @@ class PostServiceImplTest {
 
       doReturn(post)
           .when(postMapper).toPost(any(PostDto.class));
-      doReturn(post)
+      doReturn(POST_ID)
           .when(postRepository).save(any(Post.class));
       doNothing().when(postTagRepository)
                  .deleteAllByPostId(anyLong());
       doReturn(Optional.of(Data.getTag()))
           .when(tagRepository).findDistinctByTagName(anyString());
-      doReturn(List.of(Data.getPostTag()))
-          .when(postTagRepository).saveAll(anyList());
-      doReturn(postSaveDto)
-          .when(postMapper).toDto(any(Post.class));
+      doNothing().when(postTagRepository)
+                 .saveAll(anyList());
+
+      Long actualPostId = postService.savePost(postSaveDto, tags, null);
+
+      assertEquals(POST_ID, actualPostId);
+      verify(postMapper, atLeastOnce()).toPost(any(PostDto.class));
+      verify(postRepository, atLeastOnce()).save(any(Post.class));
+      verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
+      verify(tagRepository, atLeastOnce()).findDistinctByTagName(anyString());
+      verify(postTagRepository, atLeastOnce()).saveAll(anyList());
+
+    } catch (Exception e) {
+      fail("Не ожидали получить исключение");
+    }
+  }
+
+  @Test
+  @DisplayName("Позитивный тест - проверяем обновление поста")
+  void positiveTest_shouldUpdatePost() {
+    try {
+      Post post = Data.getPost();
+      PostDto postSaveDto = Data.getPostSaveDto();
+      postSaveDto.setId(POST_ID);
+      String tags = "test";
+
+      doReturn(post)
+          .when(postMapper).toPost(any(PostDto.class));
+      doNothing().when(postRepository)
+                 .update(any(Post.class));
+      doNothing().when(postTagRepository)
+                 .deleteAllByPostId(anyLong());
+      doReturn(Optional.of(Data.getTag()))
+          .when(tagRepository).findDistinctByTagName(anyString());
+      doNothing().when(postTagRepository)
+                 .saveAll(anyList());
 
       assertDoesNotThrow(
-          () -> postService.savePost(postSaveDto, tags, null));
+          () -> postService.updatePost(postSaveDto, tags, null));
 
       verify(postMapper, atLeastOnce()).toPost(any(PostDto.class));
-      verify(postMapper, atLeastOnce()).toDto(any(Post.class));
-      verify(postRepository, atLeastOnce()).save(any(Post.class));
+      verify(postRepository, atLeastOnce()).update(any(Post.class));
       verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
       verify(tagRepository, atLeastOnce()).findDistinctByTagName(anyString());
       verify(postTagRepository, atLeastOnce()).saveAll(anyList());
@@ -143,6 +181,8 @@ class PostServiceImplTest {
   @Test
   @DisplayName("Позитивный тест - проверяем удаление поста")
   void positiveTest_shouldDeletePostById() {
+    doNothing().when(commentRepository)
+               .deleteCommentsByPostId(anyLong());
     doNothing().when(postRepository)
                .deletePostById(anyLong());
     doNothing().when(postTagRepository)
@@ -151,6 +191,7 @@ class PostServiceImplTest {
     assertDoesNotThrow(
         () -> postService.deletePostById(POST_ID));
 
+    verify(commentRepository, atLeastOnce()).deleteCommentsByPostId(anyLong());
     verify(postRepository, atLeastOnce()).deletePostById(anyLong());
     verify(postTagRepository, atLeastOnce()).deleteAllByPostId(anyLong());
   }

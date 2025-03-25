@@ -42,13 +42,11 @@ class CommentServiceImplTest {
     try {
       String text = "text";
       Post post = Data.getPost();
-      Comment comment = Data.getComment(ID);
 
       doReturn(Optional.of(post))
           .when(postRepository).findById(anyLong());
-
-      doReturn(comment)
-          .when(commentRepository).save(any(Comment.class));
+      doNothing().when(commentRepository)
+                 .save(any(Comment.class));
 
       assertDoesNotThrow(
           () -> commentService.saveComment(ID, text));
@@ -67,19 +65,17 @@ class CommentServiceImplTest {
     try {
       String text = "text";
       Post post = Data.getPost();
-      Comment comment = Data.getComment(ID);
 
       doReturn(Optional.of(post))
           .when(postRepository).findById(anyLong());
-
-      doReturn(comment)
-          .when(commentRepository).save(any(Comment.class));
+      doNothing().when(commentRepository)
+                 .update(any(Comment.class));
 
       assertDoesNotThrow(
           () -> commentService.updateComment(ID, ID, text));
 
       verify(postRepository, atLeastOnce()).findById(anyLong());
-      verify(commentRepository, atLeastOnce()).save(any(Comment.class));
+      verify(commentRepository, atLeastOnce()).update(any(Comment.class));
 
     } catch (Exception e) {
       fail("Не ожидали получить исключение");

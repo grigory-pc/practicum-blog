@@ -82,7 +82,7 @@ public class PostRepositoryImpl implements PostRepository {
       ps.setString(2, post.getImagePath());
       ps.setString(3, post.getText());
       ps.setInt(4, post.getLikesCount());
-      ps.setLong(5, post.getId()); // Предполагаем, что у вас есть метод getId()
+      ps.setLong(5, post.getId());
       return ps;
     });
   }
