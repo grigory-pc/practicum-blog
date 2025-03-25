@@ -151,7 +151,7 @@ public class PostController {
                              .text(text)
                              .build();
 
-    postService.savePost(postDto, tags, image);
+    postService.updatePost(postDto, tags, image);
 
     log.info("Пост сохранен в базу данных с id={}", id);
 

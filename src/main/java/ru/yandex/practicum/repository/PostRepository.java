@@ -28,6 +28,13 @@ public interface PostRepository {
   Long save(Post post);
 
   /**
+   * Обновление поста.
+   *
+   * @param post - объект поста.
+   */
+  void update(Post post);
+
+  /**
    * Получение всех постов.
    *
    * @param pageNumber - с какой страницы

@@ -92,6 +92,18 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  public void updatePost(PostDto postDto, String tags, MultipartFile image) {
+    Optional<String> imagePath = saveFile(image);
+    imagePath.ifPresent(postDto::setImagePath);
+
+    postRepository.update(postMapper.toPost(postDto));
+
+    if (tags != null) {
+      updatePostTag(tags, postDto.getId());
+    }
+  }
+
+  @Override
   public void deletePostById(Long id) {
     commentRepository.deleteCommentsByPostId(id);
 

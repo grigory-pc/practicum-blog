@@ -17,6 +17,13 @@ public interface CommentRepository {
   void save(Comment comment);
 
   /**
+   * Обновление комментария в БД.
+   *
+   * @param comment - объект комментария.
+   */
+  void update(Comment comment);
+
+  /**
    * Получение комментария по id.
    * @param id - id комментария.
    *

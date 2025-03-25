@@ -40,6 +40,15 @@ public interface PostService {
   Long savePost(PostDto postDto, String tags, MultipartFile image);
 
   /**
+   * Обновление поста.
+   *
+   * @param postDto - объект поста.
+   * @param tags    - теги.
+   * @param image   - картинка.
+   */
+  void updatePost(PostDto postDto, String tags, MultipartFile image);
+
+  /**
    * Удаление поста по id.
    *
    * @param id - id поста.

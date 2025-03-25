@@ -67,30 +67,51 @@ public class PostRepositoryImpl implements PostRepository {
   }
 
   @Override
-    public Page<Post> findAll(int pageNumber, int pageSize) {
-      int offset = pageNumber * pageSize;
+  @Transactional
+  public void update(Post post) {
+    String sql = "UPDATE posts " +
+                 "SET title = ?, " +
+                 "image_path = ?, " +
+                 "text = ?, " +
+                 "count_likes = ? " +
+                 "WHERE id = ?";
 
-      String countSql = "SELECT COUNT(*) FROM posts";
-      long totalElements = jdbcTemplate.queryForObject(countSql, Long.class);
+    jdbcTemplate.update(connection -> {
+      PreparedStatement ps = connection.prepareStatement(sql);
+      ps.setString(1, post.getTitle());
+      ps.setString(2, post.getImagePath());
+      ps.setString(3, post.getText());
+      ps.setInt(4, post.getLikesCount());
+      ps.setLong(5, post.getId()); // Предполагаем, что у вас есть метод getId()
+      return ps;
+    });
+  }
 
-      String sql = "SELECT p.id, p.title, p.image_path, p.text, p.count_likes " +
-                   "FROM posts p " +
-                   "LIMIT ? OFFSET ?";
+  @Override
+  public Page<Post> findAll(int pageNumber, int pageSize) {
+    int offset = pageNumber * pageSize;
 
-      RowMapper<Post> rowMapper = (ResultSet rs, int rowNum) -> {
-        Post post = new Post();
-        post.setId(rs.getLong("id"));
-        post.setTitle(rs.getString("title"));
-        post.setImagePath(rs.getString("image_path"));
-        post.setText(rs.getString("text"));
-        post.setLikesCount(rs.getInt("count_likes"));
-        return post;
-      };
+    String countSql = "SELECT COUNT(*) FROM posts";
+    long totalElements = jdbcTemplate.queryForObject(countSql, Long.class);
 
-      List<Post> posts = jdbcTemplate.query(sql, new Object[] {pageSize, offset}, rowMapper);
+    String sql = "SELECT p.id, p.title, p.image_path, p.text, p.count_likes " +
+                 "FROM posts p " +
+                 "LIMIT ? OFFSET ?";
 
-      return new PageImpl<>(posts, PageRequest.of(pageNumber, pageSize), totalElements);
-    }
+    RowMapper<Post> rowMapper = (ResultSet rs, int rowNum) -> {
+      Post post = new Post();
+      post.setId(rs.getLong("id"));
+      post.setTitle(rs.getString("title"));
+      post.setImagePath(rs.getString("image_path"));
+      post.setText(rs.getString("text"));
+      post.setLikesCount(rs.getInt("count_likes"));
+      return post;
+    };
+
+    List<Post> posts = jdbcTemplate.query(sql, new Object[] {pageSize, offset}, rowMapper);
+
+    return new PageImpl<>(posts, PageRequest.of(pageNumber, pageSize), totalElements);
+  }
 
   @Override
   @Transactional

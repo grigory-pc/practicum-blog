@@ -54,7 +54,7 @@ public class CommentServiceImpl implements CommentService {
     if (post.isPresent()) {
       comment.setPostId(postId);
 
-      commentRepository.save(comment);
+      commentRepository.update(comment);
     } else {
       throw new NotFoundException();
     }

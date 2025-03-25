@@ -27,6 +27,17 @@ public class CommentRepositoryImpl implements CommentRepository {
   }
 
   @Override
+  @Transactional
+  public void update(Comment comment) {
+    String sql = "UPDATE comments SET post_id = ?, text = ? WHERE id = ?";
+
+    jdbcTemplate.update(sql,
+                        comment.getPostId(),
+                        comment.getText(),
+                        comment.getId());
+  }
+
+  @Override
   public Optional<Comment> findById(Long id) {
     String sql = "SELECT id, post_id, text FROM comments WHERE id = ?";
 
